@@ -1,0 +1,19 @@
+docs:
+  getting_started:
+    deployment: index.html
+    first_visualization: first-visualization.html
+  features:
+    source: source.html
+    view: view.html
+    datachart: datachart.html
+    dashboard: dashboard.html
+    storyboard: storyboard.html
+    schedule: schedule.html
+    variable: variable.html
+  user_role:
+    organization: organization.html
+    member: member.html
+    permission: permission.html
+  extensions:
+    chart_plugin: chart_plugin.html
+    jdbc: jdbc.html
