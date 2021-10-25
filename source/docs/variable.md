@@ -23,11 +23,10 @@ datart 中有查询变量和权限变量两种类别，分别用于不同的场�
 datart 内置了一组包含用户信息的权限变量，可以在数据视图里直接使用它们
 
 ```bash
-$DAVINCI.USER.ID$             # 用户 ID
-$DAVINCI.USER.EMAIL$          # 用户 Email
-$DAVINCI.USER.USERNAME$       # 用户名
-$DAVINCI.USER.NAME$           # 用户姓名
-$DAVINCI.USER.DEPARTMENT$     # 用户部门
+$DATART.USER.ID$           # 用户 ID
+$DATART.USER.USERNAME$     # 用户名
+$DATART.USER.EMAIL$        # 用户 Email
+$DATART.USER.NAME$         # 用户姓名
 ```
 
 ## 2. 变量设置
