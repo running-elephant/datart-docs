@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>数据源 | datart</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://github.com/running-elephant/datart-docs.git/docs/source.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://github.com/running-elephant/datart-docs.git/docs/source">
+    
+      <link rel="alternative" hreflang="zh-cn" href="https://github.com/running-elephant/datart-docs.git/zh-cn/docs/source">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/datart-docs/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/datart-docs/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/datart-docs/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/datart-docs/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/datart-docs/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/datart-docs/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/datart-docs/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/datart-docs/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/datart-docs/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  
+<link rel="stylesheet" href="/datart-docs/css/navy.css">
+
+  <!-- endbuild -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-lato@0.0.75/index.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/datart-docs/atom.xml" title="datart" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/datart-docs/" id="logo">datart</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/datart-docs/docs/" class="main-nav-link">文档</a><a href="/datart-docs/about/" class="main-nav-link">关于</a>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"></label>
+      <select id="lang-select" data-canonical="docs/source.html">
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">数据源</h1>
+                <a href="https://github.com/running-elephant/datart-docs/tree/master/source/docs/source.md" class="article-edit-link" title="Improve this doc"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <p>数据源用于管理数据连接、订阅与资源信息，支持通过数据源、文件、<code>REST API</code> 等多种方式获取数据。datart 内置了 <code>JDBC</code>、文件和 <code>http</code> 3种类型的数据源，在内置数据源不满足使用时，用户也可以扩展自己的数据源</p>
+<h2 id="1-JDBC" class="article-heading"><a href="#1-JDBC" class="headerlink" title="1. JDBC"></a>1. JDBC<a class="article-anchor" href="#1-JDBC" aria-hidden="true"></a></h2><p>创建一个 <code>JDBC</code> 数据源通常需要配置以下内容：</p>
+<ul>
+<li>名称：数据源名称，要求唯一</li>
+<li>dbType：要连接的数据库类型。默认支持30+种JDBC数据库。如果你的数据库不在选项中，请参照<a href="jdbc">扩展JDBC数据源</a></li>
+<li>url：必选项，通常格式为 <code>jdbc:&lt;数据源名称&gt;://&lt;数据源域名或IP&gt;:(&lt;端口&gt;)/&lt;数据源实例&gt;(?&lt;连接参数&gt;)</code></li>
+<li>username：用户名</li>
+<li>password：密码</li>
+<li>driverClass：驱动类；datart 没有内置所有数据库的驱动类，所以当测试连接提示缺少驱动类时，用户需要手动填写驱动类名称</li>
+<li>serverAggregate：服务端聚合；开启后，在执行SQL时，会将数据视图中 SQL 查询的结果集全量拉取到服务端，然后进行本地分组聚合计算。这个选项适合数据源端计算效率低，或者计算能力弱的数据源进行开启。如果源端本身具有较强的计算能力，则不需要开启这个选项</li>
+<li>properties：连接参数，键值对形式</li>
+</ul>
+<h2 id="2-文件" class="article-heading"><a href="#2-文件" class="headerlink" title="2. 文件"></a>2. 文件<a class="article-anchor" href="#2-文件" aria-hidden="true"></a></h2><p>datart 支持上传 <code>Excel</code> 和 <code>csv</code> 文件作为数据源，文件存储在 datart 服务端；datart 使用内置的 H2 数据库对文件中的二维表进行计算，支持在数据视图中编写 SQL 对一个数据源下的多个文件进行关联与聚合操作</p>
+<p>创建一个文件数据源的步骤如下：</p>
+<ol>
+<li>填写名称，选择类型，保存数据源</li>
+</ol>
+<p><img src="/datart-docs/images/source/2-1-1.png" alt="文件-1"></p>
+<ol start="2">
+<li>保存成功之后，点击<code>新增配置</code>添加文件</li>
+</ol>
+<p><img src="/datart-docs/images/source/2-1-2.png" alt="文件-2"></p>
+<ol start="3">
+<li>填写表名，上传文件</li>
+</ol>
+<p><img src="/datart-docs/images/source/2-1-3.png" alt="文件-3"></p>
+<ol start="4">
+<li>上传成功之后，表格中会展示字段信息和文件内容，点击表头头部编辑字段类型</li>
+</ol>
+<p><img src="/datart-docs/images/source/2-1-4.png" alt="文件-4"></p>
+<ol start="5">
+<li><p>保存文件信息，一个数据源下可以添加多个文件</p>
+</li>
+<li><p>保存数据源</p>
+</li>
+</ol>
+<h2 id="3-http" class="article-heading"><a href="#3-http" class="headerlink" title="3. http"></a>3. http<a class="article-anchor" href="#3-http" aria-hidden="true"></a></h2><p><code>http</code> 数据源允许用户使用 <code>REST API</code> 响应数据作为数据来源；datart 使用内置的 H2 数据库对响应数据进行计算，支持在数据视图中编写 SQL 对一个数据源下的多个 <code>REST API</code> 响应数据进行关联与聚合操作</p>
+<p>创建一个 <code>http</code> 数据源的步骤如下：</p>
+<ol>
+<li>填写名称，选择类型，点击<code>新增配置</code>添加配置信息</li>
+</ol>
+<p><img src="/datart-docs/images/source/3-1-1.png" alt="http-1"></p>
+<ol start="2">
+<li>通常需要配置以下内容：</li>
+</ol>
+<ul>
+<li>表名：一个数据源下唯一</li>
+<li>url：<code>REST API</code> 地址</li>
+<li>method：请求方式，GET/POST/PUT/DELETE</li>
+<li>property：返回数据中需要解析的属性，指定的属性必须是一个list结构。多层嵌套用 <code>.</code> 隔开。如返回数据结构是数组，这个属性不填。 举例如下：</li>
+</ul>
+<p>回数据格式如下, 则property不用填写</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;zs&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;id&quot;</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;ls&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">返回数据格式如下，property 值为 `data.users`</span><br><span class="line"></span><br><span class="line">```json</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;success&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;users&quot;</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;zs&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">&quot;id&quot;</span>: <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;ls&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>username：用户名，可选，支持 Basic access authentication 身份验证方式</li>
+<li>password：密码，可选</li>
+<li>ResponseParser：默认为空。如果返回数据格式特殊，可通过实现 <code>datart.data.provider.HttpResponseParser</code>，然后通过这个参数指定具体的Parser实现类</li>
+<li>headers：请求头，键值对形式</li>
+<li>queryParam：请求参数，键值对形式</li>
+<li>body：请求体，文本</li>
+<li>contentType：默认值 <code>application/json</code></li>
+</ul>
+<p><img src="/datart-docs/images/source/3-1-2.png" alt="http-2"></p>
+<ol start="3">
+<li>填写完配置之后，点击 <code>url</code> 输入框上的<code>测试连接</code>按钮，测试通过之后，下方表格中会展示字段信息和响应数据，点击表头头部编辑字段类型</li>
+</ol>
+<p><img src="/datart-docs/images/source/3-1-3.png" alt="http-3"></p>
+<ol start="4">
+<li><p>保存 <code>REST API</code> 连接信息，一个数据源下可以添加多个连接信息</p>
+</li>
+<li><p>保存数据源</p>
+</li>
+</ol>
+<h2 id="4-基础功能" class="article-heading"><a href="#4-基础功能" class="headerlink" title="4. 基础功能"></a>4. 基础功能<a class="article-anchor" href="#4-基础功能" aria-hidden="true"></a></h2><p>数据源支持以下通用操作</p>
+<h3 id="4-1-新建" class="article-heading"><a href="#4-1-新建" class="headerlink" title="4.1 新建"></a>4.1 新建<a class="article-anchor" href="#4-1-新建" aria-hidden="true"></a></h3><p>点击数据源列表顶部的加号按钮，右侧区域会展示新建表单</p>
+<p><img src="/datart-docs/images/source/4-1-1.png" alt="新建数据源-1"></p>
+<p>填写完表单信息后，点击右上角的<code>保存</code>按钮保存数据源</p>
+<p><img src="/datart-docs/images/source/4-1-2.png" alt="新建数据源-2"></p>
+<h3 id="4-2-测试连接" class="article-heading"><a href="#4-2-测试连接" class="headerlink" title="4.2 测试连接"></a>4.2 测试连接<a class="article-anchor" href="#4-2-测试连接" aria-hidden="true"></a></h3><p><code>JDBC</code> 数据源和 <code>http</code> 数据源在配置阶段可以测试连接是否有效，在填写完所有必填项之后，点击 <code>url</code> 输入框上的<code>测试连接</code>按钮即可进行测试</p>
+<p><code>JDBC</code> 数据源测试成功之后会在顶部提示信息</p>
+<p><img src="/datart-docs/images/source/4-2-1.png" alt="测试连接-1"></p>
+<p><code>http</code> 数据源测试成功之后在 <code>columns</code> 表格中展示获取到的字段信息和数据</p>
+<p><img src="/datart-docs/images/source/4-2-2.png" alt="测试连接-2"></p>
+<h3 id="4-3-编辑" class="article-heading"><a href="#4-3-编辑" class="headerlink" title="4.3 编辑"></a>4.3 编辑<a class="article-anchor" href="#4-3-编辑" aria-hidden="true"></a></h3><p>点击选择数据源列表中的任意数据源，右侧区域会展示该数据源的配置信息，编辑完成后点击右上角<code>保存</code>按钮保存数据源</p>
+<p><img src="/datart-docs/images/source/4-3-1.png" alt="编辑数据源-1"></p>
+<h3 id="4-4-移至回收站" class="article-heading"><a href="#4-4-移至回收站" class="headerlink" title="4.4 移至回收站"></a>4.4 移至回收站<a class="article-anchor" href="#4-4-移至回收站" aria-hidden="true"></a></h3><p>编辑数据源时，点击右上角的<code>移植回收站</code>按钮，确认对话框之后，该数据源会被移动到回收站归档，无法再被使用</p>
+<p><img src="/datart-docs/images/source/4-4-1.png" alt="移至回收站-1"></p>
+<h3 id="4-5-还原" class="article-heading"><a href="#4-5-还原" class="headerlink" title="4.5 还原"></a>4.5 还原<a class="article-anchor" href="#4-5-还原" aria-hidden="true"></a></h3><p>点击数据源列表顶部的<code>扩展</code>按钮，进入回收站</p>
+<p><img src="/datart-docs/images/source/4-5-1.png" alt="还原-1"></p>
+<p>系统会将移至回收站的数据源重命名，规则为<code>原名称.时间戳</code>；点击回收站列表的任意数据源，右侧区域会展示该数据源的信息</p>
+<p><img src="/datart-docs/images/source/4-5-2.png" alt="还原-1"></p>
+<p>点击右上角<code>还原按钮</code>，确认对话框之后，该数据源会还原到数据源列表，恢复可用状态</p>
+<h3 id="4-6-删除" class="article-heading"><a href="#4-6-删除" class="headerlink" title="4.6 删除"></a>4.6 删除<a class="article-anchor" href="#4-6-删除" aria-hidden="true"></a></h3><p>查看回收站列表里的数据源信息时，点击右上角<code>删除</code>按钮，确认对话框之后，将会永久删除该数据源</p>
+<p><img src="/datart-docs/images/source/4-6-1.png" alt="删除-1"></p>
+<h3 id="4-7-搜索" class="article-heading"><a href="#4-7-搜索" class="headerlink" title="4.7 搜索"></a>4.7 搜索<a class="article-anchor" href="#4-7-搜索" aria-hidden="true"></a></h3><p>点击数据源列表顶部的<code>搜索</code>按钮，会弹出关键字搜索框，可以按照名称检索数据源</p>
+<p><img src="/datart-docs/images/source/4-7-1.png" alt="搜索-1"></p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2021-10-25T09:27:58.187Z" itemprop="dateModified">Last updated: 2021-10-25</time>
+                <a href="first-visualization.html" class="article-footer-prev" title="第一个可视化作品"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="view.html" class="article-footer-next" title="数据视图"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-JDBC"><span class="toc-text">1. JDBC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%96%87%E4%BB%B6"><span class="toc-text">2. 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-http"><span class="toc-text">3. http</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD"><span class="toc-text">4. 基础功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%96%B0%E5%BB%BA"><span class="toc-text">4.1 新建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%B5%8B%E8%AF%95%E8%BF%9E%E6%8E%A5"><span class="toc-text">4.2 测试连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E7%BC%96%E8%BE%91"><span class="toc-text">4.3 编辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E7%A7%BB%E8%87%B3%E5%9B%9E%E6%94%B6%E7%AB%99"><span class="toc-text">4.4 移至回收站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E8%BF%98%E5%8E%9F"><span class="toc-text">4.5 还原</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-%E5%88%A0%E9%99%A4"><span class="toc-text">4.6 删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-%E6%90%9C%E7%B4%A2"><span class="toc-text">4.7 搜索</span></a></li></ol></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">快速开始</strong><a href="index.html" class="sidebar-link">部署</a><a href="first-visualization.html" class="sidebar-link">第一个可视化作品</a><strong class="sidebar-title">可视化功能</strong><a href="source.html" class="sidebar-link current">数据源</a><a href="view.html" class="sidebar-link">数据视图</a><a href="datachart.html" class="sidebar-link">数据图表</a><a href="dashboard.html" class="sidebar-link">仪表板</a><a href="storyboard.html" class="sidebar-link">故事板</a><a href="schedule.html" class="sidebar-link">定时任务</a><a href="variable.html" class="sidebar-link">变量</a><strong class="sidebar-title">用户与权限</strong><a href="organization.html" class="sidebar-link">组织</a><a href="member.html" class="sidebar-link">成员与角色</a><a href="permission.html" class="sidebar-link">权限</a><strong class="sidebar-title">自定义扩展</strong><a href="chart_plugin.html" class="sidebar-link">自定义插件化图表</a><a href="jdbc.html" class="sidebar-link">扩展JDBC数据源</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2021 <a href="https://github.com/running-elephant/datart/graphs/contributors" target="_blank">datart</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://github.com/running-elephant/datart" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/datart-docs/docs/" class="mobile-nav-link">文档</a><a href="/datart-docs/about/" class="mobile-nav-link">关于</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/running-elephant/datart" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">快速开始</strong><a href="index.html" class="mobile-nav-link">部署</a><a href="first-visualization.html" class="mobile-nav-link">第一个可视化作品</a><strong class="mobile-nav-title">可视化功能</strong><a href="source.html" class="mobile-nav-link current">数据源</a><a href="view.html" class="mobile-nav-link">数据视图</a><a href="datachart.html" class="mobile-nav-link">数据图表</a><a href="dashboard.html" class="mobile-nav-link">仪表板</a><a href="storyboard.html" class="mobile-nav-link">故事板</a><a href="schedule.html" class="mobile-nav-link">定时任务</a><a href="variable.html" class="mobile-nav-link">变量</a><strong class="mobile-nav-title">用户与权限</strong><a href="organization.html" class="mobile-nav-link">组织</a><a href="member.html" class="mobile-nav-link">成员与角色</a><a href="permission.html" class="mobile-nav-link">权限</a><strong class="mobile-nav-title">自定义扩展</strong><a href="chart_plugin.html" class="mobile-nav-link">自定义插件化图表</a><a href="jdbc.html" class="mobile-nav-link">扩展JDBC数据源</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/source.html">
+      
+        <option value="en" selected>English</option>
+      
+        <option value="zh-cn">简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- Cookie -->
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<!-- build:js build/js/main.js -->
+
+<script src="/datart-docs/js/lang_select.js"></script>
+
+
+<script src="/datart-docs/js/mobile_nav.js"></script>
+
+<!-- endbuild -->
+
+
+</body>
+</html>

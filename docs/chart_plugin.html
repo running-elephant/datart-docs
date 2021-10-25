@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>自定义插件化图表 | datart</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://github.com/running-elephant/datart-docs.git/docs/chart_plugin.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://github.com/running-elephant/datart-docs.git/docs/chart_plugin">
+    
+      <link rel="alternative" hreflang="zh-cn" href="https://github.com/running-elephant/datart-docs.git/zh-cn/docs/chart_plugin">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/datart-docs/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/datart-docs/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/datart-docs/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/datart-docs/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/datart-docs/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/datart-docs/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/datart-docs/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/datart-docs/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/datart-docs/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  
+<link rel="stylesheet" href="/datart-docs/css/navy.css">
+
+  <!-- endbuild -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-lato@0.0.75/index.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/datart-docs/atom.xml" title="datart" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/datart-docs/" id="logo">datart</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/datart-docs/docs/" class="main-nav-link">文档</a><a href="/datart-docs/about/" class="main-nav-link">关于</a>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"></label>
+      <select id="lang-select" data-canonical="docs/chart_plugin.html">
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">自定义插件化图表</h1>
+                <a href="https://github.com/running-elephant/datart-docs/tree/master/source/docs/chart_plugin.md" class="article-edit-link" title="Improve this doc"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <blockquote>
+<p>本章节主要描述了插件图表的核心概念、插件化图表加载的过程、详细的各项配置说明以及一个简单的例子作为补充说明。</p>
+</blockquote>
+<h2 id="1-图表插件化" class="article-heading"><a href="#1-图表插件化" class="headerlink" title="1 图表插件化"></a>1 图表插件化<a class="article-anchor" href="#1-图表插件化" aria-hidden="true"></a></h2><h3 id="1-1-核心概念" class="article-heading"><a href="#1-1-核心概念" class="headerlink" title="1.1 核心概念"></a>1.1 核心概念<a class="article-anchor" href="#1-1-核心概念" aria-hidden="true"></a></h3><p><strong>插件化图表</strong>：是一种“可插拔”使用的<code>自定义图表</code>，通过加载插件化图表使产品的使用更加灵活，增强软件的扩展性。同时，插件化提供了标准的输入接口，可以灵活适配由不同<code>WEB绘图引擎</code>渲染的图形，摆脱了传统的可视化BI产品在定制图表时只能通过二次开发方式的弊端。</p>
+<p><strong>自定义图表</strong>：是一种在官方提供的图表范围之外的图表制作方式。其原理是，在图表可“插拔”的基础上，Datart通过提供<code>图表生命周期函数</code>、<code>图表工具函数</code>、<code>图表参数设置表单配置项</code>、<code>图表元信息配置项</code> 以及<code>图表上下文信息</code>等资源辅助进行图表的制作，方便快速开发基于Javascript渲染引擎的图表，满足不同种类的、更专业的图表需求，<strong>降低开发周期和准入门槛</strong>。</p>
+<p><strong>WEB绘图引擎</strong>：这里专指基于<strong>浏览器</strong>运行环境的Javascript绘图类库以及图表组件库等，典型代表如<code>D3JS</code>和<code>EChartJS</code>。</p>
+<p><strong>图表参数设置表单</strong>: 通过配置相关数据及样式，方便图表绘图时对<code>图表数据集</code>进行处理以提高图表的扩展性。如数据配置项可对<code>数据视图</code>中的数据列进行操作，可聚合、格式化信息显示、别名以及着色等功能。样式配置项，记录用户的自定义图表样式配置，官方提供基础的表单组件，用户通过自定义JSON格式的表单配置项，来扩展<code>图表参数设置表单</code>以达到满足不同种类需求的目的，请参考本文<a href="#4-%E5%8F%82%E8%80%83%E9%85%8D%E7%BD%AE%E9%A1%B9%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E">&lt;&lt;参考配置项详细说明&gt;&gt;</a>章节。</p>
+<h3 id="1-2-插件化图表时序图" class="article-heading"><a href="#1-2-插件化图表时序图" class="headerlink" title="1.2 插件化图表时序图"></a>1.2 插件化图表时序图<a class="article-anchor" href="#1-2-插件化图表时序图" aria-hidden="true"></a></h3><blockquote>
+<p>插件化图表的加载是在项目启动的时候完成的，首先通过请求获取服务端<code>custom-chart-plugins</code>文件内的所有文件，然后加载符合要求的插件图表，然后即可在<code>图表编辑器</code>以及其他模块中使用。</p>
+</blockquote>
+<p><img src="/datart-docs/images/chart_plugin/load-plugin-chart-sequence-diagram.png" alt="插件图表加载时序图"></p>
+<blockquote>
+<p>Note: 请将制作好的自定义插件图表保存在服务端的<code>custom-chart-plugins</code>文件内，并刷新网页重新登陆系统即可，文件名不要和其他文件冲突，并且确保<code>图表元信息配置项</code>中的<strong>id</strong>的唯一性。</p>
+</blockquote>
+<h2 id="2-自定义图表" class="article-heading"><a href="#2-自定义图表" class="headerlink" title="2 自定义图表"></a>2 自定义图表<a class="article-anchor" href="#2-自定义图表" aria-hidden="true"></a></h2><h3 id="2-1-核心概念" class="article-heading"><a href="#2-1-核心概念" class="headerlink" title="2.1 核心概念"></a>2.1 核心概念<a class="article-anchor" href="#2-1-核心概念" aria-hidden="true"></a></h3><blockquote>
+<p>在插件化图表的架构支持下，图表的制作者只需关注如何呈现某图表的核心业务逻辑，通过Datart可视化软件将行业数据根据图表进行丰富的展示。从本质上讲，Datart在图表展现层是作为一个绘图引擎和图表数据集的“适配器”，<strong>兼收并蓄</strong>是Datart插件化的核心理念，最终达到业务人员也可以制作出图表的目的。</p>
+</blockquote>
+<p>一个最基本的自定义图表由以下几部分组成：</p>
+<ul>
+<li><code>图表生命周期函数</code></li>
+<li><code>图表工具函数</code></li>
+<li><code>图表参数设置表单配置项</code></li>
+<li><code>图表元信息配置项</code></li>
+<li><code>图表上下文信息</code></li>
+<li><code>图表数据集</code></li>
+</ul>
+<p><strong>图表生命周期函数</strong>: Datart图表回调函数，辅助绘制及更新图表。</p>
+<ul>
+<li>OnMount：负责图表初始化，可初始化<code>WEB绘图引擎</code>相关资源，以及保存实例对象</li>
+<li>OnUpdated：负责在<code>图表数据集</code>、<code>图表参数设置</code>和<code>图表上下文信息</code>等数据更新响应，可根据最新的数据更新图表的显示。</li>
+<li>OnResize：负责在图表<strong>容器</strong>宽度或高度变化时响应，可根据最新的宽度和高度更新视图显示。</li>
+<li>OnUnMount: 负责<strong>回收</strong>绘图引擎自身的<strong>非托管资源</strong>，如调用EChart实例的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://echarts.apache.org/en/api.html#echartsInstance.dispose">dispose</a>方法可对EChart资源进行回收，避免内存溢出。</li>
+</ul>
+<p><strong>图表工具函数</strong>: 基于Datart的<code>图表数据集</code>以及<code>图表参数配置项</code>的工具函数集。</p>
+<p><strong>图表参数设置表单配置项</strong>: 本质上是一个<code>表单生成器</code>的语法定义部分，是<code>图表参数设置表单</code>的配置项，该配置项包含基于<code>数据视图</code>的<code>数据配置</code>、<code>样式配置</code>项以及<code>其他设置</code>的配置项。基于Datart预定义的<code>基础表单组件</code>和<code>图表工具函数</code>中读取表单配置的工具方法，就可以组合出<strong>任何功能</strong>的图表配置表单。</p>
+<p><strong>基础表单组件</strong>：预定义的“单元”表单组件，包含布局组件、常规组件、基于<code>数据配置</code>的扩展组件等。通过，在<code>图表参数设置表单配置项</code>中指定属性comType来生成对应的组件，如指定comType为line，则会生成对应的线条设置组件。</p>
+<p><strong>表单生成器</strong>：通过定义表单描述文件来生成表单组件。Datart提供了一系列的<code>表单语法</code>和<code>基础表单组件</code>来生成<code>图表参数设置表单配置项</code>，使用户可在图表编辑界面进行配置。</p>
+<p><strong>图表元信息配置项</strong>: 包含图表名称、图标信息、资源依赖等。（目前，暂时还没有将依赖项合并入<code>图表元信息配置项</code>中，将会在下一个版本中更新）</p>
+<p><strong>图表上下文信息</strong>: 包含当前运行期间的资源，包含当前工作环境（IFrame内部）Document、Window对象，图表宽度高度等信息。</p>
+<p><strong>图表数据集</strong>：这里专指Datart通过请求返回给前端的图表当前条件下的数据集合，这里强调的当前条件指的是满足<code>图表参数设置表单</code>中数据配置项的逻辑的数据集合。</p>
+<blockquote>
+<p>更详细配置说明，请参考本文<a href="#4-%E5%8F%82%E8%80%83%E9%85%8D%E7%BD%AE%E9%A1%B9%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E">&lt;&lt;参考配置项详细说明&gt;&gt;</a>章节。</p>
+</blockquote>
+<h3 id="2-2-自定义图表关系图" class="article-heading"><a href="#2-2-自定义图表关系图" class="headerlink" title="2.2 自定义图表关系图"></a>2.2 自定义图表关系图<a class="article-anchor" href="#2-2-自定义图表关系图" aria-hidden="true"></a></h3><p><img src="/datart-docs/images/chart_plugin/custom-chart-structure-diagram.png" alt="图表组件关系图"></p>
+<h2 id="3-自定义图表示例" class="article-heading"><a href="#3-自定义图表示例" class="headerlink" title="3 自定义图表示例"></a>3 自定义图表示例<a class="article-anchor" href="#3-自定义图表示例" aria-hidden="true"></a></h2><blockquote>
+<p>需求定义: 制作一个散点图，包含一个或多个的维度列数据，两个指标列数据作为散点图的X、Y轴。</p>
+</blockquote>
+<p>完整代码及说明如下：    </p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Datart</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Copyright 2021</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></span><br><span class="line"><span class="comment"> * you may not use this file except in compliance with the License.</span></span><br><span class="line"><span class="comment"> * You may obtain a copy of the License at</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *     http://www.apache.org/licenses/LICENSE-2.0</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Unless required by applicable law or agreed to in writing, software</span></span><br><span class="line"><span class="comment"> * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></span><br><span class="line"><span class="comment"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span><br><span class="line"><span class="comment"> * See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="comment"> * limitations under the License.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">D3JSScatterChart</span>(<span class="params">&#123; dHelper &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="comment">//【可选】扩展配置图表功能，可配合`数据视图`对数据处理</span></span><br><span class="line">    <span class="attr">config</span>: &#123;</span><br><span class="line">      <span class="attr">datas</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">label</span>: <span class="string">&#x27;metrics&#x27;</span>,</span><br><span class="line">          <span class="attr">key</span>: <span class="string">&#x27;metrics&#x27;</span>,</span><br><span class="line">          <span class="attr">required</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">type</span>: <span class="string">&#x27;group&#x27;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">label</span>: <span class="string">&#x27;deminsion&#x27;</span>,</span><br><span class="line">          <span class="attr">key</span>: <span class="string">&#x27;deminsion&#x27;</span>,</span><br><span class="line">          <span class="attr">required</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">type</span>: <span class="string">&#x27;aggregate&#x27;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">styles</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">label</span>: <span class="string">&#x27;common.title&#x27;</span>,</span><br><span class="line">          <span class="attr">key</span>: <span class="string">&#x27;scatter&#x27;</span>,</span><br><span class="line">          <span class="attr">comType</span>: <span class="string">&#x27;group&#x27;</span>,</span><br><span class="line">          <span class="attr">rows</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">label</span>: <span class="string">&#x27;common.color&#x27;</span>,</span><br><span class="line">              <span class="attr">key</span>: <span class="string">&#x27;color&#x27;</span>,</span><br><span class="line">              <span class="attr">comType</span>: <span class="string">&#x27;fontColor&#x27;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">          ],</span><br><span class="line">        &#125;,</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">i18ns</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">lang</span>: <span class="string">&#x27;zh-CN&#x27;</span>,</span><br><span class="line">          <span class="attr">translation</span>: &#123;</span><br><span class="line">            <span class="attr">common</span>: &#123;</span><br><span class="line">              <span class="attr">title</span>: <span class="string">&#x27;散点图配置&#x27;</span>,</span><br><span class="line">              <span class="attr">color</span>: <span class="string">&#x27;气泡颜色&#x27;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">          &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">lang</span>: <span class="string">&#x27;en&#x27;</span>,</span><br><span class="line">          <span class="attr">translation</span>: &#123;</span><br><span class="line">            <span class="attr">common</span>: &#123;</span><br><span class="line">              <span class="attr">title</span>: <span class="string">&#x27;Scatter Setting&#x27;</span>,</span><br><span class="line">              <span class="attr">color</span>: <span class="string">&#x27;Bubble Color&#x27;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">          &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">      ],</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="attr">isISOContainer</span>: <span class="string">&#x27;demo-d3js-scatter-chart&#x27;</span>,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//【必须】加载D3JS绘图引擎，此处需给出CDN链接或者服务端相对资源地址即可</span></span><br><span class="line">    <span class="attr">dependency</span>: [<span class="string">&#x27;https://d3js.org/d3.v5.min.js&#x27;</span>],</span><br><span class="line"></span><br><span class="line">    <span class="comment">//【必须】设置图表的基本信息，icon可从Datart Icon图标中选取，暂时不支持自定义</span></span><br><span class="line">    <span class="attr">meta</span>: &#123;</span><br><span class="line">      <span class="attr">id</span>: <span class="string">&#x27;demo-d3js-scatter-chart&#x27;</span>,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;[Plugin Demo] D3JS 散点图&#x27;</span>,</span><br><span class="line">      <span class="attr">icon</span>: <span class="string">&#x27;sandiantu&#x27;</span>,</span><br><span class="line">      <span class="attr">requirements</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">group</span>: [<span class="number">0</span>, <span class="number">999</span>],</span><br><span class="line">          <span class="attr">aggregate</span>: <span class="number">2</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      ],</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//【必须】Datart提供的生命周期函数，其他周期如onUpdated，onResize以及onUnMount</span></span><br><span class="line">    <span class="function"><span class="title">onMount</span>(<span class="params">options, context</span>)</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (!context.document) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> host = context.document.getElementById(options.containerId);</span><br><span class="line">      <span class="keyword">var</span> margin = &#123; <span class="attr">top</span>: <span class="number">10</span>, <span class="attr">right</span>: <span class="number">40</span>, <span class="attr">bottom</span>: <span class="number">30</span>, <span class="attr">left</span>: <span class="number">30</span> &#125;,</span><br><span class="line">        width = context.width - margin.left - margin.right,</span><br><span class="line">        height = context.height - margin.top - margin.bottom;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 初始化D3JS绘图区域</span></span><br><span class="line">      <span class="built_in">this</span>.chart = context.window.d3</span><br><span class="line">        .select(host)</span><br><span class="line">        .append(<span class="string">&#x27;svg&#x27;</span>)</span><br><span class="line">        .attr(<span class="string">&#x27;width&#x27;</span>, width + margin.left + margin.right)</span><br><span class="line">        .attr(<span class="string">&#x27;height&#x27;</span>, height + margin.top + margin.bottom)</span><br><span class="line">        .append(<span class="string">&#x27;g&#x27;</span>)</span><br><span class="line">        .attr(<span class="string">&#x27;transform&#x27;</span>, <span class="string">&#x27;translate(&#x27;</span> + margin.left + <span class="string">&#x27;,&#x27;</span> + margin.top + <span class="string">&#x27;)&#x27;</span>);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">onUpdated</span>(<span class="params">options, context</span>)</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (!options.dataset || !options.dataset.columns || !options.config) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 获取当前绘图区域的宽高</span></span><br><span class="line">      <span class="keyword">const</span> clientWidth = context.window.innerWidth;</span><br><span class="line">      <span class="keyword">const</span> clientHeight = context.window.innerHeight;</span><br><span class="line">      <span class="keyword">const</span> margin = &#123; <span class="attr">top</span>: <span class="number">40</span>, <span class="attr">right</span>: <span class="number">40</span>, <span class="attr">bottom</span>: <span class="number">40</span>, <span class="attr">left</span>: <span class="number">40</span> &#125;;</span><br><span class="line">      <span class="keyword">const</span> width = clientWidth - margin.left - margin.right;</span><br><span class="line">      <span class="keyword">const</span> height = clientHeight - margin.top - margin.bottom;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 获取散点图数据及配置</span></span><br><span class="line">      <span class="keyword">const</span> &#123; data, style &#125; = <span class="built_in">this</span>.getOptions(options.dataset, options.config);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 绘制基于百分比的横纵坐标轴散点图, 以下是D3JS绘图逻辑</span></span><br><span class="line">      <span class="keyword">var</span> x = context.window.d3</span><br><span class="line">        .scaleLinear()</span><br><span class="line">        .domain([<span class="number">0</span>, <span class="number">100</span>]) <span class="comment">// This is the min and the max of the data: 0 to 100 if percentages</span></span><br><span class="line">        .range([<span class="number">0</span>, width]); <span class="comment">// This is the corresponding value I want in Pixel</span></span><br><span class="line"></span><br><span class="line">      <span class="built_in">this</span>.chart</span><br><span class="line">        .append(<span class="string">&#x27;g&#x27;</span>)</span><br><span class="line">        .attr(<span class="string">&#x27;transform&#x27;</span>, <span class="string">&#x27;translate(0,&#x27;</span> + height + <span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">        .call(context.window.d3.axisBottom(x));</span><br><span class="line"></span><br><span class="line">      <span class="comment">// X scale and Axis</span></span><br><span class="line">      <span class="keyword">var</span> y = context.window.d3</span><br><span class="line">        .scaleLinear()</span><br><span class="line">        .domain([<span class="number">0</span>, <span class="number">100</span>]) <span class="comment">// This is the min and the max of the data: 0 to 100 if percentages</span></span><br><span class="line">        .range([height, <span class="number">0</span>]); <span class="comment">// This is the corresponding value I want in Pixel</span></span><br><span class="line"></span><br><span class="line">      <span class="built_in">this</span>.chart.append(<span class="string">&#x27;g&#x27;</span>).call(context.window.d3.axisLeft(y));</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Add 3 dots for 0, 50 and 100%</span></span><br><span class="line">      <span class="built_in">this</span>.chart</span><br><span class="line">        .selectAll(<span class="string">&#x27;whatever&#x27;</span>)</span><br><span class="line">        .data(data)</span><br><span class="line">        .enter()</span><br><span class="line">        .append(<span class="string">&#x27;circle&#x27;</span>)</span><br><span class="line">        .attr(<span class="string">&#x27;cx&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> x(d.x);</span><br><span class="line">        &#125;)</span><br><span class="line">        .attr(<span class="string">&#x27;cy&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> y(d.y);</span><br><span class="line">        &#125;)</span><br><span class="line">        .style(<span class="string">&#x27;fill&#x27;</span>, style.color)</span><br><span class="line">        .attr(<span class="string">&#x27;r&#x27;</span>, <span class="number">7</span>);</span><br><span class="line"></span><br><span class="line">      <span class="built_in">this</span>.chart.selectAll(<span class="string">&#x27;whatever&#x27;</span>).style(<span class="string">&#x27;color&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">getOptions</span>(<span class="params">dataset, config</span>)</span> &#123;</span><br><span class="line">      <span class="comment">// 当前服务端返回的图表数据集</span></span><br><span class="line">      <span class="keyword">const</span> dataConfigs = config.datas || [];</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 获取样式配置信息</span></span><br><span class="line">      <span class="keyword">const</span> styleConfigs = config.styles;</span><br><span class="line">      <span class="keyword">const</span> groupConfigs = dataConfigs</span><br><span class="line">        .filter(<span class="function"><span class="params">c</span> =&gt;</span> c.type === <span class="string">&#x27;group&#x27;</span>)</span><br><span class="line">        .flatMap(<span class="function"><span class="params">config</span> =&gt;</span> config.rows || []);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 获取指标类型配置信息</span></span><br><span class="line">      <span class="keyword">const</span> aggregateConfigs = dataConfigs</span><br><span class="line">        .filter(<span class="function"><span class="params">c</span> =&gt;</span> c.type === <span class="string">&#x27;aggregate&#x27;</span>)</span><br><span class="line">        .flatMap(<span class="function"><span class="params">config</span> =&gt;</span> config.rows || []);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 数据转换，根据Datart提供了Helper转换工具</span></span><br><span class="line">      <span class="keyword">const</span> objDataColumns = dHelper.transfromToObjectArray(</span><br><span class="line">        dataset.rows,</span><br><span class="line">        dataset.columns,</span><br><span class="line">      );</span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> data = objDataColumns.map(<span class="function"><span class="params">dc</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          <span class="attr">x</span>: dc[dHelper.getValueByColumnKey(aggregateConfigs[<span class="number">0</span>])],</span><br><span class="line">          <span class="attr">y</span>: dc[dHelper.getValueByColumnKey(aggregateConfigs[<span class="number">1</span>])],</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">var</span> xMinValue = <span class="built_in">Math</span>.min(...data.map(<span class="function"><span class="params">o</span> =&gt;</span> o.x));</span><br><span class="line">      <span class="keyword">var</span> xMaxValue = <span class="built_in">Math</span>.max(...data.map(<span class="function"><span class="params">o</span> =&gt;</span> o.y));</span><br><span class="line"></span><br><span class="line">      <span class="keyword">var</span> yMinValue = <span class="built_in">Math</span>.min(...data.map(<span class="function"><span class="params">o</span> =&gt;</span> o.y));</span><br><span class="line">      <span class="keyword">var</span> yMaxValue = <span class="built_in">Math</span>.max(...data.map(<span class="function"><span class="params">o</span> =&gt;</span> o.y));</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 获取用户配置</span></span><br><span class="line">      <span class="keyword">const</span> color = dHelper.getStyleValueByGroup(</span><br><span class="line">        styleConfigs,</span><br><span class="line">        <span class="string">&#x27;scatter&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;color&#x27;</span>,</span><br><span class="line">      );</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">style</span>: &#123;</span><br><span class="line">          color,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">data</span>: data.map(<span class="function"><span class="params">d</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">x</span>: ((d.x || xMinValue - xMinValue) * <span class="number">100</span>) / (xMaxValue - xMinValue),</span><br><span class="line">            <span class="attr">y</span>: ((d.y || yMinValue - yMinValue) * <span class="number">100</span>) / (yMaxValue - yMinValue),</span><br><span class="line">          &#125;;</span><br><span class="line">        &#125;),</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终效果图如下：</p>
+<p><img src="/datart-docs/images/chart_plugin/d3js-scatter-chart.png" alt="D3JS散点图最终效果图"></p>
+<h2 id="4-参考配置项详细说明" class="article-heading"><a href="#4-参考配置项详细说明" class="headerlink" title="4 参考配置项详细说明"></a>4 参考配置项详细说明<a class="article-anchor" href="#4-参考配置项详细说明" aria-hidden="true"></a></h2><h3 id="4-1-图表生命周期函数说明" class="article-heading"><a href="#4-1-图表生命周期函数说明" class="headerlink" title="4.1 图表生命周期函数说明"></a>4.1 图表生命周期函数说明<a class="article-anchor" href="#4-1-图表生命周期函数说明" aria-hidden="true"></a></h3><p><img src="/datart-docs/images/chart_plugin/chart-lifecycle-state-diagram.png" alt="图表生命周期状态图"></p>
+<h4 id="4-1-1-onMount" class="article-heading"><a href="#4-1-1-onMount" class="headerlink" title="4.1.1 onMount:"></a>4.1.1 onMount:<a class="article-anchor" href="#4-1-1-onMount" aria-hidden="true"></a></h4><blockquote>
+<p>初始化图表事件，function(options, context) =&gt; void</p>
+</blockquote>
+<ul>
+<li>options<ul>
+<li>containerId: string</li>
+<li>dataset: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartDataset.ts#L19">ChartDataset</a></li>
+<li>config: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L349">ChartConfig</a></li>
+</ul>
+</li>
+<li>context<ul>
+<li>document: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/API/Document">HTML Document</a></li>
+<li>window: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/API/Window">HTML Window</a></li>
+<li>width: string | number</li>
+<li>height: string | number</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-1-2-onUpdated" class="article-heading"><a href="#4-1-2-onUpdated" class="headerlink" title="4.1.2 onUpdated"></a>4.1.2 onUpdated<a class="article-anchor" href="#4-1-2-onUpdated" aria-hidden="true"></a></h4><blockquote>
+<p>更新图表事件，function(options, context) =&gt; void</p>
+</blockquote>
+<ul>
+<li>options<ul>
+<li>containerId: string</li>
+<li>dataset: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartDataset.ts#L19">ChartDataset</a></li>
+<li>config: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L349">ChartConfig</a></li>
+</ul>
+</li>
+<li>context<ul>
+<li>document: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/API/Document">HTML Document</a></li>
+<li>window: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/API/Window">HTML Window</a></li>
+<li>width: string | number</li>
+<li>height: string | number</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-1-3-onResize" class="article-heading"><a href="#4-1-3-onResize" class="headerlink" title="4.1.3 onResize"></a>4.1.3 onResize<a class="article-anchor" href="#4-1-3-onResize" aria-hidden="true"></a></h4><blockquote>
+<p>图表容器大小变更事件，function(options, context) =&gt; void</p>
+</blockquote>
+<ul>
+<li>options<ul>
+<li>containerId: string</li>
+<li>dataset: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartDataset.ts#L19">ChartDataset</a></li>
+<li>config: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L349">ChartConfig</a></li>
+</ul>
+</li>
+<li>context<ul>
+<li>document: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/API/Document">HTML Document</a></li>
+<li>window: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/API/Window">HTML Window</a></li>
+<li>width: string | number</li>
+<li>height: string | number</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-1-4-onUnMount" class="article-heading"><a href="#4-1-4-onUnMount" class="headerlink" title="4.1.4 onUnMount"></a>4.1.4 onUnMount<a class="article-anchor" href="#4-1-4-onUnMount" aria-hidden="true"></a></h4><blockquote>
+<p>销毁图表事件，function() =&gt; void</p>
+</blockquote>
+<h3 id="4-2-图表工具函数说明" class="article-heading"><a href="#4-2-图表工具函数说明" class="headerlink" title="4.2 图表工具函数说明"></a>4.2 图表工具函数说明<a class="article-anchor" href="#4-2-图表工具函数说明" aria-hidden="true"></a></h3><p><a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/utils/chart.ts#L18">DHelper</a>: Datart工具函数, 从自定义图表函数中获取</p>
+<h4 id="4-2-1-getStyleValue" class="article-heading"><a href="#4-2-1-getStyleValue" class="headerlink" title="4.2.1 getStyleValue"></a>4.2.1 getStyleValue<a class="article-anchor" href="#4-2-1-getStyleValue" aria-hidden="true"></a></h4><blockquote>
+<p>从样式配置树对象中获取<code>paths</code>组合的路径值， function(styleConfigs, paths) =&gt; any</p>
+</blockquote>
+<ul>
+<li>styleConfigs: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L298">ChartStyleSectionConfig</a> []</li>
+<li>paths: string[]</li>
+</ul>
+<h4 id="4-2-2-getColumnRenderName" class="article-heading"><a href="#4-2-2-getColumnRenderName" class="headerlink" title="4.2.2 getColumnRenderName"></a>4.2.2 getColumnRenderName<a class="article-anchor" href="#4-2-2-getColumnRenderName" aria-hidden="true"></a></h4><blockquote>
+<p>从<a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L195">ChartDataSectionField</a>中获取当前数据列的显示名称，function(field) =&gt; string</p>
+</blockquote>
+<ul>
+<li>field: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L195">ChartDataSectionField</a></li>
+</ul>
+<h4 id="4-2-3-getValueByColumnKey" class="article-heading"><a href="#4-2-3-getValueByColumnKey" class="headerlink" title="4.2.3 getValueByColumnKey"></a>4.2.3 getValueByColumnKey<a class="article-anchor" href="#4-2-3-getValueByColumnKey" aria-hidden="true"></a></h4><blockquote>
+<p>获取当前数据列的唯一值，function(col) =&gt; string</p>
+</blockquote>
+<ul>
+<li>col: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L195">ChartDataSectionField</a></li>
+</ul>
+<h4 id="4-2-4-valueFormatter" class="article-heading"><a href="#4-2-4-valueFormatter" class="headerlink" title="4.2.4 valueFormatter"></a>4.2.4 valueFormatter<a class="article-anchor" href="#4-2-4-valueFormatter" aria-hidden="true"></a></h4><blockquote>
+<p>获取当前数据列的显示格式， function(config, value) =&gt; string</p>
+</blockquote>
+<ul>
+<li>config: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L195">ChartDataSectionField</a></li>
+<li>value: string | number</li>
+</ul>
+<h3 id="4-3-图表参数设置表单配置项说明" class="article-heading"><a href="#4-3-图表参数设置表单配置项说明" class="headerlink" title="4.3 图表参数设置表单配置项说明"></a>4.3 图表参数设置表单配置项说明<a class="article-anchor" href="#4-3-图表参数设置表单配置项说明" aria-hidden="true"></a></h3><blockquote>
+<p>该配置项，需要在图表的config属性中设置。</p>
+</blockquote>
+<ul>
+<li>config: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L349">ChartConfig</a><ul>
+<li>datas: ChartDataSectionConfig[]</li>
+<li>styles: ChartStyleSectionConfig[]</li>
+<li>settings: ChartStyleSectionConfig[]</li>
+<li>i18ns: ChartI18NSectionConfig[]</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-3-1-ChartDataSectionConfig" class="article-heading"><a href="#4-3-1-ChartDataSectionConfig" class="headerlink" title="4.3.1 ChartDataSectionConfig"></a>4.3.1 ChartDataSectionConfig<a class="article-anchor" href="#4-3-1-ChartDataSectionConfig" aria-hidden="true"></a></h4><blockquote>
+<p>图表配置之数据列配置，包含维度、指标、过滤、颜色、信息等，通过指定section type来显示不同作用的组件。</p>
+</blockquote>
+<ul>
+<li>type: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L288">ChartDataSectionType</a>, <ul>
+<li>group: 维度类型组件，在当前组件中的数据列会进行数据分组操作。</li>
+<li>aggregate： 指标类型组件，在当前组件中的数据列会进行聚合操作。</li>
+<li>mixed: 混合类型组件，目前对于字符型（离散型）数据列会进行分组操作，对数字类型（连续型）数据列会进行聚合操作</li>
+<li>filter：过滤器组件，对当前组件中数据列进行数据过滤操作。</li>
+<li>info：信息类型组件，对当前类型的数据列进行聚合操作，数据不以图形的方式显示，只会在<code>图表提示信息</code>上显示</li>
+<li>color: 颜色设置组件，对当前组件中的数据列进行<code>第二次分组</code>操作，并按分组后设置的颜色显示在图形上</li>
+</ul>
+</li>
+<li>maxFieldCount：number，可选项，当前组件中数据列的最大数量</li>
+<li>allowSameField：boolean, 可选项，当前组件中是否允许相同的数据列</li>
+<li>required：boolean, 可选项，用于标识当前组件中的数据列是否是图形绘制的必要数据列</li>
+<li>rows: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L195">ChartDataSectionField</a> [], 当前组件中的数据列集合</li>
+<li>actions：<a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L140">ChartDataSectionFieldActionType</a> [], 设置当前组件允许的数据列操作，如别名、着色、聚合、大小等操作。</li>
+</ul>
+<h4 id="4-3-2-ChartStyleSectionConfig" class="article-heading"><a href="#4-3-2-ChartStyleSectionConfig" class="headerlink" title="4.3.2 ChartStyleSectionConfig"></a>4.3.2 ChartStyleSectionConfig<a class="article-anchor" href="#4-3-2-ChartStyleSectionConfig" aria-hidden="true"></a></h4><blockquote>
+<p>当前对象类型为<a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L305">ChartStyleSectionRow</a>，这是一个树形嵌套的结构，本身即是ChartStyleSectionRow类型，同时含有rows属性作为递归的子元素集合。</p>
+</blockquote>
+<ul>
+<li>label: string, 显示的名称，可结合国际化翻译配置，显示不同的名称。</li>
+<li>key: string，组件值查找的唯一ID</li>
+<li>default?: any，默认值</li>
+<li>value?: any，当前值</li>
+<li>disabled?: boolean，是否禁用组件</li>
+<li>hide?: boolean，是否隐藏</li>
+<li>options?: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L318">ChartStyleSectionRowOption</a>，组件扩展属性</li>
+<li>watcher?: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L339">ChartStyleSectionRowWatcher</a>，组件属性变更依赖函数类型</li>
+<li>template?: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L305">ChartStyleSectionRow</a>，组件模版</li>
+<li>comType: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L169">ChartStyleSectionComponentType</a>, <code>基础表单组件</code></li>
+<li>rows: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L298">ChartStyleSectionConfig</a> [], 当前组件的子组件集合</li>
+</ul>
+<h4 id="4-3-3-ChartI18NSectionConfig" class="article-heading"><a href="#4-3-3-ChartI18NSectionConfig" class="headerlink" title="4.3.3 ChartI18NSectionConfig"></a>4.3.3 ChartI18NSectionConfig<a class="article-anchor" href="#4-3-3-ChartI18NSectionConfig" aria-hidden="true"></a></h4><blockquote>
+<p>图表I18N国际化，配置信息，Datart有全局国际化文件，也可以在图表中单独在此处设置国际化翻译。</p>
+</blockquote>
+<ul>
+<li>lang: string, 国际化语言标识，如zh，us</li>
+<li>translation：object，当前语言标识下的翻译属性。例如，在<a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L298">ChartStyleSectionConfig</a>中的label属性中设置“common.label”时，则程序首先会在translation的common属性下label属性中读取，读取后会显示在组件外观中。<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Step 1. 首先定义一个国际化设置</span></span><br><span class="line"><span class="attr">i18ns</span>: [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">lang</span>: <span class="string">&#x27;zh&#x27;</span>,</span><br><span class="line">    <span class="attr">translation</span>: &#123;</span><br><span class="line">      <span class="attr">common</span>: &#123;</span><br><span class="line">        <span class="attr">title</span>: <span class="string">&#x27;散点图配置&#x27;</span>,</span><br><span class="line">        <span class="attr">color</span>: <span class="string">&#x27;气泡颜色&#x27;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">lang</span>: <span class="string">&#x27;en&#x27;</span>,</span><br><span class="line">    <span class="attr">translation</span>: &#123;</span><br><span class="line">      <span class="attr">common</span>: &#123;</span><br><span class="line">        <span class="attr">title</span>: <span class="string">&#x27;Scatter Setting&#x27;</span>,</span><br><span class="line">        <span class="attr">color</span>: <span class="string">&#x27;Bubble Color&#x27;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">],</span><br><span class="line">...</span><br><span class="line"><span class="comment">// Step 2. 然后，假设我们设置了一个group类型的布局组件，其中包含了一个color类型的子组件</span></span><br><span class="line"><span class="comment">// Step 3. 当设置了label为&quot;common.title&quot;时，显示的名称会根据当前的语言环境设置读取响应的值，</span></span><br><span class="line"><span class="comment">// 例如中文时，color组件显示的名称为‘气泡颜色’，当英文环境时，显示的为‘Bubble Color’</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">label</span>: <span class="string">&#x27;common.title&#x27;</span>, <span class="comment">// 此处设置国际化文件对象查找路径</span></span><br><span class="line">  <span class="attr">key</span>: <span class="string">&#x27;scatter&#x27;</span>,</span><br><span class="line">  <span class="attr">comType</span>: <span class="string">&#x27;group&#x27;</span>,</span><br><span class="line">  <span class="attr">rows</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">label</span>: <span class="string">&#x27;common.color&#x27;</span>,</span><br><span class="line">      <span class="attr">key</span>: <span class="string">&#x27;color&#x27;</span>,</span><br><span class="line">      <span class="attr">comType</span>: <span class="string">&#x27;fontColor&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="4-4-基础表单组件说明" class="article-heading"><a href="#4-4-基础表单组件说明" class="headerlink" title="4.4 基础表单组件说明"></a>4.4 基础表单组件说明<a class="article-anchor" href="#4-4-基础表单组件说明" aria-hidden="true"></a></h3><blockquote>
+<p>在程序中会映射成原子组件、布局组件、自定义组件等。如需要增加基础组件，请在<code>ItemLayoout.tsx</code>文件中注册。</p>
+</blockquote>
+<h4 id="4-4-1-ChartStyleSectionComponentType" class="article-heading"><a href="#4-4-1-ChartStyleSectionComponentType" class="headerlink" title="4.4.1 ChartStyleSectionComponentType"></a>4.4.1 ChartStyleSectionComponentType<a class="article-anchor" href="#4-4-1-ChartStyleSectionComponentType" aria-hidden="true"></a></h4><blockquote>
+<p><code>基础表单组件</code>的枚举类型</p>
+</blockquote>
+<p>原子组件：</p>
+<ul>
+<li>checkbox：单选框类型组件</li>
+<li>input：输入框类型组件</li>
+<li>switch：开关类型组件</li>
+<li>select：单选下拉框组件</li>
+<li>font：字体设置组件</li>
+<li>inputNumber：数字类型输入框组件</li>
+<li>slider：滑块组件</li>
+</ul>
+<p>布局组件：</p>
+<ul>
+<li>group：集合类型布局组件</li>
+<li>tabs：tab类型布局组件</li>
+</ul>
+<p>自定义组件：</p>
+<ul>
+<li>cache：缓存设置相关组件</li>
+<li>reference：图表参考线、参考区间组件</li>
+<li>tableHeader：表格中的表格设置组件</li>
+</ul>
+<h4 id="4-4-2-ChartStyleSectionRowOption" class="article-heading"><a href="#4-4-2-ChartStyleSectionRowOption" class="headerlink" title="4.4.2 ChartStyleSectionRowOption"></a>4.4.2 ChartStyleSectionRowOption<a class="article-anchor" href="#4-4-2-ChartStyleSectionRowOption" aria-hidden="true"></a></h4><blockquote>
+<p><code>基础表单组件</code>的扩展设置属性，不同表单组件支持的属性不同。</p>
+</blockquote>
+<ul>
+<li>min?: number | string，inputNumber和slider类型组件中支持的最小值设置</li>
+<li>max?: number | string，inputNumber和slider类型组件中支持的最大值设置</li>
+<li>step?: number | string，inputNumber和slider类型组件中支持的步进大小设置</li>
+<li>type?: [ItemComponentType], ‘modal’, 布局类型容器是否作为弹窗模式</li>
+<li>editable?: boolean，是否可编辑</li>
+<li>modalSize?: string，弹窗大小设置</li>
+<li>expand?: boolean，布局类型容器是否自动展开</li>
+<li>items?: <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L333">ChartStyleSelectorItem</a> [], 当前列表值集合</li>
+<li>hideLabel?: boolean，是否隐藏标签显示</li>
+<li>style?: 组件css样式设置</li>
+<li>getItems?: function(cols) =&gt; <a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartConfig.ts#L333">ChartStyleSelectorItem</a> [], 获取当前组件列表值函数，如果设置了<code>items</code>则当前函数设置无效</li>
+<li>needRefresh?: boolean，当组件值发生改变时，是否重新根据设置发起网络数据请求</li>
+</ul>
+<h3 id="4-5-图表元信息配置项说明" class="article-heading"><a href="#4-5-图表元信息配置项说明" class="headerlink" title="4.5 图表元信息配置项说明"></a>4.5 图表元信息配置项说明<a class="article-anchor" href="#4-5-图表元信息配置项说明" aria-hidden="true"></a></h3><blockquote>
+<p><a href="https://github.com/running-elephant/datart/blob/01bf976dc3ad80f100ccb71dab35f4a961587f0c/frontend/src/app/pages/ChartWorkbenchPage/models/ChartMetadata.ts#L21">ChartMetadata</a>, 元信息配置，主要包含图表的id，名称，依赖信息以及图表渲染约束设置等内容。</p>
+</blockquote>
+<ul>
+<li>id: 图表唯一值</li>
+<li>name: 图表显示名称</li>
+<li>icon: string, fonticon</li>
+<li>requirements: ChartRequirement[], 图表绘制约束类型，分<code>GROUP</code>和<code>AGGREGATE</code>类型</li>
+</ul>
+<p><em><strong>注意，将在接下来的版本中，将其移入到<code>图表元信息配置项</code>中</strong></em></p>
+<ul>
+<li>dependency: string[], 图表依赖的第三方资源，可以是CDN地址，也可以是服务器相对资源地址。</li>
+<li>isISOContainer: string, 对于某些含有相同依赖的图表而言，设置相同的<code>isISOContainer</code>的值，可共享依赖资源，避免多次的网络加载请求。</li>
+</ul>
+<h4 id="4-5-1-ChartRequirement" class="article-heading"><a href="#4-5-1-ChartRequirement" class="headerlink" title="4.5.1 ChartRequirement"></a>4.5.1 ChartRequirement<a class="article-anchor" href="#4-5-1-ChartRequirement" aria-hidden="true"></a></h4><blockquote>
+<p><code>GROUP</code>和<code>AGGREGATE</code>可分别设置各自所需的数据列数目，作为图表绘制的约束条件。数字<code>999</code>代表不设置上限。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">group</span>: [<span class="number">0</span>, <span class="number">999</span>],</span><br><span class="line">  <span class="attr">aggregate</span>: [<span class="number">0</span>, <span class="number">999</span>],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2021-10-25T09:26:54.246Z" itemprop="dateModified">Last updated: 2021-10-25</time>
+                <a href="permission.html" class="article-footer-prev" title="权限"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="jdbc.html" class="article-footer-next" title="扩展JDBC数据源"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9B%BE%E8%A1%A8%E6%8F%92%E4%BB%B6%E5%8C%96"><span class="toc-text">1 图表插件化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-text">1.1 核心概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%8F%92%E4%BB%B6%E5%8C%96%E5%9B%BE%E8%A1%A8%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="toc-text">1.2 插件化图表时序图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9B%BE%E8%A1%A8"><span class="toc-text">2 自定义图表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-text">2.1 核心概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9B%BE%E8%A1%A8%E5%85%B3%E7%B3%BB%E5%9B%BE"><span class="toc-text">2.2 自定义图表关系图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9B%BE%E8%A1%A8%E7%A4%BA%E4%BE%8B"><span class="toc-text">3 自定义图表示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%8F%82%E8%80%83%E9%85%8D%E7%BD%AE%E9%A1%B9%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E"><span class="toc-text">4 参考配置项详细说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%9B%BE%E8%A1%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">4.1 图表生命周期函数说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-onMount"><span class="toc-text">4.1.1 onMount:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-onUpdated"><span class="toc-text">4.1.2 onUpdated</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-onResize"><span class="toc-text">4.1.3 onResize</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-4-onUnMount"><span class="toc-text">4.1.4 onUnMount</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%9B%BE%E8%A1%A8%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">4.2 图表工具函数说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-getStyleValue"><span class="toc-text">4.2.1 getStyleValue</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-getColumnRenderName"><span class="toc-text">4.2.2 getColumnRenderName</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-getValueByColumnKey"><span class="toc-text">4.2.3 getValueByColumnKey</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-4-valueFormatter"><span class="toc-text">4.2.4 valueFormatter</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%9B%BE%E8%A1%A8%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E8%A1%A8%E5%8D%95%E9%85%8D%E7%BD%AE%E9%A1%B9%E8%AF%B4%E6%98%8E"><span class="toc-text">4.3 图表参数设置表单配置项说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-ChartDataSectionConfig"><span class="toc-text">4.3.1 ChartDataSectionConfig</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-ChartStyleSectionConfig"><span class="toc-text">4.3.2 ChartStyleSectionConfig</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-ChartI18NSectionConfig"><span class="toc-text">4.3.3 ChartI18NSectionConfig</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E5%9F%BA%E7%A1%80%E8%A1%A8%E5%8D%95%E7%BB%84%E4%BB%B6%E8%AF%B4%E6%98%8E"><span class="toc-text">4.4 基础表单组件说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-1-ChartStyleSectionComponentType"><span class="toc-text">4.4.1 ChartStyleSectionComponentType</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-2-ChartStyleSectionRowOption"><span class="toc-text">4.4.2 ChartStyleSectionRowOption</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E5%9B%BE%E8%A1%A8%E5%85%83%E4%BF%A1%E6%81%AF%E9%85%8D%E7%BD%AE%E9%A1%B9%E8%AF%B4%E6%98%8E"><span class="toc-text">4.5 图表元信息配置项说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-ChartRequirement"><span class="toc-text">4.5.1 ChartRequirement</span></a></li></ol></li></ol></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">快速开始</strong><a href="index.html" class="sidebar-link">部署</a><a href="first-visualization.html" class="sidebar-link">第一个可视化作品</a><strong class="sidebar-title">可视化功能</strong><a href="source.html" class="sidebar-link">数据源</a><a href="view.html" class="sidebar-link">数据视图</a><a href="datachart.html" class="sidebar-link">数据图表</a><a href="dashboard.html" class="sidebar-link">仪表板</a><a href="storyboard.html" class="sidebar-link">故事板</a><a href="schedule.html" class="sidebar-link">定时任务</a><a href="variable.html" class="sidebar-link">变量</a><strong class="sidebar-title">用户与权限</strong><a href="organization.html" class="sidebar-link">组织</a><a href="member.html" class="sidebar-link">成员与角色</a><a href="permission.html" class="sidebar-link">权限</a><strong class="sidebar-title">自定义扩展</strong><a href="chart_plugin.html" class="sidebar-link current">自定义插件化图表</a><a href="jdbc.html" class="sidebar-link">扩展JDBC数据源</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2021 <a href="https://github.com/running-elephant/datart/graphs/contributors" target="_blank">datart</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://github.com/running-elephant/datart" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/datart-docs/docs/" class="mobile-nav-link">文档</a><a href="/datart-docs/about/" class="mobile-nav-link">关于</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/running-elephant/datart" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">快速开始</strong><a href="index.html" class="mobile-nav-link">部署</a><a href="first-visualization.html" class="mobile-nav-link">第一个可视化作品</a><strong class="mobile-nav-title">可视化功能</strong><a href="source.html" class="mobile-nav-link">数据源</a><a href="view.html" class="mobile-nav-link">数据视图</a><a href="datachart.html" class="mobile-nav-link">数据图表</a><a href="dashboard.html" class="mobile-nav-link">仪表板</a><a href="storyboard.html" class="mobile-nav-link">故事板</a><a href="schedule.html" class="mobile-nav-link">定时任务</a><a href="variable.html" class="mobile-nav-link">变量</a><strong class="mobile-nav-title">用户与权限</strong><a href="organization.html" class="mobile-nav-link">组织</a><a href="member.html" class="mobile-nav-link">成员与角色</a><a href="permission.html" class="mobile-nav-link">权限</a><strong class="mobile-nav-title">自定义扩展</strong><a href="chart_plugin.html" class="mobile-nav-link current">自定义插件化图表</a><a href="jdbc.html" class="mobile-nav-link">扩展JDBC数据源</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/chart_plugin.html">
+      
+        <option value="en" selected>English</option>
+      
+        <option value="zh-cn">简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- Cookie -->
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<!-- build:js build/js/main.js -->
+
+<script src="/datart-docs/js/lang_select.js"></script>
+
+
+<script src="/datart-docs/js/mobile_nav.js"></script>
+
+<!-- endbuild -->
+
+
+</body>
+</html>

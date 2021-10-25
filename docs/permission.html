@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>权限 | datart</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://github.com/running-elephant/datart-docs.git/docs/permission.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://github.com/running-elephant/datart-docs.git/docs/permission">
+    
+      <link rel="alternative" hreflang="zh-cn" href="https://github.com/running-elephant/datart-docs.git/zh-cn/docs/permission">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/datart-docs/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/datart-docs/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/datart-docs/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/datart-docs/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/datart-docs/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/datart-docs/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/datart-docs/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/datart-docs/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/datart-docs/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  
+<link rel="stylesheet" href="/datart-docs/css/navy.css">
+
+  <!-- endbuild -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-lato@0.0.75/index.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/datart-docs/atom.xml" title="datart" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/datart-docs/" id="logo">datart</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/datart-docs/docs/" class="main-nav-link">文档</a><a href="/datart-docs/about/" class="main-nav-link">关于</a>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"></label>
+      <select id="lang-select" data-canonical="docs/permission.html">
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">权限</h1>
+                <a href="https://github.com/running-elephant/datart-docs/tree/master/source/docs/permission.md" class="article-edit-link" title="Improve this doc"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <p>datart 使用<a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.wikipedia.org/wiki/Role-based_access_control">RBAC</a>模型控制权限；在组织内，成员创建的数据源、数据视图、可视化、定时任务被视为资源，用户和角色为权限主体，管理者可以将资源的各类权限授予权限主体，通过这种方式来对完成对具体资源的权限控制</p>
+<h2 id="1-权限类别" class="article-heading"><a href="#1-权限类别" class="headerlink" title="1. 权限类别"></a>1. 权限类别<a class="article-anchor" href="#1-权限类别" aria-hidden="true"></a></h2><p>datart 中的权限共有2类，资源权限和数据权限</p>
+<h3 id="1-1-资源权限" class="article-heading"><a href="#1-1-资源权限" class="headerlink" title="1.1 资源权限"></a>1.1 资源权限<a class="article-anchor" href="#1-1-资源权限" aria-hidden="true"></a></h3><p>资源权限在权限页面进行设置，使用上分3个维度进行控制</p>
+<h4 id="1-1-1-功能" class="article-heading"><a href="#1-1-1-功能" class="headerlink" title="1.1.1 功能"></a>1.1.1 功能<a class="article-anchor" href="#1-1-1-功能" aria-hidden="true"></a></h4><p>功能权限决定该模块入口是否在主导航栏中显示</p>
+<p><img src="/datart-docs/images/permission/1-1-1.png" alt="功能"></p>
+<h4 id="1-1-2-新增" class="article-heading"><a href="#1-1-2-新增" class="headerlink" title="1.1.2 新增"></a>1.1.2 新增<a class="article-anchor" href="#1-1-2-新增" aria-hidden="true"></a></h4><p>由于资源存储结构的区别，新增权限有两种不同情况</p>
+<ol>
+<li>列表结构的资源，新增权限独立启用和关闭</li>
+</ol>
+<p><img src="/datart-docs/images/permission/1-1-2.png" alt="新增"></p>
+<ol start="2">
+<li>文件夹结构的资源，当赋予某文件夹<code>管理</code>权限时，即拥有了在该文件夹下创建、编辑和删除资源的权限。根目录为<code>所有资源</code></li>
+</ol>
+<h4 id="1-1-3-操作" class="article-heading"><a href="#1-1-3-操作" class="headerlink" title="1.1.3 操作"></a>1.1.3 操作<a class="article-anchor" href="#1-1-3-操作" aria-hidden="true"></a></h4><p>操作权限即为对具体资源的管理权限；操作权限目前共有以下几种等级</p>
+<ol>
+<li>查看/使用：拥有对该资源的只读/使用权限</li>
+<li>管理：拥有对该资源的编辑和删除权限，如果对某文件夹拥有管理权限，即同时拥有了在该文件夹下创建、编辑和删除所有资源的权限；包含<code>查看/使用</code>权限</li>
+<li>下载：拥有对该资源的下载权限；可视化资源独有，包含<code>查看/使用</code>权限</li>
+<li>分享：拥有对该资源创建分享链接的权限；可视化资源独有，包含<code>查看/使用</code>权限</li>
+</ol>
+<h3 id="1-2-数据权限" class="article-heading"><a href="#1-2-数据权限" class="headerlink" title="1.2 数据权限"></a>1.2 数据权限<a class="article-anchor" href="#1-2-数据权限" aria-hidden="true"></a></h3><p>数据权限通过对数据视图结果集的行、列进行控制来实现</p>
+<h4 id="1-2-1-行权限" class="article-heading"><a href="#1-2-1-行权限" class="headerlink" title="1.2.1 行权限"></a>1.2.1 行权限<a class="article-anchor" href="#1-2-1-行权限" aria-hidden="true"></a></h4><p>行权限通过变量来实现，具体使用方法请参考<a href="variable">变量章节</a></p>
+<h4 id="1-2-2-列权限" class="article-heading"><a href="#1-2-2-列权限" class="headerlink" title="1.2.2 列权限"></a>1.2.2 列权限<a class="article-anchor" href="#1-2-2-列权限" aria-hidden="true"></a></h4><p>列权限通设置具体数据视图中角色对结果集字段的访问权限来控制，具体使用方法请参考<a href="view#%E5%88%97%E6%9D%83%E9%99%90">列权限</a>章节</p>
+<h2 id="2-资源权限设置" class="article-heading"><a href="#2-资源权限设置" class="headerlink" title="2. 资源权限设置"></a>2. 资源权限设置<a class="article-anchor" href="#2-资源权限设置" aria-hidden="true"></a></h2><p>点击主导航栏中的<code>权限</code>菜单进入设置页面，目前仅组织拥有者可以进行设置</p>
+<p><img src="/datart-docs/images/permission/2-0-1.png" alt="设置"></p>
+<h3 id="2-1-常规视图" class="article-heading"><a href="#2-1-常规视图" class="headerlink" title="2.1 常规视图"></a>2.1 常规视图<a class="article-anchor" href="#2-1-常规视图" aria-hidden="true"></a></h3><p>在常规视图下，左侧列表展示权限主体，共有<code>角色</code>和<code>成员</code>两个页签，方便管理者对具体角色或用户做整体权限规划</p>
+<p>点击左侧列表中的权限主体，右侧区域会显示所有资源的权限细则</p>
+<p><img src="/datart-docs/images/permission/2-1-1.png" alt="常规视图"></p>
+<h3 id="2-2-资源视图" class="article-heading"><a href="#2-2-资源视图" class="headerlink" title="2.2 资源视图"></a>2.2 资源视图<a class="article-anchor" href="#2-2-资源视图" aria-hidden="true"></a></h3><p>在资源视图下，左侧列表展示资源，共有<code>可视化</code>、<code>数据视图</code>、<code>数据源</code>和<code>定时任务</code>4个页签，方便管理者对具体资源进行权限设置</p>
+<p><img src="/datart-docs/images/permission/2-2-1.png" alt="资源视图-1"></p>
+<p>点击左侧列表中的单条资源，右侧区域会显示所有权限主体的权限细则</p>
+<p><img src="/datart-docs/images/permission/2-2-2.png" alt="资源视图-2"></p>
+<h3 id="2-3-权限细则设置" class="article-heading"><a href="#2-3-权限细则设置" class="headerlink" title="2.3 权限细则设置"></a>2.3 权限细则设置<a class="article-anchor" href="#2-3-权限细则设置" aria-hidden="true"></a></h3><p>点击单选按钮或复选框，对应的权限细则会立即生效</p>
+<p>当勾选高等级权限时，其所包含的低等级权限会被级联选中；当取消低等级权限时，其已经勾选的高等级权限也会被级联取消</p>
+<p>文件夹结构资源在勾选文件夹权限时，其子资源的权限会级联发生变化、与父级保持一致；如果需要子资源与父文件夹拥有不同权限，只需单独设置该子资源即可</p>
+<h2 id="3-基础功能" class="article-heading"><a href="#3-基础功能" class="headerlink" title="3. 基础功能"></a>3. 基础功能<a class="article-anchor" href="#3-基础功能" aria-hidden="true"></a></h2><h3 id="3-1-搜索" class="article-heading"><a href="#3-1-搜索" class="headerlink" title="3.1 搜索"></a>3.1 搜索<a class="article-anchor" href="#3-1-搜索" aria-hidden="true"></a></h3><p>可以在左侧列表对权限主体和资源进行检索</p>
+<p><img src="/datart-docs/images/permission/3-1-1.png" alt="搜索-1"></p>
+<p>也可以在右侧区域对权限主体和资源进行检索</p>
+<p><img src="/datart-docs/images/permission/3-1-2.png" alt="搜索-2"></p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2021-10-25T09:27:48.725Z" itemprop="dateModified">Last updated: 2021-10-25</time>
+                <a href="member.html" class="article-footer-prev" title="成员与角色"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="chart_plugin.html" class="article-footer-next" title="自定义插件化图表"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%9D%83%E9%99%90%E7%B1%BB%E5%88%AB"><span class="toc-text">1. 权限类别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E8%B5%84%E6%BA%90%E6%9D%83%E9%99%90"><span class="toc-text">1.1 资源权限</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-%E5%8A%9F%E8%83%BD"><span class="toc-text">1.1.1 功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-%E6%96%B0%E5%A2%9E"><span class="toc-text">1.1.2 新增</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-3-%E6%93%8D%E4%BD%9C"><span class="toc-text">1.1.3 操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90"><span class="toc-text">1.2 数据权限</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-%E8%A1%8C%E6%9D%83%E9%99%90"><span class="toc-text">1.2.1 行权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-%E5%88%97%E6%9D%83%E9%99%90"><span class="toc-text">1.2.2 列权限</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%B5%84%E6%BA%90%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE"><span class="toc-text">2. 资源权限设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%B8%B8%E8%A7%84%E8%A7%86%E5%9B%BE"><span class="toc-text">2.1 常规视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E8%B5%84%E6%BA%90%E8%A7%86%E5%9B%BE"><span class="toc-text">2.2 资源视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%9D%83%E9%99%90%E7%BB%86%E5%88%99%E8%AE%BE%E7%BD%AE"><span class="toc-text">2.3 权限细则设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD"><span class="toc-text">3. 基础功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%90%9C%E7%B4%A2"><span class="toc-text">3.1 搜索</span></a></li></ol></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">快速开始</strong><a href="index.html" class="sidebar-link">部署</a><a href="first-visualization.html" class="sidebar-link">第一个可视化作品</a><strong class="sidebar-title">可视化功能</strong><a href="source.html" class="sidebar-link">数据源</a><a href="view.html" class="sidebar-link">数据视图</a><a href="datachart.html" class="sidebar-link">数据图表</a><a href="dashboard.html" class="sidebar-link">仪表板</a><a href="storyboard.html" class="sidebar-link">故事板</a><a href="schedule.html" class="sidebar-link">定时任务</a><a href="variable.html" class="sidebar-link">变量</a><strong class="sidebar-title">用户与权限</strong><a href="organization.html" class="sidebar-link">组织</a><a href="member.html" class="sidebar-link">成员与角色</a><a href="permission.html" class="sidebar-link current">权限</a><strong class="sidebar-title">自定义扩展</strong><a href="chart_plugin.html" class="sidebar-link">自定义插件化图表</a><a href="jdbc.html" class="sidebar-link">扩展JDBC数据源</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2021 <a href="https://github.com/running-elephant/datart/graphs/contributors" target="_blank">datart</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://github.com/running-elephant/datart" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/datart-docs/docs/" class="mobile-nav-link">文档</a><a href="/datart-docs/about/" class="mobile-nav-link">关于</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/running-elephant/datart" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">快速开始</strong><a href="index.html" class="mobile-nav-link">部署</a><a href="first-visualization.html" class="mobile-nav-link">第一个可视化作品</a><strong class="mobile-nav-title">可视化功能</strong><a href="source.html" class="mobile-nav-link">数据源</a><a href="view.html" class="mobile-nav-link">数据视图</a><a href="datachart.html" class="mobile-nav-link">数据图表</a><a href="dashboard.html" class="mobile-nav-link">仪表板</a><a href="storyboard.html" class="mobile-nav-link">故事板</a><a href="schedule.html" class="mobile-nav-link">定时任务</a><a href="variable.html" class="mobile-nav-link">变量</a><strong class="mobile-nav-title">用户与权限</strong><a href="organization.html" class="mobile-nav-link">组织</a><a href="member.html" class="mobile-nav-link">成员与角色</a><a href="permission.html" class="mobile-nav-link current">权限</a><strong class="mobile-nav-title">自定义扩展</strong><a href="chart_plugin.html" class="mobile-nav-link">自定义插件化图表</a><a href="jdbc.html" class="mobile-nav-link">扩展JDBC数据源</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/permission.html">
+      
+        <option value="en" selected>English</option>
+      
+        <option value="zh-cn">简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- Cookie -->
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<!-- build:js build/js/main.js -->
+
+<script src="/datart-docs/js/lang_select.js"></script>
+
+
+<script src="/datart-docs/js/mobile_nav.js"></script>
+
+<!-- endbuild -->
+
+
+</body>
+</html>

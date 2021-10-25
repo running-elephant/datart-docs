@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>变量 | datart</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://github.com/running-elephant/datart-docs.git/docs/variable.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://github.com/running-elephant/datart-docs.git/docs/variable">
+    
+      <link rel="alternative" hreflang="zh-cn" href="https://github.com/running-elephant/datart-docs.git/zh-cn/docs/variable">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/datart-docs/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/datart-docs/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/datart-docs/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/datart-docs/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/datart-docs/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/datart-docs/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/datart-docs/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/datart-docs/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/datart-docs/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  
+<link rel="stylesheet" href="/datart-docs/css/navy.css">
+
+  <!-- endbuild -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-lato@0.0.75/index.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/datart-docs/atom.xml" title="datart" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/datart-docs/" id="logo">datart</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/datart-docs/docs/" class="main-nav-link">文档</a><a href="/datart-docs/about/" class="main-nav-link">关于</a>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"></label>
+      <select id="lang-select" data-canonical="docs/variable.html">
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">变量</h1>
+                <a href="https://github.com/running-elephant/datart-docs/tree/master/source/docs/variable.md" class="article-edit-link" title="Improve this doc"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <p>变量是往数据加工逻辑（SQL语句）里加入动态值的一种方式，通过对变量传入不同值来得到预期中的查询结果</p>
+<h2 id="1-变量类别" class="article-heading"><a href="#1-变量类别" class="headerlink" title="1. 变量类别"></a>1. 变量类别<a class="article-anchor" href="#1-变量类别" aria-hidden="true"></a></h2><p>datart 中有查询变量和权限变量两种类别，分别用于不同的场景</p>
+<h3 id="1-1-查询变量" class="article-heading"><a href="#1-1-查询变量" class="headerlink" title="1.1 查询变量"></a>1.1 查询变量<a class="article-anchor" href="#1-1-查询变量" aria-hidden="true"></a></h3><p>查询变量与<a href="datachart#1-2-2-%E7%AD%9B%E9%80%89">数据图表筛选</a>和<a href="dashboard#2-1-4-%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6">仪表板筛选</a>关联，通过筛选控制器传入不同的值来得到不同的查询结果，通常用于比<code>字段筛选</code>更灵活的筛选查询场景</p>
+<p><em>该功能在开发中</em></p>
+<h3 id="1-2-权限变量" class="article-heading"><a href="#1-2-权限变量" class="headerlink" title="1.2 权限变量"></a>1.2 权限变量<a class="article-anchor" href="#1-2-权限变量" aria-hidden="true"></a></h3><p>权限变量通过与角色或用户绑定之后预设值，从而达到使用不同角色或用户查询返回不同结果、起到数据行权限控制的作用</p>
+<p>权限变量与查询变量不同在于，它的值是预设的、在其关联的同一权限主体下是固定的，而查询变量的值在使用中是可以改变的</p>
+<p>datart 内置了一组包含用户信息的权限变量，可以在数据视图里直接使用它们</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="variable">$DAVINCI</span>.USER.ID$             <span class="comment"># 用户 ID</span></span><br><span class="line"><span class="variable">$DAVINCI</span>.USER.EMAIL$          <span class="comment"># 用户 Email</span></span><br><span class="line"><span class="variable">$DAVINCI</span>.USER.USERNAME$       <span class="comment"># 用户名</span></span><br><span class="line"><span class="variable">$DAVINCI</span>.USER.NAME$           <span class="comment"># 用户姓名</span></span><br><span class="line"><span class="variable">$DAVINCI</span>.USER.DEPARTMENT$     <span class="comment"># 用户部门</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-变量设置" class="article-heading"><a href="#2-变量设置" class="headerlink" title="2. 变量设置"></a>2. 变量设置<a class="article-anchor" href="#2-变量设置" aria-hidden="true"></a></h2><p>管理者可以在组织中设置公共变量，公共变量可以被组织下的所有数据视图使用；这在给角色或成员设置一些固定属性时带来方便。另外开发者也可以在具体数据视图中创建专有变量，仅在数据视图中使用</p>
+<h3 id="2-1-公共变量设置" class="article-heading"><a href="#2-1-公共变量设置" class="headerlink" title="2.1 公共变量设置"></a>2.1 公共变量设置<a class="article-anchor" href="#2-1-公共变量设置" aria-hidden="true"></a></h3><p>点击主导航栏上的<code>设置</code> -&gt; <code>公共变量设置</code>，进入公共变量设置页面</p>
+<h4 id="2-1-1-新建-amp-编辑变量" class="article-heading"><a href="#2-1-1-新建-amp-编辑变量" class="headerlink" title="2.1.1 新建&amp;编辑变量"></a>2.1.1 新建&amp;编辑变量<a class="article-anchor" href="#2-1-1-新建-amp-编辑变量" aria-hidden="true"></a></h4><p>点击页面右上角<code>新建</code>按钮，弹出新建变量弹窗</p>
+<p><img src="/datart-docs/images/variable/2-1-1-1.png" alt="新建变量"></p>
+<p>需要配置以下内容</p>
+<ul>
+<li>名称：在 SQL 中输入的变量名称</li>
+<li>标题：用于组织成员自行编辑时显示的标题 <em>（开发中）</em></li>
+<li>类型</li>
+<li>值类型：不同值类型在解析时会做不同处理，其中<code>字符</code>和<code>日期</code>类型值会自动添加引号作为字符处理</li>
+<li>编辑权限：提供给组织成员自行编辑的权限设置 <em>（开发中）</em></li>
+<li>默认值：预设默认值，可以添加多个；输入之后需要回车或点击右侧 <code>√</code> 按钮确认添加</li>
+<li>使用表达式作为默认值：在一些场景下，需要使用 SQL 表达式作为默认值，但在变量值变化时保持原始值类型。这种场景主要发生在查询变量的使用上，比如一个日期变量，默认值为<code>now()</code>，但后续使用的是日期筛选控制器传递过来的日期格式化字符串，这种情况下值类型设为<code>日期</code>，但默认值<code>使用表达式作为默认值</code>即可</li>
+</ul>
+<p>配置完成之后，点击确定完成新建</p>
+<p>如果是一个查询变量，到这里就新建完成了；权限变量还需要关联权限主体并预设值，点击列表操作栏中的<code>关联角色或用户</code>按钮，弹出设置弹窗</p>
+<p><img src="/datart-docs/images/variable/2-1-1-2.png" alt="关联权限主体-1"></p>
+<p>可以关联角色或用户，勾选具体角色或用户设置值，默认情况下使用变量设置的默认值，如果不使用默认值，可以取消<code>使用变量默认值</code>勾选，并自行设置值，设置方法与变量默认值一致</p>
+<p><img src="/datart-docs/images/variable/2-1-1-3.png" alt="关联权限主体-2"></p>
+<p><img src="/datart-docs/images/variable/2-1-1-4.png" alt="关联权限主体-3"></p>
+<p>最好点击确定按钮完成设置</p>
+<h3 id="2-1-2-删除变量" class="article-heading"><a href="#2-1-2-删除变量" class="headerlink" title="2.1.2 删除变量"></a>2.1.2 删除变量<a class="article-anchor" href="#2-1-2-删除变量" aria-hidden="true"></a></h3><p>点击变量列表右侧的<code>删除</code>按钮，确认对话框后永久删除该变量</p>
+<h3 id="2-2-专有变量设置" class="article-heading"><a href="#2-2-专有变量设置" class="headerlink" title="2.2 专有变量设置"></a>2.2 专有变量设置<a class="article-anchor" href="#2-2-专有变量设置" aria-hidden="true"></a></h3><p>专有变量在数据视图侧边栏的<code>变量设置</code>面板中进行设置。点击变量设置页签弹出面板，列表中会展示该组织下的所有公共变量以及该数据视图的专有变量，点击右上角加号按钮新建变量</p>
+<p>新建和编辑方式与<a href="variable#2-1-%E5%85%AC%E5%85%B1%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE">公共变量</a>完全一致，唯一不同在于专有权限变量只能关联角色</p>
+<p><img src="/datart-docs/images/variable/2-2-1-1.png" alt="专有变量设置"></p>
+<h2 id="3-变量使用" class="article-heading"><a href="#3-变量使用" class="headerlink" title="3. 变量使用"></a>3. 变量使用<a class="article-anchor" href="#3-变量使用" aria-hidden="true"></a></h2><h3 id="3-1-在-SQL-语句中引用变量" class="article-heading"><a href="#3-1-在-SQL-语句中引用变量" class="headerlink" title="3.1 在 SQL 语句中引用变量"></a>3.1 在 SQL 语句中引用变量<a class="article-anchor" href="#3-1-在-SQL-语句中引用变量" aria-hidden="true"></a></h3><p>已完成设置的变量可以在数据视图编辑器中直接引用，输入变量名称会有提示</p>
+<p><img src="/datart-docs/images/variable/3-1-1.png" alt="SQL引用"></p>
+<h4 id="3-1-1-语法" class="article-heading"><a href="#3-1-1-语法" class="headerlink" title="3.1.1 语法"></a>3.1.1 语法<a class="article-anchor" href="#3-1-1-语法" aria-hidden="true"></a></h4><p>变量在 SQL 语句中以 <code>$变量名称$</code> 形式显示</p>
+<p>查询变量在确定变量值为单值的情况下，可以在 SQL 语句中直接引入变量</p>
+<p><img src="/datart-docs/images/variable/3-1-1-1.png" alt="语法-1"><br><img src="/datart-docs/images/variable/3-1-1-2.png" alt="语法-2"></p>
+<p>查询变量在变量值可能为多值的情况下，需要在 SQL 语句中做一些处理</p>
+<p><img src="/datart-docs/images/variable/3-1-1-3.png" alt="语法-3"><br><img src="/datart-docs/images/variable/3-1-1-4.png" alt="语法-4"></p>
+<p>权限变量无论是单值还是多值，都可以在 SQL 语句中直接引入，解析器会对相应情况作出不同处理。但在编辑界面无法看出权限变量作用效果，需要登录具体角色或成员进入可视化页面查看</p>
+<p><img src="/datart-docs/images/variable/3-1-1-5.png" alt="语法-5"><br><img src="/datart-docs/images/variable/3-1-1-6.png" alt="语法-6"></p>
+<h4 id="3-1-2-条件语句" class="article-heading"><a href="#3-1-2-条件语句" class="headerlink" title="3.1.2 条件语句"></a>3.1.2 条件语句<a class="article-anchor" href="#3-1-2-条件语句" aria-hidden="true"></a></h4><p>datart 使用 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://freemarker.apache.org/">freemarker</a> 来解析变量，因此可以使用 freemarker 的条件语法来达到一些动态效果</p>
+<p><strong>注意：变量在 <code>if</code> 语句中前后不要使用 <code>$</code> 包裹</strong></p>
+<p>在变量值为单值时，可以这样使用</p>
+<p><img src="/datart-docs/images/variable/3-1-2-1.png" alt="条件语句-1"></p>
+<p>在变量值为多值时，可以这样使用</p>
+<p><img src="/datart-docs/images/variable/3-1-2-2.png" alt="条件语句-2"></p>
+<p>更详细的使用方式可以参考 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://freemarker.apache.org/docs/dgui_template_exp.html#dgui_template_exp_comparison">freemarker</a> 文档</p>
+<h3 id="3-2-在计算字段中引用变量-（开发中）" class="article-heading"><a href="#3-2-在计算字段中引用变量-（开发中）" class="headerlink" title="3.2 在计算字段中引用变量 （开发中）"></a>3.2 在计算字段中引用变量 <em>（开发中）</em><a class="article-anchor" href="#3-2-在计算字段中引用变量-（开发中）" aria-hidden="true"></a></h3><h3 id="3-3-在筛选中关联变量-（开发中）" class="article-heading"><a href="#3-3-在筛选中关联变量-（开发中）" class="headerlink" title="3.3 在筛选中关联变量 （开发中）"></a>3.3 在筛选中关联变量 <em>（开发中）</em><a class="article-anchor" href="#3-3-在筛选中关联变量-（开发中）" aria-hidden="true"></a></h3>
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2021-10-25T09:28:08.931Z" itemprop="dateModified">Last updated: 2021-10-25</time>
+                <a href="schedule.html" class="article-footer-prev" title="定时任务"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="organization.html" class="article-footer-next" title="组织"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8F%98%E9%87%8F%E7%B1%BB%E5%88%AB"><span class="toc-text">1. 变量类别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%9F%A5%E8%AF%A2%E5%8F%98%E9%87%8F"><span class="toc-text">1.1 查询变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%9D%83%E9%99%90%E5%8F%98%E9%87%8F"><span class="toc-text">1.2 权限变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE"><span class="toc-text">2. 变量设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%85%AC%E5%85%B1%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE"><span class="toc-text">2.1 公共变量设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-%E6%96%B0%E5%BB%BA-amp-%E7%BC%96%E8%BE%91%E5%8F%98%E9%87%8F"><span class="toc-text">2.1.1 新建&amp;编辑变量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-%E5%88%A0%E9%99%A4%E5%8F%98%E9%87%8F"><span class="toc-text">2.1.2 删除变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E4%B8%93%E6%9C%89%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE"><span class="toc-text">2.2 专有变量设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8"><span class="toc-text">3. 变量使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%9C%A8-SQL-%E8%AF%AD%E5%8F%A5%E4%B8%AD%E5%BC%95%E7%94%A8%E5%8F%98%E9%87%8F"><span class="toc-text">3.1 在 SQL 语句中引用变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-%E8%AF%AD%E6%B3%95"><span class="toc-text">3.1.1 语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="toc-text">3.1.2 条件语句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%9C%A8%E8%AE%A1%E7%AE%97%E5%AD%97%E6%AE%B5%E4%B8%AD%E5%BC%95%E7%94%A8%E5%8F%98%E9%87%8F-%EF%BC%88%E5%BC%80%E5%8F%91%E4%B8%AD%EF%BC%89"><span class="toc-text">3.2 在计算字段中引用变量 （开发中）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%9C%A8%E7%AD%9B%E9%80%89%E4%B8%AD%E5%85%B3%E8%81%94%E5%8F%98%E9%87%8F-%EF%BC%88%E5%BC%80%E5%8F%91%E4%B8%AD%EF%BC%89"><span class="toc-text">3.3 在筛选中关联变量 （开发中）</span></a></li></ol></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">快速开始</strong><a href="index.html" class="sidebar-link">部署</a><a href="first-visualization.html" class="sidebar-link">第一个可视化作品</a><strong class="sidebar-title">可视化功能</strong><a href="source.html" class="sidebar-link">数据源</a><a href="view.html" class="sidebar-link">数据视图</a><a href="datachart.html" class="sidebar-link">数据图表</a><a href="dashboard.html" class="sidebar-link">仪表板</a><a href="storyboard.html" class="sidebar-link">故事板</a><a href="schedule.html" class="sidebar-link">定时任务</a><a href="variable.html" class="sidebar-link current">变量</a><strong class="sidebar-title">用户与权限</strong><a href="organization.html" class="sidebar-link">组织</a><a href="member.html" class="sidebar-link">成员与角色</a><a href="permission.html" class="sidebar-link">权限</a><strong class="sidebar-title">自定义扩展</strong><a href="chart_plugin.html" class="sidebar-link">自定义插件化图表</a><a href="jdbc.html" class="sidebar-link">扩展JDBC数据源</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2021 <a href="https://github.com/running-elephant/datart/graphs/contributors" target="_blank">datart</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://github.com/running-elephant/datart" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/datart-docs/docs/" class="mobile-nav-link">文档</a><a href="/datart-docs/about/" class="mobile-nav-link">关于</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/running-elephant/datart" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">快速开始</strong><a href="index.html" class="mobile-nav-link">部署</a><a href="first-visualization.html" class="mobile-nav-link">第一个可视化作品</a><strong class="mobile-nav-title">可视化功能</strong><a href="source.html" class="mobile-nav-link">数据源</a><a href="view.html" class="mobile-nav-link">数据视图</a><a href="datachart.html" class="mobile-nav-link">数据图表</a><a href="dashboard.html" class="mobile-nav-link">仪表板</a><a href="storyboard.html" class="mobile-nav-link">故事板</a><a href="schedule.html" class="mobile-nav-link">定时任务</a><a href="variable.html" class="mobile-nav-link current">变量</a><strong class="mobile-nav-title">用户与权限</strong><a href="organization.html" class="mobile-nav-link">组织</a><a href="member.html" class="mobile-nav-link">成员与角色</a><a href="permission.html" class="mobile-nav-link">权限</a><strong class="mobile-nav-title">自定义扩展</strong><a href="chart_plugin.html" class="mobile-nav-link">自定义插件化图表</a><a href="jdbc.html" class="mobile-nav-link">扩展JDBC数据源</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/variable.html">
+      
+        <option value="en" selected>English</option>
+      
+        <option value="zh-cn">简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- Cookie -->
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<!-- build:js build/js/main.js -->
+
+<script src="/datart-docs/js/lang_select.js"></script>
+
+
+<script src="/datart-docs/js/mobile_nav.js"></script>
+
+<!-- endbuild -->
+
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>部署 | datart</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://github.com/running-elephant/datart-docs.git/docs/index.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://github.com/running-elephant/datart-docs.git/docs/">
+    
+      <link rel="alternative" hreflang="zh-cn" href="https://github.com/running-elephant/datart-docs.git/zh-cn/docs/">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/datart-docs/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/datart-docs/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/datart-docs/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/datart-docs/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/datart-docs/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/datart-docs/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/datart-docs/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/datart-docs/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/datart-docs/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  
+<link rel="stylesheet" href="/datart-docs/css/navy.css">
+
+  <!-- endbuild -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-lato@0.0.75/index.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/datart-docs/atom.xml" title="datart" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/datart-docs/" id="logo">datart</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/datart-docs/docs/" class="main-nav-link">文档</a><a href="/datart-docs/about/" class="main-nav-link">关于</a>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"></label>
+      <select id="lang-select" data-canonical="docs/index.html">
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">部署</h1>
+                <a href="https://github.com/running-elephant/datart-docs/tree/master/source/docs/index.md" class="article-edit-link" title="Improve this doc"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <h2 id="0-demo" class="article-heading"><a href="#0-demo" class="headerlink" title="0 demo"></a>0 demo<a class="article-anchor" href="#0-demo" aria-hidden="true"></a></h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://datart-demo.retech.cc/">http://datart-demo.retech.cc</a></li>
+<li>用户名：demo</li>
+<li>密码：123456</li>
+</ul>
+<h2 id="1-环境准备" class="article-heading"><a href="#1-环境准备" class="headerlink" title="1 环境准备"></a>1 环境准备<a class="article-anchor" href="#1-环境准备" aria-hidden="true"></a></h2><ul>
+<li>JDK 1.8+</li>
+<li>MySql5.7+</li>
+<li>datart安装包（datart-server-1.0.0-alpha.0-install.zip)</li>
+<li>Mail Server （可选）</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://chromedriver.chromium.org/">ChromeWebDriver</a> （可选）</li>
+<li>Redis （可选）</li>
+</ul>
+<p> 解压安装包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">unzip datart-server-1.0.0-alpha.0-install.zip</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-初始化数据库" class="article-heading"><a href="#2-初始化数据库" class="headerlink" title="2 初始化数据库"></a>2 初始化数据库<a class="article-anchor" href="#2-初始化数据库" aria-hidden="true"></a></h2><ul>
+<li>创建数据库，并将bin/datart.sql导入到数据库中</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; CREATE DATABASE `datart` CHARACTER SET <span class="string">&#x27;utf8&#x27;</span> COLLATE <span class="string">&#x27;utf8_general_ci&#x27;</span>;</span><br><span class="line">mysql&gt; use datart;</span><br><span class="line">mysql&gt; <span class="built_in">source</span> bin/datart.sql</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-修改配置文件" class="article-heading"><a href="#3-修改配置文件" class="headerlink" title="3 修改配置文件"></a>3 修改配置文件<a class="article-anchor" href="#3-修改配置文件" aria-hidden="true"></a></h2><ul>
+<li>配置文件位于 config/application-config.yml.example，先重命名为application-config.yml，需要配置的项为: 数据库连接信息，邮件配置，浏览器截图驱动</li>
+</ul>
+<h3 id="3-1-数据库连接信息" class="article-heading"><a href="#3-1-数据库连接信息" class="headerlink" title="3.1 数据库连接信息"></a>3.1 数据库连接信息<a class="article-anchor" href="#3-1-数据库连接信息" aria-hidden="true"></a></h3><p><em><strong>注：请务必保留连接串中的<code>allowMultiQueries=true</code>参数</strong></em></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://&#123;IP:PORT&#125;/datart?&amp;allowMultiQueries=true</span></span><br><span class="line">    <span class="attr">username:</span> &#123; <span class="string">USERNAME</span> &#125;</span><br><span class="line">    <span class="attr">password:</span> &#123; <span class="string">PASSWORD</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-服务端属性配置" class="article-heading"><a href="#3-2-服务端属性配置" class="headerlink" title="3.2 服务端属性配置"></a>3.2 服务端属性配置<a class="article-anchor" href="#3-2-服务端属性配置" aria-hidden="true"></a></h3><ul>
+<li>Web服务绑定IP和端口</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> &#123; <span class="string">PORT</span> &#125;</span><br><span class="line">  <span class="attr">address:</span> &#123; <span class="string">IP</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置服务端访问地址，创建分享，激活/邀请用户时，将使用这个地址作为服务端访问地址。</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">datart:</span></span><br><span class="line">  <span class="attr">server:</span></span><br><span class="line">    <span class="attr">address:</span> <span class="string">http://&#123;IP/域名&#125;:&#123;端口&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>其它可选配置项</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">datart:</span></span><br><span class="line">  <span class="attr">user:</span></span><br><span class="line">    <span class="attr">active:</span></span><br><span class="line">      <span class="attr">send-mail:</span> <span class="literal">false</span>  <span class="comment"># 注册用户时是否需要邮件验证，如果没配置邮箱，这里需要设置为false</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">security:</span></span><br><span class="line">    <span class="attr">token:</span></span><br><span class="line">      <span class="attr">secret:</span> <span class="string">&quot;sHAS$as@fsdkKjd&quot;</span> <span class="comment">#加密密钥</span></span><br><span class="line">      <span class="attr">timeout-min:</span> <span class="number">30</span>  <span class="comment"># 登录会话有效时长，单位：分钟。</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">env:</span></span><br><span class="line">    <span class="attr">file-path:</span> <span class="string">$&#123;user.dir&#125;/files</span> <span class="comment"># 服务端文件保存位置 </span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><em>注意：加密密钥每个服务端部署前应该进行修改，且部署后不能再次修改。如果是集群部署，同一个集群内的secret要保持统一</em></p>
+<h3 id="3-3-邮件服务配置-可选" class="article-heading"><a href="#3-3-邮件服务配置-可选" class="headerlink" title="3.3 邮件服务配置 (可选)"></a>3.3 邮件服务配置 (可选)<a class="article-anchor" href="#3-3-邮件服务配置-可选" aria-hidden="true"></a></h3><p><em><strong>邮件服务用于定时任务发送，用户注册/激活/邀请等功能。要体验完整的datart功能，请务必正确的邮件服务。</strong></em></p>
+<ul>
+<li>以下为完整配置</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">mail:</span></span><br><span class="line">    <span class="attr">host:</span> &#123; <span class="string">邮箱服务地址</span> &#125;</span><br><span class="line">    <span class="attr">port:</span> &#123; <span class="string">端口号</span> &#125;</span><br><span class="line">    <span class="attr">username:</span> &#123; <span class="string">邮箱地址</span> &#125;</span><br><span class="line">    <span class="attr">fromAddress:</span></span><br><span class="line">    <span class="attr">password:</span> &#123; <span class="string">邮箱服务密码</span> &#125;</span><br><span class="line">    <span class="attr">senderName:</span> &#123; <span class="string">发送者昵称</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attr">properties:</span></span><br><span class="line">      <span class="attr">smtp:</span></span><br><span class="line">        <span class="attr">starttls:</span></span><br><span class="line">          <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">          <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">auth:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">mail:</span></span><br><span class="line">        <span class="attr">smtp:</span></span><br><span class="line">          <span class="attr">ssl:</span></span><br><span class="line">            <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p><em><strong>配置说明</strong></em></p>
+<ul>
+<li><code>username</code>为邮箱地址，<code>password</code>邮箱服务密码，需要注意的是常见免费邮箱（如 163 邮箱、QQ 邮箱、gmail 等）这里应填客户端独立密码，可前往对应邮箱账号设置页面开启 SMTP<br>服务，并申请客户端授权码（或独立密码，各邮箱提供商叫法不同）</li>
+</ul>
+<p>下表为常见免费邮箱 SMTP 服务地址及端口：<br><img src="/datart-docs/images/deployment/mail.png" alt="mail.png"></p>
+<h3 id="3-4截图配置-可选" class="article-heading"><a href="#3-4截图配置-可选" class="headerlink" title="3.4截图配置 (可选)"></a>3.4截图配置 (可选)<a class="article-anchor" href="#3-4截图配置-可选" aria-hidden="true"></a></h3><ul>
+<li>截图配置用于定时任务中的发送图片功能。</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">datart:</span></span><br><span class="line">  <span class="attr">screenshot:</span></span><br><span class="line">    <span class="attr">timeout-seconds:</span> <span class="number">60</span></span><br><span class="line">    <span class="attr">webdriver-type:</span> <span class="string">CHROME</span></span><br><span class="line">    <span class="attr">webdriver-path:</span> &#123;<span class="string">Web</span> <span class="string">Driver</span> <span class="string">Path</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置说明<br><code>timeout-seconds</code> 指定截图超时时间<br><code>webdriver-type</code> 截图浏览器类型。(目前仅支持<code>CHROME</code>)<br><code>webdriver-path</code> webdriver地址。可执行文件的绝对地址，或远程webdriver的调用地址</li>
+</ul>
+<p>*</p>
+<p>注意：配置时请确保浏览器的版本和webdriver的版本匹配。推荐使用docker镜像 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://registry.hub.docker.com/r/selenium/standalone-chrome">selenium/standalone-chrome</a><br>来配置远程截图服务。*</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -p 4444:4444 -d --name selenium-chrome --shm-size=&quot;2g&quot; selenium/standalone-chrome</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后配置 <code>webdriver-path: &quot;http://&#123;IP&#125;:4444/wd/hub&quot;</code></li>
+</ul>
+<h3 id="3-5-redis-可选" class="article-heading"><a href="#3-5-redis-可选" class="headerlink" title="3.5 redis (可选)"></a>3.5 redis (可选)<a class="article-anchor" href="#3-5-redis-可选" aria-hidden="true"></a></h3><ul>
+<li>redis用于查询结果缓存<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">redis:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">6379</span></span><br><span class="line">  <span class="attr">host:</span> &#123; <span class="string">HOST</span> &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2021-10-25T09:27:37.947Z" itemprop="dateModified">Last updated: 2021-10-25</time>
+                <a href="first-visualization.html" class="article-footer-next" title="第一个可视化作品"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-demo"><span class="toc-text">0 demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-text">1 环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">2 初始化数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">3 修改配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E4%BF%A1%E6%81%AF"><span class="toc-text">3.1 数据库连接信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%B1%9E%E6%80%A7%E9%85%8D%E7%BD%AE"><span class="toc-text">3.2 服务端属性配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE-%E5%8F%AF%E9%80%89"><span class="toc-text">3.3 邮件服务配置 (可选)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4%E6%88%AA%E5%9B%BE%E9%85%8D%E7%BD%AE-%E5%8F%AF%E9%80%89"><span class="toc-text">3.4截图配置 (可选)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-redis-%E5%8F%AF%E9%80%89"><span class="toc-text">3.5 redis (可选)</span></a></li></ol></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">快速开始</strong><a href="index.html" class="sidebar-link current">部署</a><a href="first-visualization.html" class="sidebar-link">第一个可视化作品</a><strong class="sidebar-title">可视化功能</strong><a href="source.html" class="sidebar-link">数据源</a><a href="view.html" class="sidebar-link">数据视图</a><a href="datachart.html" class="sidebar-link">数据图表</a><a href="dashboard.html" class="sidebar-link">仪表板</a><a href="storyboard.html" class="sidebar-link">故事板</a><a href="schedule.html" class="sidebar-link">定时任务</a><a href="variable.html" class="sidebar-link">变量</a><strong class="sidebar-title">用户与权限</strong><a href="organization.html" class="sidebar-link">组织</a><a href="member.html" class="sidebar-link">成员与角色</a><a href="permission.html" class="sidebar-link">权限</a><strong class="sidebar-title">自定义扩展</strong><a href="chart_plugin.html" class="sidebar-link">自定义插件化图表</a><a href="jdbc.html" class="sidebar-link">扩展JDBC数据源</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2021 <a href="https://github.com/running-elephant/datart/graphs/contributors" target="_blank">datart</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://github.com/running-elephant/datart" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/datart-docs/docs/" class="mobile-nav-link">文档</a><a href="/datart-docs/about/" class="mobile-nav-link">关于</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/running-elephant/datart" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">快速开始</strong><a href="index.html" class="mobile-nav-link current">部署</a><a href="first-visualization.html" class="mobile-nav-link">第一个可视化作品</a><strong class="mobile-nav-title">可视化功能</strong><a href="source.html" class="mobile-nav-link">数据源</a><a href="view.html" class="mobile-nav-link">数据视图</a><a href="datachart.html" class="mobile-nav-link">数据图表</a><a href="dashboard.html" class="mobile-nav-link">仪表板</a><a href="storyboard.html" class="mobile-nav-link">故事板</a><a href="schedule.html" class="mobile-nav-link">定时任务</a><a href="variable.html" class="mobile-nav-link">变量</a><strong class="mobile-nav-title">用户与权限</strong><a href="organization.html" class="mobile-nav-link">组织</a><a href="member.html" class="mobile-nav-link">成员与角色</a><a href="permission.html" class="mobile-nav-link">权限</a><strong class="mobile-nav-title">自定义扩展</strong><a href="chart_plugin.html" class="mobile-nav-link">自定义插件化图表</a><a href="jdbc.html" class="mobile-nav-link">扩展JDBC数据源</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/index.html">
+      
+        <option value="en" selected>English</option>
+      
+        <option value="zh-cn">简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- Cookie -->
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<!-- build:js build/js/main.js -->
+
+<script src="/datart-docs/js/lang_select.js"></script>
+
+
+<script src="/datart-docs/js/mobile_nav.js"></script>
+
+<!-- endbuild -->
+
+
+</body>
+</html>
