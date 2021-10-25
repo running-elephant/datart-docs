@@ -39,11 +39,11 @@ datart 是新一代数据可视化开放平台，支持各类企业数据可视�
 
 ## Document
 ### 如何部署 Deployment
-参见 [Deployment]()
+参见 [Deployment](/datart-docs/docs/)
 ### 快速开始 Quick Start
-参见 [Quick Start Guide]()
+参见 [Quick Start Guide](/datart-docs/docs/first-visualization)
 ### 用户文档 User Document
-参见 [User Guide]()
+参见 [User Guide](/datart-docs/docs/source)
 
 ### 最新版本 Latest Release
 参见  [Latest Release](https://github.com/running-elephant/datart/releases)
@@ -63,4 +63,4 @@ datart 是新一代数据可视化开放平台，支持各类企业数据可视�
 参见 [Adopters]()
 
 ## License
-datart is under the Apache 2.0 license. See the [LICENSE]() file for details.
+datart is under the Apache 2.0 license. See the [LICENSE](https://github.com/running-elephant/datart/blob/master/LICENSE) file for details.
