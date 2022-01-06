@@ -23,10 +23,10 @@ datart 中有查询变量和权限变量两种类别，分别用于不同的场�
 datart 内置了一组包含用户信息的权限变量，可以在数据视图里直接使用它们
 
 ```bash
-$DATART.USER.ID$           # 用户 ID
-$DATART.USER.USERNAME$     # 用户名
-$DATART.USER.EMAIL$        # 用户 Email
-$DATART.USER.NAME$         # 用户姓名
+$DATART_USER_ID$           # 用户 ID
+$DATART_USER_USERNAME$     # 用户名
+$DATART_USER_EMAIL$        # 用户 Email
+$DATART_USER_NAME$         # 用户姓名
 ```
 
 ## 2. 变量设置
