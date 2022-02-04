@@ -79,26 +79,26 @@
                 <a href="https://github.com/running-elephant/datart-docs/tree/master/source/docs/source.md" class="article-edit-link" title="Improve this doc"><i class="fa fa-pencil"></i></a>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <p>数据源用于管理数据连接、订阅与资源信息，支持通过数据源、文件、<code>REST API</code> 等多种方式获取数据。datart 内置了 <code>JDBC</code>、文件和 <code>http</code> 3种类型的数据源，在内置数据源不满足使用时，用户也可以扩展自己的数据源</p>
-<h2 id="1-JDBC" class="article-heading"><a href="#1-JDBC" class="headerlink" title="1. JDBC"></a>1. JDBC<a class="article-anchor" href="#1-JDBC" aria-hidden="true"></a></h2><p>创建一个 <code>JDBC</code> 数据源通常需要配置以下内容：</p>
+                <p>数据源用于配置和管理可视化数据的来源。datart 默认支持从数据库、文件和 Http 接口获取数据，在默认支持的数据源类别不满足使用时，用户也可以在源码中扩展<code>DataProvider</code>类来自定义数据源</p>
+<h2 id="1-JDBC" class="article-heading"><a href="#1-JDBC" class="headerlink" title="1. JDBC"></a>1. JDBC<a class="article-anchor" href="#1-JDBC" aria-hidden="true"></a></h2><p>datart 通过 JDBC 连接数据库、获取数据库信息和数据；创建一个 JDBC 数据源通常需要配置以下内容：</p>
 <ul>
-<li>名称：数据源名称，要求唯一</li>
-<li>数据库类型：默认支持30+种JDBC数据库。如果你的数据库不在选项中，请参照<a href="jdbc">扩展JDBC数据源</a></li>
-<li>连接地址：通常格式为 <code>jdbc:&lt;数据源名称&gt;://&lt;数据源域名或IP&gt;:(&lt;端口&gt;)/&lt;数据源实例&gt;(?&lt;连接参数&gt;)</code></li>
-<li>用户</li>
-<li>密码</li>
-<li>驱动类：datart 没有内置所有数据库的驱动类，所以当测试连接提示缺少驱动类时，用户需要手动填写驱动类名称</li>
-<li>开启服务端聚合：开启后，在执行SQL时，会将数据视图中 SQL 查询的结果集全量拉取到服务端，然后进行本地分组聚合计算。这个选项适合数据源端计算效率低，或者计算能力弱的数据源进行开启。如果源端本身具有较强的计算能力，则不需要开启这个选项</li>
-<li>连接池参数：键值对形式</li>
+<li><strong>名称</strong>：数据源名称，要求唯一</li>
+<li><strong>数据库类型</strong>：默认支持 30+种 JDBC 数据库。如果你的数据库不在选项中，请参照<a href="jdbc">扩展 JDBC 数据源</a>章节</li>
+<li><strong>连接地址</strong>：通常格式为 <code>jdbc:&lt;数据源名称&gt;://&lt;数据源域名或IP&gt;:(&lt;端口&gt;)/&lt;数据源实例&gt;(?&lt;连接参数&gt;)</code></li>
+<li><strong>用户</strong></li>
+<li><strong>密码</strong></li>
+<li><strong>驱动类</strong>：datart 没有内置所有数据库的驱动类，所以当测试连接提示缺少驱动类时，用户需要手动填写驱动类名称</li>
+<li><strong>开启服务端聚合</strong>：开启后，在执行 SQL 时，会将数据视图中 SQL 查询的结果集全量拉取到服务端，然后进行本地分组聚合计算。这个选项适合数据源端计算效率低，或者计算能力弱的数据源进行开启。如果源端本身具有较强的计算能力，则不需要开启这个选项</li>
+<li><strong>连接池参数</strong>：键值对形式</li>
 </ul>
-<h2 id="2-文件" class="article-heading"><a href="#2-文件" class="headerlink" title="2. 文件"></a>2. 文件<a class="article-anchor" href="#2-文件" aria-hidden="true"></a></h2><p>datart 支持上传 <code>Excel</code> 和 <code>csv</code> 文件作为数据源，文件存储在 datart 服务端；datart 使用内置的 H2 数据库对文件中的二维表进行计算，支持在数据视图中编写 SQL 对一个数据源下的多个文件进行关联与聚合操作</p>
+<h2 id="2-文件" class="article-heading"><a href="#2-文件" class="headerlink" title="2. 文件"></a>2. 文件<a class="article-anchor" href="#2-文件" aria-hidden="true"></a></h2><p>datart 支持上传 Excel 和 CSV 文件作为数据源，存储在 datart 服务端；在查询文件数据源时，datart 读取文件到内置的 H2 数据库中，使用 H2 数据库对原始数据进行计算。得益于 H2 数据库的能力，datart 支持在<a href="view">数据视图</a>中编写 SQL 对一个数据源下的多个文件进行关联与聚合操作</p>
 <p>创建一个文件数据源的步骤如下：</p>
 <ol>
 <li>填写名称，选择类型，保存数据源</li>
 </ol>
 <p><img src="/datart-docs/images/source/2-1-1.png" alt="文件-1"></p>
 <ol start="2">
-<li>保存成功之后，点击<code>新增配置</code>添加文件</li>
+<li>保存成功之后，点击<code>新增配置</code>添加表，每个文件视为一张表</li>
 </ol>
 <p><img src="/datart-docs/images/source/2-1-2.png" alt="文件-2"></p>
 <ol start="3">
@@ -119,42 +119,45 @@
 <li><p>保存数据源</p>
 </li>
 </ol>
-<h2 id="3-http" class="article-heading"><a href="#3-http" class="headerlink" title="3. http"></a>3. http<a class="article-anchor" href="#3-http" aria-hidden="true"></a></h2><p><code>http</code> 数据源允许用户使用 <code>REST API</code> 响应数据作为数据来源；datart 使用内置的 H2 数据库对响应数据进行计算，支持在数据视图中编写 SQL 对一个数据源下的多个 <code>REST API</code> 响应数据进行关联与聚合操作</p>
-<p>创建一个 <code>http</code> 数据源的步骤如下：</p>
+<h2 id="3-Http" class="article-heading"><a href="#3-Http" class="headerlink" title="3. Http"></a>3. Http<a class="article-anchor" href="#3-Http" aria-hidden="true"></a></h2><p>Http 数据源允许用户使用 Http 接口响应数据作为数据来源；在查询 Http 数据源时，datart 使用内置的 H2 数据库对 Http 接口响应数据进行计算。得益于 H2 数据库的能力，datart 支持在<a href="view">数据视图</a>中编写 SQL 对一个数据源下的多个 Http 接口响应数据进行关联与聚合操作</p>
+<p>创建一个 Http 数据源的步骤如下：</p>
 <ol>
 <li>填写名称，选择类型，保存数据源</li>
 </ol>
-<p><img src="/datart-docs/images/source/3-1-1.png" alt="http-1"></p>
+<p><img src="/datart-docs/images/source/3-1-1.png" alt="Http-1"></p>
 <ol start="2">
-<li>保存成功之后，点击<code>新增配置</code>添加文件，通常需要配置以下内容：</li>
+<li>保存成功之后，点击<code>新增配置</code>添加表，每一组 Http 连接信息视为一张表，通常需要配置以下内容：</li>
 </ol>
 <ul>
-<li>表名：一个数据源下唯一</li>
-<li>地址：<code>REST API</code> 地址</li>
-<li>请求方式：GET / POST / PUT / DELETE</li>
-<li>解析字段：返回数据中需要解析的属性，指定的属性必须是一个数组结构。多层嵌套用 <code>.</code> 隔开。如返回数据结构是数组，这个属性不填。 举例如下：</li>
+<li><strong>表名</strong>：一个数据源下唯一</li>
+<li><strong>地址</strong>：Http 接口地址</li>
+<li><strong>请求方式</strong>：GET / POST / PUT / DELETE</li>
+<li><strong>解析字段</strong>：返回数据中需要解析的属性，指定的属性必须是一个数组结构。多层嵌套用 <code>.</code> 隔开。如返回数据结构是数组，这个属性不填。 举例如下：</li>
 </ul>
 <p>回数据格式如下, 则解析字段不用填写</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;zs&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;id&quot;</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;ls&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">返回数据格式如下，解析字段需填写为 `data.users` 才能正确解析</span><br><span class="line"></span><br><span class="line">```json</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;success&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;users&quot;</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;zs&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">&quot;id&quot;</span>: <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;ls&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;zs&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;id&quot;</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;ls&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>返回数据格式如下，解析字段需填写为 <code>data.users</code> 才能正确解析</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;success&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;users&quot;</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;zs&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">&quot;id&quot;</span>: <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;ls&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>用户名：可选，支持 Basic access authentication 身份验证方式</li>
-<li>密码：可选</li>
-<li>结果解析器：默认为空。如果返回数据格式特殊，可通过实现 <code>datart.data.provider.HttpResponseParser</code>，然后通过这个参数指定具体的Parser实现类</li>
-<li>请求头：键值对形式</li>
-<li>路径参数：键值对形式</li>
-<li>请求体：文本</li>
-<li>contentType：默认值 <code>application/json</code></li>
+<li><strong>用户名</strong>：可选，支持 Basic access authentication 身份验证方式</li>
+<li><strong>密码</strong>：可选</li>
+<li><strong>结果解析器</strong>：默认为空。如果返回数据格式特殊，可通过实现 <code>datart.data.provider.HttpResponseParser</code>，然后通过这个参数指定具体的 Parser 实现类</li>
+<li><strong>请求头</strong>：键值对形式</li>
+<li><strong>路径参数</strong>：键值对形式</li>
+<li><strong>请求体</strong>：文本</li>
+<li><strong>contentType</strong>：默认值 <code>application/json</code></li>
 </ul>
-<p><img src="/datart-docs/images/source/3-1-2.png" alt="http-2"></p>
+<p><img src="/datart-docs/images/source/3-1-2.png" alt="Http-2"></p>
 <ol start="3">
 <li>填写完配置之后，点击 <code>url</code> 输入框上的<code>测试连接</code>按钮，测试通过之后，下方表格中会展示字段信息和响应数据，点击表头头部编辑字段类型</li>
 </ol>
-<p><img src="/datart-docs/images/source/3-1-3.png" alt="http-3"></p>
+<p><img src="/datart-docs/images/source/3-1-3.png" alt="Http-3"></p>
 <ol start="4">
-<li><p>保存 <code>REST API</code> 连接信息，一个数据源下可以添加多个连接信息</p>
+<li><p>保存 Http 连接信息，一个数据源下可以添加多个连接信息</p>
 </li>
-<li><p>选择是否开启缓存；该缓存指发起查询时、H2 首次从 <code>REST API</code> 获取数据之后缓存的时间，单位为分钟</p>
+<li><p>选择是否开启缓存；该缓存指发起查询时、H2 首次从 Http 接口获取数据之后缓存的时间，单位为分钟</p>
 </li>
 <li><p>保存数据源</p>
 </li>
@@ -164,14 +167,14 @@
 <p><img src="/datart-docs/images/source/4-1-1.png" alt="新建数据源-1"></p>
 <p>填写完表单信息后，点击右上角的<code>保存</code>按钮保存数据源</p>
 <p><img src="/datart-docs/images/source/4-1-2.png" alt="新建数据源-2"></p>
-<h3 id="4-2-测试连接" class="article-heading"><a href="#4-2-测试连接" class="headerlink" title="4.2 测试连接"></a>4.2 测试连接<a class="article-anchor" href="#4-2-测试连接" aria-hidden="true"></a></h3><p><code>JDBC</code> 数据源和 <code>http</code> 数据源在配置阶段可以测试连接是否有效，在填写完所有必填项之后，点击 <code>url</code> 输入框上的<code>测试连接</code>按钮即可进行测试</p>
-<p><code>JDBC</code> 数据源测试成功之后会在顶部提示信息</p>
+<h3 id="4-2-测试连接" class="article-heading"><a href="#4-2-测试连接" class="headerlink" title="4.2 测试连接"></a>4.2 测试连接<a class="article-anchor" href="#4-2-测试连接" aria-hidden="true"></a></h3><p>JDBC 数据源和 Http 数据源在配置阶段可以测试连接是否有效，在填写完所有必填项之后，点击 <code>url</code> 输入框上的<code>测试连接</code>按钮即可进行测试</p>
+<p>JDBC 数据源测试成功之后会在顶部提示信息</p>
 <p><img src="/datart-docs/images/source/4-2-1.png" alt="测试连接-1"></p>
-<p><code>http</code> 数据源测试成功之后在 <code>columns</code> 表格中展示获取到的字段信息和数据</p>
+<p>Http 数据源测试成功之后在 <code>columns</code> 表格中展示获取到的字段信息和数据</p>
 <p><img src="/datart-docs/images/source/4-2-2.png" alt="测试连接-2"></p>
 <h3 id="4-3-编辑" class="article-heading"><a href="#4-3-编辑" class="headerlink" title="4.3 编辑"></a>4.3 编辑<a class="article-anchor" href="#4-3-编辑" aria-hidden="true"></a></h3><p>点击选择数据源列表中的任意数据源，右侧区域会展示该数据源的配置信息，编辑完成后点击右上角<code>保存</code>按钮保存数据源</p>
 <p><img src="/datart-docs/images/source/4-3-1.png" alt="编辑数据源-1"></p>
-<h3 id="4-4-移至回收站" class="article-heading"><a href="#4-4-移至回收站" class="headerlink" title="4.4 移至回收站"></a>4.4 移至回收站<a class="article-anchor" href="#4-4-移至回收站" aria-hidden="true"></a></h3><p>编辑数据源时，点击右上角的<code>移植回收站</code>按钮，确认对话框之后，该数据源会被移动到回收站归档，无法再被使用</p>
+<h3 id="4-4-移至回收站" class="article-heading"><a href="#4-4-移至回收站" class="headerlink" title="4.4 移至回收站"></a>4.4 移至回收站<a class="article-anchor" href="#4-4-移至回收站" aria-hidden="true"></a></h3><p>编辑数据源时，点击右上角的<code>移至回收站</code>按钮，确认对话框之后，该数据源会被移动到回收站归档，无法再被使用</p>
 <p><img src="/datart-docs/images/source/4-4-1.png" alt="移至回收站-1"></p>
 <h3 id="4-5-还原" class="article-heading"><a href="#4-5-还原" class="headerlink" title="4.5 还原"></a>4.5 还原<a class="article-anchor" href="#4-5-还原" aria-hidden="true"></a></h3><p>点击数据源列表顶部的<code>扩展</code>按钮，进入回收站</p>
 <p><img src="/datart-docs/images/source/4-5-1.png" alt="还原-1"></p>
@@ -185,7 +188,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2022-01-09T02:21:27.229Z" itemprop="dateModified">Last updated: 2022-01-09</time>
+                <time class="article-footer-updated" datetime="2022-02-04T03:33:25.258Z" itemprop="dateModified">Last updated: 2022-02-04</time>
                 <a href="first-visualization.html" class="article-footer-prev" title="第一个可视化作品"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="view.html" class="article-footer-next" title="数据视图"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
             </div>
@@ -193,7 +196,7 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-JDBC"><span class="toc-text">1. JDBC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%96%87%E4%BB%B6"><span class="toc-text">2. 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-http"><span class="toc-text">3. http</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD"><span class="toc-text">4. 基础功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%96%B0%E5%BB%BA"><span class="toc-text">4.1 新建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%B5%8B%E8%AF%95%E8%BF%9E%E6%8E%A5"><span class="toc-text">4.2 测试连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E7%BC%96%E8%BE%91"><span class="toc-text">4.3 编辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E7%A7%BB%E8%87%B3%E5%9B%9E%E6%94%B6%E7%AB%99"><span class="toc-text">4.4 移至回收站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E8%BF%98%E5%8E%9F"><span class="toc-text">4.5 还原</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-%E5%88%A0%E9%99%A4"><span class="toc-text">4.6 删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-%E6%90%9C%E7%B4%A2"><span class="toc-text">4.7 搜索</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-JDBC"><span class="toc-text">1. JDBC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%96%87%E4%BB%B6"><span class="toc-text">2. 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Http"><span class="toc-text">3. Http</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD"><span class="toc-text">4. 基础功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%96%B0%E5%BB%BA"><span class="toc-text">4.1 新建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%B5%8B%E8%AF%95%E8%BF%9E%E6%8E%A5"><span class="toc-text">4.2 测试连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E7%BC%96%E8%BE%91"><span class="toc-text">4.3 编辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E7%A7%BB%E8%87%B3%E5%9B%9E%E6%94%B6%E7%AB%99"><span class="toc-text">4.4 移至回收站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E8%BF%98%E5%8E%9F"><span class="toc-text">4.5 还原</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-%E5%88%A0%E9%99%A4"><span class="toc-text">4.6 删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-%E6%90%9C%E7%B4%A2"><span class="toc-text">4.7 搜索</span></a></li></ol></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>
