@@ -79,10 +79,14 @@
                 <a href="https://github.com/running-elephant/datart-docs/tree/master/source/docs/view.md" class="article-edit-link" title="Improve this doc"><i class="fa fa-pencil"></i></a>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <p>数据视图用于加工数据、并将加工结果用于可视化制作。目前仅支持使用 SQL 加工数据</p>
-<p>点击数据视图列表顶部的加号按钮，选择<code>新建数据视图</code>，会像代码编辑器一样，在右侧区域的顶部打开一个标签页；标签页分为上、下和侧边栏3部分，上半部分编写 SQL 语句，下半部分预览结果并对字段做设置，侧边栏用于预览数据源信息、设置变量以及列权限</p>
+                <p>数据视图用于从数据源中选取所需的数据，并支持对所选数据进行转换和加工；加工逻辑和字段模型会被保存下来，用于分析和可视化制作。<em>目前仅支持使用 SQL 加工数据</em></p>
+<p>点击数据视图列表顶部的加号按钮，选择<code>新建数据视图</code>，体验上类似代码编辑器、右侧区域顶部会打开一个新标签页；标签页面板分为上、下和侧边栏 3 部分，上半部分是 SQL 编辑器，下半部分是查询结果预览区，侧边栏用于浏览数据源信息、设置变量和列权限</p>
 <p><img src="/datart-docs/images/view/0-1-1.png" alt="布局-1"><br><img src="/datart-docs/images/view/0-1-2.png" alt="布局-2"></p>
-<h2 id="1-加工流程" class="article-heading"><a href="#1-加工流程" class="headerlink" title="1. 加工流程"></a>1. 加工流程<a class="article-anchor" href="#1-加工流程" aria-hidden="true"></a></h2><p>开发者首先在编辑器中编辑 SQL，只有在完整 SQL 语句执行成功之后（片段执行成功不行）才可以保存数据视图；执行成功之后会在编辑器下方展示字段信息和查询结果，开发者可以设置字段属性和列权限，在设置完成之后保存数据视图</p>
+<h2 id="1-加工流程" class="article-heading"><a href="#1-加工流程" class="headerlink" title="1. 加工流程"></a>1. 加工流程<a class="article-anchor" href="#1-加工流程" aria-hidden="true"></a></h2><ol>
+<li>编辑和调试 SQL 语句</li>
+<li>成功执行 SQL 语句之后，预览查询结果，设置字段类型、分类和列权限</li>
+<li>保存数据视图；需要注意，只有成功执行完整 SQL 语句之后才能保存（片段不行）</li>
+</ol>
 <h2 id="2-编辑器" class="article-heading"><a href="#2-编辑器" class="headerlink" title="2. 编辑器"></a>2. 编辑器<a class="article-anchor" href="#2-编辑器" aria-hidden="true"></a></h2><p>编辑器目前仅支持编辑 SQL 语言，拥有以下功能：</p>
 <ul>
 <li>支持常用 SQL 关键字、数据源库/表/字段、变量名称提示</li>
@@ -96,21 +100,22 @@
 <li>选择数据源</li>
 <li>执行</li>
 <li>美化 SQL</li>
-<li>设置查询结果集数量</li>
+<li>设置查询结果总行数</li>
+<li>查询时长记录</li>
 <li>保存</li>
-<li>设置基本信息</li>
+<li>编辑基本信息</li>
 <li>另存为 <em>（开发中）</em></li>
 </ul>
 </li>
 </ul>
-<h2 id="3-数据源信息预览" class="article-heading"><a href="#3-数据源信息预览" class="headerlink" title="3. 数据源信息预览"></a>3. 数据源信息预览<a class="article-anchor" href="#3-数据源信息预览" aria-hidden="true"></a></h2><p>在编辑器工具栏中选择了数据源之后，打开侧边栏的<code>数据源信息</code>标签页，就可以浏览数据源信息。数据源信息分为数据库、表、字段3个层级，点击上层级即时加载下层级数据，通过树状菜单展示，方便编写 SQL 时进行参考。树状菜单中已经展示的信息在编写 SQL 时输入名称前缀时会获得提示</p>
+<h2 id="3-数据源信息" class="article-heading"><a href="#3-数据源信息" class="headerlink" title="3. 数据源信息"></a>3. 数据源信息<a class="article-anchor" href="#3-数据源信息" aria-hidden="true"></a></h2><p>在编辑器工具栏中选择了数据源之后，打开侧边栏的<code>数据源信息</code>标签页，就可以浏览数据源信息。数据源信息分为数据库、表、字段 3 个层级，通过树状菜单展示，方便编写 SQL 时参考。初始化时默认仅加载数据库信息，点击数据库名称前的扩展图标将会加载该数据库的表信息；同样，点击表名称前的扩展图标将会加载该表的字段信息。树状菜单中已经展示的所有信息在编写 SQL 时会获得提示</p>
 <p><img src="/datart-docs/images/view/2-1-1.png" alt="数据源信息"></p>
 <h2 id="4-变量设置" class="article-heading"><a href="#4-变量设置" class="headerlink" title="4 变量设置"></a>4 变量设置<a class="article-anchor" href="#4-变量设置" aria-hidden="true"></a></h2><p>在侧边栏<code>变量</code>标签页中可以创建和编辑该数据视图的专有变量，也可以浏览组织下的公共变量， 关于变量功能的详细介绍请参考<a href="variable">变量</a>章节。同样，所有变量在编写 SQL 时输入名称前缀时会获得提示</p>
 <p><img src="/datart-docs/images/view/3-1-1.png" alt="变量设置"></p>
-<h2 id="5-查询结果预览与字段设置" class="article-heading"><a href="#5-查询结果预览与字段设置" class="headerlink" title="5. 查询结果预览与字段设置"></a>5. 查询结果预览与字段设置<a class="article-anchor" href="#5-查询结果预览与字段设置" aria-hidden="true"></a></h2><p>执行成功之后，编辑器下方区域会以表格形式显示查询结果供开发者预览。表格头部每个字段名称旁边有两个按钮，分比为<code>字段类型与分类</code>和<code>列权限快捷设置</code></p>
-<p>字段类型共有 <code>字符</code>、<code>数值</code>、<code>日期</code> 3类，查询结果集会在服务端根据 SQL 类型进行默认类型设置，用户也可以手动进行调整，字段类型将用于数据图表编辑中的<a href="datachart#1-2-%E6%95%B0%E6%8D%AE">数据配置</a></p>
+<h2 id="5-查询结果预览与字段模型设置" class="article-heading"><a href="#5-查询结果预览与字段模型设置" class="headerlink" title="5. 查询结果预览与字段模型设置"></a>5. 查询结果预览与字段模型设置<a class="article-anchor" href="#5-查询结果预览与字段模型设置" aria-hidden="true"></a></h2><p>执行成功之后，编辑器下方区域会以表格形式展示查询结果供开发者预览。在表格每列头部，字段名称右侧有两个按钮，分别为<code>字段类型与分类</code>和<code>列权限快捷设置</code></p>
+<p>字段类型共有 <code>字符</code>、<code>数值</code>、<code>日期</code> 3 类，datart 服务端会根据查询结果集的 SQL 类型对字段做默认设置，用户也可以手动进行调整，字段类型将用于数据图表编辑中的<a href="datachart#1-2-%E6%95%B0%E6%8D%AE">数据配置</a></p>
 <p><img src="/datart-docs/images/view/5-1-1.png" alt="字段类型"></p>
-<p>字段分类目前仅用于字段的地理信息属性标记，用于地图层级定位 <em>（开发中）</em>，默认值为<code>未分类</code></p>
+<p>字段分类目前仅用于字段的地理信息属性标记，用于地图层级定位 _（开发中）_，默认值为<code>未分类</code></p>
 <p><img src="/datart-docs/images/view/5-1-2.png" alt="字段分类"></p>
 <p>查询结果集中的列权限设置是一个快捷设置，可以快速对字段设置角色的访问权限</p>
 <p><img src="/datart-docs/images/view/5-1-3.png" alt="结果集列权限"></p>
@@ -119,13 +124,13 @@
 <p>点击列表右侧的按钮，即可在下拉菜单中勾选字段访问权限</p>
 <p><img src="/datart-docs/images/view/6-1-2.png" alt="列权限-2"></p>
 <h2 id="7-高级配置" class="article-heading"><a href="#7-高级配置" class="headerlink" title="7. 高级配置"></a>7. 高级配置<a class="article-anchor" href="#7-高级配置" aria-hidden="true"></a></h2><p>保存数据视图时，表单上有一个可选的<code>高级配置</code>项，已经设定好默认值，下面介绍高级配置的用处</p>
-<h3 id="7-1-并发控制" class="article-heading"><a href="#7-1-并发控制" class="headerlink" title="7.1 并发控制"></a>7.1 并发控制<a class="article-anchor" href="#7-1-并发控制" aria-hidden="true"></a></h3><p>并发控制是使用 datart 服务器对数据视图并发查询做的性能优化；在 SQL 加工逻辑比较复杂、或是数据库负载较大的情况下，反复刷新图表和仪表板会导致数据库积压许多相同的执行任务，并发控制是针对这种场景做的优化，来达到减少数据库的压力、优化使用体验的目的。<strong>并发控制仅在可视化中生效，在数据视图开发阶段无效</strong>。datart 目前支持两种并发控制策略：</p>
+<h3 id="7-1-并发控制" class="article-heading"><a href="#7-1-并发控制" class="headerlink" title="7.1 并发控制"></a>7.1 并发控制<a class="article-anchor" href="#7-1-并发控制" aria-hidden="true"></a></h3><p>并发控制是使用 datart 服务器对数据视图并发查询进行性能优化；在 SQL 加工逻辑比较复杂、或是数据库负载较大的情况下，反复刷新图表和仪表板会导致数据库积压许多相同的执行任务，并发控制是针对这种场景做的优化，来达到减少数据库的压力、优化使用体验的目的。<strong>并发控制仅在可视化中生效，在数据视图开发阶段无效</strong>。datart 目前支持两种并发控制策略：</p>
 <ul>
 <li><p>延迟刷新</p>
 <p>使用延迟刷新时，来源于同一个数据视图、SQL 语句完全相同的请求，在首次查询没有执行完成的情况下，后续的查询不会真正发送到数据库，而是在服务器队列中处于等待状态；直到首次查询返回结果，服务器会将本次查询结果返回给所有队列中的查询，然后清空队列，进入下一个周期</p>
 <p><img src="/datart-docs/images/view/7-1-1.jpeg" alt="延迟刷新"></p>
-<p>例如某个数据视图查询需要10分钟，那么第一条查询发起后的10分钟内，相同 SQL 语句的查询将不再发送到数据库执行；直到第一条查询结果返回之后，这10分钟内发起的所有相同 SQL 语句的查询将会拿到同样的结果</p>
-<p>因此，延迟刷新的副作用是会导致数据时效性受到影响，就拿上面例子来说，第9分钟时发起的查询，虽然只等待1分钟就得到了结果，但从时效性来说，它拿到的是10分钟之前的查询结果。因此，对时效性要求较高的场景，开发者可以手动关闭并发控制选项</p>
+<p>例如某个数据视图查询需要 10 分钟，那么第一条查询发起后的 10 分钟内，相同 SQL 语句的查询将不再发送到数据库执行；直到第一条查询结果返回之后，这 10 分钟内发起的所有相同 SQL 语句的查询将会拿到同样的结果</p>
+<p>因此，延迟刷新的副作用是会导致数据时效性受到影响，就拿上面例子来说，第 9 分钟时发起的查询，虽然只等待 1 分钟就得到了结果，但从时效性来说，它拿到的是 10 分钟之前的查询结果。因此，对时效性要求较高的场景，开发者可以手动关闭并发控制选项</p>
 <p>延迟刷新在创建数据视图时被默认开启</p>
 </li>
 <li><p>快速失败 <em>（开发中）</em></p>
@@ -134,7 +139,7 @@
 </li>
 </ul>
 <p><strong>并发控制功能依赖 Redis，使用并发控制功能需要确保 Redis 已正确配置</strong></p>
-<h3 id="7-2-缓存" class="article-heading"><a href="#7-2-缓存" class="headerlink" title="7.2 缓存"></a>7.2 缓存<a class="article-anchor" href="#7-2-缓存" aria-hidden="true"></a></h3><p>datart 支持缓存查询结果数据，开启之后，在可视化中发起查询，首条的执行结果会被缓存起来，使用 SQL 语句作为 Key；在之后缓存有效期内的所有相同 SQL 语句的查询均会直接返回缓存结果</p>
+<h3 id="7-2-缓存" class="article-heading"><a href="#7-2-缓存" class="headerlink" title="7.2 缓存"></a>7.2 缓存<a class="article-anchor" href="#7-2-缓存" aria-hidden="true"></a></h3><p>datart 支持缓存查询结果数据，开启之后，在可视化中查询数据时，首次查询结果会被缓存起来，使用 SQL 语句作为索引；在之后缓存有效期内的所有相同 SQL 语句的查询均会直接返回缓存结果</p>
 <p><strong>缓存功能同样依赖 Redis，使用缓存功能需要确保 Redis 已正确配置</strong></p>
 <p>缓存与并发控制是独立作用的，可以一起开启，在一起开启的情况下工作机制如下图：</p>
 <p><img src="/datart-docs/images/view/7-1-3.jpeg" alt="共同作用"></p>
@@ -158,7 +163,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2022-02-04T03:33:25.258Z" itemprop="dateModified">Last updated: 2022-02-04</time>
+                <time class="article-footer-updated" datetime="2022-02-05T01:11:24.032Z" itemprop="dateModified">Last updated: 2022-02-05</time>
                 <a href="source.html" class="article-footer-prev" title="数据源"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="datachart.html" class="article-footer-next" title="数据图表"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
             </div>
@@ -166,7 +171,7 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8A%A0%E5%B7%A5%E6%B5%81%E7%A8%8B"><span class="toc-text">1. 加工流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-text">2. 编辑器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%95%B0%E6%8D%AE%E6%BA%90%E4%BF%A1%E6%81%AF%E9%A2%84%E8%A7%88"><span class="toc-text">3. 数据源信息预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE"><span class="toc-text">4 变量设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E9%A2%84%E8%A7%88%E4%B8%8E%E5%AD%97%E6%AE%B5%E8%AE%BE%E7%BD%AE"><span class="toc-text">5. 查询结果预览与字段设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%88%97%E6%9D%83%E9%99%90"><span class="toc-text">6. 列权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE"><span class="toc-text">7. 高级配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6"><span class="toc-text">7.1 并发控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E7%BC%93%E5%AD%98"><span class="toc-text">7.2 缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD"><span class="toc-text">8. 基础功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E6%96%B0%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A7%86%E5%9B%BE%E5%92%8C%E7%9B%AE%E5%BD%95"><span class="toc-text">8.1 新建数据视图和目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E7%BC%96%E8%BE%91%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">8.2 编辑基本信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95-%E7%A7%BB%E8%87%B3%E5%9B%9E%E6%94%B6%E7%AB%99"><span class="toc-text">8.3 删除目录&#x2F;移至回收站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-%E8%BF%98%E5%8E%9F"><span class="toc-text">8.4 还原</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-%E5%88%A0%E9%99%A4"><span class="toc-text">8.5 删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-%E6%90%9C%E7%B4%A2"><span class="toc-text">8.6 搜索</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8A%A0%E5%B7%A5%E6%B5%81%E7%A8%8B"><span class="toc-text">1. 加工流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-text">2. 编辑器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%95%B0%E6%8D%AE%E6%BA%90%E4%BF%A1%E6%81%AF"><span class="toc-text">3. 数据源信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE"><span class="toc-text">4 变量设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E9%A2%84%E8%A7%88%E4%B8%8E%E5%AD%97%E6%AE%B5%E6%A8%A1%E5%9E%8B%E8%AE%BE%E7%BD%AE"><span class="toc-text">5. 查询结果预览与字段模型设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%88%97%E6%9D%83%E9%99%90"><span class="toc-text">6. 列权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE"><span class="toc-text">7. 高级配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6"><span class="toc-text">7.1 并发控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E7%BC%93%E5%AD%98"><span class="toc-text">7.2 缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD"><span class="toc-text">8. 基础功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E6%96%B0%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A7%86%E5%9B%BE%E5%92%8C%E7%9B%AE%E5%BD%95"><span class="toc-text">8.1 新建数据视图和目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E7%BC%96%E8%BE%91%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">8.2 编辑基本信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95-%E7%A7%BB%E8%87%B3%E5%9B%9E%E6%94%B6%E7%AB%99"><span class="toc-text">8.3 删除目录&#x2F;移至回收站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-%E8%BF%98%E5%8E%9F"><span class="toc-text">8.4 还原</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-%E5%88%A0%E9%99%A4"><span class="toc-text">8.5 删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-%E6%90%9C%E7%B4%A2"><span class="toc-text">8.6 搜索</span></a></li></ol></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>
