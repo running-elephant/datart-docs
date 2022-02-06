@@ -79,13 +79,17 @@
                 <a href="https://github.com/running-elephant/datart-docs/tree/master/source/docs/dashboard.md" class="article-edit-link" title="Improve this doc"><i class="fa fa-pencil"></i></a>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <p>仪表板是 datart 可视化功能中最重要的部分；在仪表板中，我们通过拖拽即和设置可生成一份具有交互的报告或者大屏，</p>
-<p><img src="/datart-docs/images/dashboard/widget.png" alt="widget"></p>
+                <p>仪表板是 datart 可视化的核心部分，它通常用于呈现一组具有相关性的数据图表，帮助使用者从多角度掌握关键信息；同时它还具有：</p>
+<ul>
+<li>可预设的交互能力，支持使用者对图表数据进行切片、钻取</li>
+<li>展示图文等媒体信息的能力，帮助使用者更好地理解与洞察数据</li>
+</ul>
+<p>在视觉上构成仪表板的每一个元素被称为“组件”，数据图表、文字、图片、控制器都是不同类型的组件</p>
 <p>在主导航栏点击<code>可视化</code>菜单，点击<code>目录</code>顶部的加号按钮创建仪表板</p>
 <p><img src="/datart-docs/images/dashboard/create.jpg" alt="新建"></p>
-<p>datart 仪表板提供两种布局类型(<code>自动布局</code>,<code>自由布局</code>)。帮助用户快速打造可视化报表</p>
+<h2 id="1-布局类型" class="article-heading"><a href="#1-布局类型" class="headerlink" title="1. 布局类型"></a>1. 布局类型<a class="article-anchor" href="#1-布局类型" aria-hidden="true"></a></h2><p>仪表板拥有自动、自由两种布局类型</p>
 <p><img src="/datart-docs/images/dashboard/layout.png" alt="布局"></p>
-<h2 id="1-布局类型" class="article-heading"><a href="#1-布局类型" class="headerlink" title="1. 布局类型"></a>1. 布局类型<a class="article-anchor" href="#1-布局类型" aria-hidden="true"></a></h2><h3 id="1-1-自动布局" class="article-heading"><a href="#1-1-自动布局" class="headerlink" title="1.1 自动布局"></a>1.1 自动布局<a class="article-anchor" href="#1-1-自动布局" aria-hidden="true"></a></h3><p><img src="/datart-docs/images/dashboard/auto.gif"></p>
+<h3 id="1-1-自动布局" class="article-heading"><a href="#1-1-自动布局" class="headerlink" title="1.1 自动布局"></a>1.1 自动布局<a class="article-anchor" href="#1-1-自动布局" aria-hidden="true"></a></h3><p><img src="/datart-docs/images/dashboard/auto.gif"></p>
 <p>在调整组件尺寸和位置时，其他组件会适应该组件变化进行流式布局</p>
 <p>仪表板可视区域宽度在 768 像素以上时组件会按照用户定义的比例进行显示，在 768 像素以下时会响应为移动端观看模式</p>
 <h3 id="1-2-自由布局" class="article-heading"><a href="#1-2-自由布局" class="headerlink" title="1.2 自由布局"></a>1.2 自由布局<a class="article-anchor" href="#1-2-自由布局" aria-hidden="true"></a></h3><p><img src="/datart-docs/images/dashboard/free.gif"></p>
@@ -219,18 +223,18 @@
 <p>当选择<code>顶部固定</code>的时候，这个过滤器固定在 自动布局仪表板的头部。宽度可以进行设置。</p>
 <p><img src="/datart-docs/images/dashboard/filter_str_2.jpg"></p>
 <p>设置完成后 效果如上图</p>
-<h5 id="数值型" class="article-heading"><a href="#数值型" class="headerlink" title="数值型"></a>数值型<a class="article-anchor" href="#数值型" aria-hidden="true"></a></h5><p>  <img src="/datart-docs/images/dashboard/filter_num_jh.jpg"></p>
-<p>  <img src="/datart-docs/images/dashboard/filter_num_sx.jpg"></p>
-<p>  <img src="/datart-docs/images/dashboard/filter_num_kzq.png"></p>
-<p>  当选择的字段是 number 数值型的时候，对应的<code>聚合方式</code>如上图，有平均值，最大值，最小是等等。</p>
-<p>  <code>筛选方式</code> 如上图可以选择 区间或者 大于某值 小于某值</p>
-<p>  <code>控制器</code> 可以选择 滑块 或者数值等。</p>
-<h5 id="日期型" class="article-heading"><a href="#日期型" class="headerlink" title="日期型"></a>日期型<a class="article-anchor" href="#日期型" aria-hidden="true"></a></h5><p>  <img src="/datart-docs/images/dashboard/filter_Date_1.png"></p>
-<p>  当你选择的字段是 日期类型的时候</p>
-<p>  <code>筛选方式</code> 可选常规 如上图 可以选择一个相对时间 例如你选择了<code>今天</code> 筛选区的筛选值 就是每当程序运行的当天。举例来讲，当你设置好<code>今天</code> 以后每次程序运行，它都会实时计算出当天的 0 点 0 分到当天 23 点 59 分的值，并不确指某一天。</p>
-<p>  除了选择常规相对日期，还可以进行自定义设置</p>
-<p>  <img src="/datart-docs/images/dashboard/filter_date_zdy.png"></p>
-<p>  <code>自定义</code>设置 可以选择一个时间范围， 选择一个开始时间，一个结束时间，这两个时间既可以是精确时间，也可以是一个程序运行时的相对时间。</p>
+<h5 id="数值型" class="article-heading"><a href="#数值型" class="headerlink" title="数值型"></a>数值型<a class="article-anchor" href="#数值型" aria-hidden="true"></a></h5><p><img src="/datart-docs/images/dashboard/filter_num_jh.jpg"></p>
+<p><img src="/datart-docs/images/dashboard/filter_num_sx.jpg"></p>
+<p><img src="/datart-docs/images/dashboard/filter_num_kzq.png"></p>
+<p>当选择的字段是 number 数值型的时候，对应的<code>聚合方式</code>如上图，有平均值，最大值，最小是等等。</p>
+<p><code>筛选方式</code> 如上图可以选择 区间或者 大于某值 小于某值</p>
+<p><code>控制器</code> 可以选择 滑块 或者数值等。</p>
+<h5 id="日期型" class="article-heading"><a href="#日期型" class="headerlink" title="日期型"></a>日期型<a class="article-anchor" href="#日期型" aria-hidden="true"></a></h5><p><img src="/datart-docs/images/dashboard/filter_Date_1.png"></p>
+<p>当你选择的字段是 日期类型的时候</p>
+<p><code>筛选方式</code> 可选常规 如上图 可以选择一个相对时间 例如你选择了<code>今天</code> 筛选区的筛选值 就是每当程序运行的当天。举例来讲，当你设置好<code>今天</code> 以后每次程序运行，它都会实时计算出当天的 0 点 0 分到当天 23 点 59 分的值，并不确指某一天。</p>
+<p>除了选择常规相对日期，还可以进行自定义设置</p>
+<p><img src="/datart-docs/images/dashboard/filter_date_zdy.png"></p>
+<p><code>自定义</code>设置 可以选择一个时间范围， 选择一个开始时间，一个结束时间，这两个时间既可以是精确时间，也可以是一个程序运行时的相对时间。</p>
 <h3 id="2-2-操作" class="article-heading"><a href="#2-2-操作" class="headerlink" title="2.2 操作"></a>2.2 操作<a class="article-anchor" href="#2-2-操作" aria-hidden="true"></a></h3><h4 id="前进-后退" class="article-heading"><a href="#前进-后退" class="headerlink" title="前进/后退"></a>前进/后退<a class="article-anchor" href="#前进-后退" aria-hidden="true"></a></h4><p>当用户 不小心误删除了组件或者 其他误操作，都可以点击撤销按钮来回退操作， 重做按钮是和撤销按钮对应的操作。</p>
 <p>当用户在点击保存按钮之前。都是可以撤销重做的。</p>
 <p><img src="/datart-docs/images/dashboard/redo.gif"></p>
@@ -301,7 +305,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2022-02-05T01:44:35.004Z" itemprop="dateModified">Last updated: 2022-02-05</time>
+                <time class="article-footer-updated" datetime="2022-02-06T16:24:17.682Z" itemprop="dateModified">Last updated: 2022-02-06</time>
                 <a href="datachart.html" class="article-footer-prev" title="数据图表"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="storyboard.html" class="article-footer-next" title="故事板"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
             </div>
