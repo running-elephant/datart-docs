@@ -2,19 +2,22 @@
 title: 仪表板
 ---
 
-仪表板是 datart 可视化功能中最重要的部分；在仪表板中，我们通过拖拽即和设置可生成一份具有交互的报告或者大屏，
+仪表板是 datart 可视化的核心部分，它通常用于呈现一组具有相关性的数据图表，帮助使用者从多角度掌握关键信息；同时它还具有：
 
-![widget](/datart-docs/images/dashboard/widget.png)
+- 可预设的交互能力，支持使用者对图表数据进行切片、钻取
+- 展示图文等媒体信息的能力，帮助使用者更好地理解与洞察数据
+
+在视觉上构成仪表板的每一个元素被称为“组件”，数据图表、文字、图片、控制器都是不同类型的组件
 
 在主导航栏点击`可视化`菜单，点击`目录`顶部的加号按钮创建仪表板
 
 ![新建](/datart-docs/images/dashboard/create.jpg)
 
-datart 仪表板提供两种布局类型(`自动布局`,`自由布局`)。帮助用户快速打造可视化报表
+## 1. 布局类型
+
+仪表板拥有自动、自由两种布局类型
 
 ![布局](/datart-docs/images/dashboard/layout.png)
-
-## 1. 布局类型
 
 ### 1.1 自动布局
 
@@ -260,31 +263,31 @@ tab 容器(container-widget)
 
 ##### 数值型
 
-  ![](/datart-docs/images/dashboard/filter_num_jh.jpg)
+![](/datart-docs/images/dashboard/filter_num_jh.jpg)
 
-  ![](/datart-docs/images/dashboard/filter_num_sx.jpg)
+![](/datart-docs/images/dashboard/filter_num_sx.jpg)
 
-  ![](/datart-docs/images/dashboard/filter_num_kzq.png)
+![](/datart-docs/images/dashboard/filter_num_kzq.png)
 
-  当选择的字段是 number 数值型的时候，对应的`聚合方式`如上图，有平均值，最大值，最小是等等。
+当选择的字段是 number 数值型的时候，对应的`聚合方式`如上图，有平均值，最大值，最小是等等。
 
-  `筛选方式` 如上图可以选择 区间或者 大于某值 小于某值
+`筛选方式` 如上图可以选择 区间或者 大于某值 小于某值
 
-  `控制器` 可以选择 滑块 或者数值等。
+`控制器` 可以选择 滑块 或者数值等。
 
 ##### 日期型
 
-  ![](/datart-docs/images/dashboard/filter_Date_1.png)
+![](/datart-docs/images/dashboard/filter_Date_1.png)
 
-  当你选择的字段是 日期类型的时候
+当你选择的字段是 日期类型的时候
 
-  `筛选方式` 可选常规 如上图 可以选择一个相对时间 例如你选择了`今天` 筛选区的筛选值 就是每当程序运行的当天。举例来讲，当你设置好`今天` 以后每次程序运行，它都会实时计算出当天的 0 点 0 分到当天 23 点 59 分的值，并不确指某一天。
+`筛选方式` 可选常规 如上图 可以选择一个相对时间 例如你选择了`今天` 筛选区的筛选值 就是每当程序运行的当天。举例来讲，当你设置好`今天` 以后每次程序运行，它都会实时计算出当天的 0 点 0 分到当天 23 点 59 分的值，并不确指某一天。
 
-  除了选择常规相对日期，还可以进行自定义设置
+除了选择常规相对日期，还可以进行自定义设置
 
-  ![](/datart-docs/images/dashboard/filter_date_zdy.png)
+![](/datart-docs/images/dashboard/filter_date_zdy.png)
 
-  `自定义`设置 可以选择一个时间范围， 选择一个开始时间，一个结束时间，这两个时间既可以是精确时间，也可以是一个程序运行时的相对时间。
+`自定义`设置 可以选择一个时间范围， 选择一个开始时间，一个结束时间，这两个时间既可以是精确时间，也可以是一个程序运行时的相对时间。
 
 ### 2.2 操作
 
