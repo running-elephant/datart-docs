@@ -1,6 +1,7 @@
 menu:
   docs: 文档
   about: 关于
+  api: API
   search: 搜索
 
 index:
@@ -35,6 +36,7 @@ sidebar:
     permission: 权限
     extensions: 自定义扩展
     chart_plugin: 自定义插件化图表
+    chart_helper_api: 核心API描述文档
     jdbc: 扩展JDBC数据源
 
 
@@ -69,24 +71,5 @@ sidebar:
     troubleshooting: Troubleshooting
     contributing: Contributing
   api:
-    core: Core
-    overview: Overview
-    events: Events
-    locals: Locals
-    router: Router
-    box: Box
-    rendering: Rendering
-    posts: Posts
-    scaffolds: Scaffolds
-    themes: Themes
-    extensions: Extensions
-    console: Console
-    deployer: Deployer
-    filter: Filter
-    generator: Generator
-    helper: Helper
-    injector: Injector
-    migrator: Migrator
-    processor: Processor
-    renderer: Renderer
-    tag: Tag
+    chart: 图表相关
+    dHelper: Datart Helper
