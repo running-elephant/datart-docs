@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://github.com/running-elephant/datart-docs.git/</loc>
+    <loc>https://github.com/running-elephant/datart-docs.git/zh-cn/</loc>
     
     <lastmod>2022-02-11</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://github.com/running-elephant/datart-docs.git/zh-cn/</loc>
+    <loc>https://github.com/running-elephant/datart-docs.git/</loc>
     
     <lastmod>2022-02-11</lastmod>
     
