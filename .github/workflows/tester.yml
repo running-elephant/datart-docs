@@ -19,7 +19,3 @@ jobs:
         run: npm run build
         env:
           CI: true
-      - name: Comment PR
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          path: public/validate_theme.txt
