@@ -27,3 +27,5 @@ deploy:
   type: git
   repo: git@github.com:running-elephant/datart-docs.git
   branch: gh-pages
+
+skip_render: [api/**]

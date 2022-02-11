@@ -1,4 +1,5 @@
 {
   "extends": "hexo",
-  "root": true
+  "root": true,
+  "ignorePatterns": ["**/api/**"]
 }
