@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>chartHelper.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#__assign">__assign</a></li><li><a href="global.html#getColumnRenderName">getColumnRenderName</a></li><li><a href="global.html#getDefaultThemeColor">getDefaultThemeColor</a></li><li><a href="global.html#getSettingValue">getSettingValue</a></li><li><a href="global.html#getStyles">getStyles</a></li><li><a href="global.html#getStyleValue">getStyleValue</a></li><li><a href="global.html#getStyleValueByGroup">getStyleValueByGroup</a></li><li><a href="global.html#getValue">getValue</a></li><li><a href="global.html#isMatchRequirement">isMatchRequirement</a></li><li><a href="global.html#transformToDataSet">transformToDataSet</a></li><li><a href="global.html#transformToObjectArray">transformToObjectArray</a></li><li><a href="global.html#valueFormatter">valueFormatter</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">chartHelper.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+/**
+ * Datart
+ *
+ * Copyright 2021
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var __assign = (this &amp;&amp; this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i &lt; n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __spreadArray = (this &amp;&amp; this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i &lt; l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+exports.__esModule = true;
+exports.isMatchRequirement = exports.getColorizeGroupSeriesColumns = exports.getExtraSeriesDataFormat = exports.getExtraSeriesRowData = exports.getGridStyle = exports.getScatterSymbolSizeFn = exports.valueFormatter = exports.getSeriesTooltips4Rectangular = exports.getSeriesTooltips4Polar2 = exports.getSeriesTooltips4Rectangular2 = exports.getSeriesTooltips4Scatter = exports.getDataColumnMaxAndMin2 = exports.getDataColumnMaxAndMin = exports.getUnusedHeaderRows = exports.getColumnRenderName = exports.getValueByColumnKey = exports.transformToObjectArray = exports.transformToDataSet = exports.getNameTextStyle = exports.getAxisTick = exports.getSplitLine = exports.getAxisLabel = exports.getAxisLine = exports.getReference2 = exports.getReference = exports.getCustomSortableColumns = exports.getValue = exports.getStyles = exports.getStyleValueByGroup = exports.getSettingValue = exports.getStyleValue = exports.getDefaultThemeColor = void 0;
+var echarts_default_theme_json_1 = require("app/assets/theme/echarts_default_theme.json");
+var ChartDataSet_1 = require("app/components/ChartGraph/models/ChartDataSet");
+var ChartConfig_1 = require("app/types/ChartConfig");
+var debugger_1 = require("utils/debugger");
+var object_1 = require("utils/object");
+var internalChartHelper_1 = require("./internalChartHelper");
+var number_1 = require("./number");
+/**
+ * [中文] 获取系统默认颜色
+ * &lt;/br>
+ * [EN] Gets an array of default colors
+ *
+ * @example
+ * const colorList = getDefaultThemeColor();
+ * console.log(colorList); // ["#298ffe","#dae9ff","#fe705a","#ffdcdc","#751adb","#8663d7","#15AD31","#FAD414","#E62412"]
+ *
+ * @export
+ * @return {*} default color array
+ */
+function getDefaultThemeColor() {
+    return echarts_default_theme_json_1["default"].color;
+}
+exports.getDefaultThemeColor = getDefaultThemeColor;
+/**
+ * [中文] 使用路径语法获取配置信息，此方法已过时，请参考方法getStyles
+ * &lt;/br>
+ * [EN] Get config info by value path, please use getStyles instread
+ *
+ * @deprecated This function will be removed in next versiion, please use @see {@link getStyles} instread
+ * @param {ChartStyleConfig[]} styleConfigs
+ * @param {string[]} paths
+ * @return {*}  {*}
+ */
+function getStyleValue(styleConfigs, paths) {
+    return getValue(styleConfigs, paths);
+}
+exports.getStyleValue = getStyleValue;
+/**
+ * [中文] 使用路径语法获取配置信息，此方法已过时，请参考方法getStyles
+ * &lt;/br>
+ * [EN] Get setting config info by value path, please use getStyles instread
+ *
+ * @deprecated This function will be removed in next versiion, please use @see {@link getStyles} instread
+ * @export
+ * @param {ChartStyleConfig[]} configs
+ * @param {string} path
+ * @param {string} targetKey
+ * @return {*}
+ */
+function getSettingValue(configs, path, targetKey) {
+    return getValue(configs, path.split('.'), targetKey);
+}
+exports.getSettingValue = getSettingValue;
+/**
+ * [中文] 使用路径语法获取配置信息，此方法已过时，请参考方法getStyles
+ * &lt;/br>
+ * [EN] Get setting config info by value path, please use getStyles instread
+ *
+ * @deprecated This function will be removed in next versiion, please use @see {@link getStyles} instread
+ * @export
+ * @param {ChartStyleConfig[]} styles
+ * @param {string} groupPath
+ * @param {string} childPath
+ * @return {*}
+ */
+function getStyleValueByGroup(styles, groupPath, childPath) {
+    var childPaths = childPath.split('.');
+    return getValue(styles, __spreadArray([groupPath], childPaths, true));
+}
+exports.getStyleValueByGroup = getStyleValueByGroup;
+/**
+ * [中文] 通过数组路径语法，获取对应的配置的值集合
+ * &lt;/br>
+ * [EN] Get config style values
+ *
+ * @example
+ *
+ * const styleConfigs = [
+ *       {
+ *        key: 'label',
+ *        rows: [
+ *           { key: 'color', value: 'red' },
+ *           { key: 'font', value: 'sans-serif' },
+ *         ],
+ *       },
+ *     ];
+ * const [color, font] = getStyles(styleConfigs, ['label'], ['color', 'font']);
+ * console.log(color); // red
+ * console.log(font); // sans-serif
+ *
+ * @param {Array&lt;ChartStyleConfig>} configs required
+ * @param {Array&lt;string>} parentKeyPaths required
+ * @param {Array&lt;string>} childTargetKeys required
+ * @return {*} array of child keys with the same order
+ */
+function getStyles(configs, parentKeyPaths, childTargetKeys) {
+    var rows = getValue(configs, parentKeyPaths, 'rows');
+    if (!rows) {
+        return Array(childTargetKeys.length).fill(undefined);
+    }
+    return childTargetKeys.map(function (k) { return getValue(rows, [k]); });
+}
+exports.getStyles = getStyles;
+/**
+ * [中文] 通过数组路径语法，获取对应的配置信息
+ * &lt;/br>
+ * [EN] Get style config value base funtion with default target key
+ *
+ * @example
+ *
+ * const styleConfigs = [
+ *       {
+ *        key: 'label',
+ *        rows: [
+ *           { key: 'color', value: 'red' },
+ *           { key: 'font', value: 'sans-serif' },
+ *         ],
+ *       },
+ *     ];
+ * const colorValue = getValue(styleConfigs, ['label', 'color']);
+ * console.log(colorValue); // red
+ *
+ * @param {Array&lt;ChartStyleConfig>} configs
+ * @param {Array&lt;string>} keyPaths
+ * @param {string} [targetKey='value']
+ * @return {*}
+ */
+function getValue(configs, keyPaths, targetKey) {
+    if (targetKey === void 0) { targetKey = 'value'; }
+    var iterators = configs || [];
+    var _loop_1 = function () {
+        var key = keyPaths === null || keyPaths === void 0 ? void 0 : keyPaths.shift();
+        var group = iterators === null || iterators === void 0 ? void 0 : iterators.find(function (sc) { return sc.key === key; });
+        if (!group) {
+            return { value: undefined };
+        }
+        if ((0, object_1.isEmptyArray)(keyPaths)) {
+            return { value: group[targetKey] };
+        }
+        iterators = group.rows || [];
+    };
+    while (!(0, object_1.isEmptyArray)(iterators)) {
+        var state_1 = _loop_1();
+        if (typeof state_1 === "object")
+            return state_1.value;
+    }
+}
+exports.getValue = getValue;
+function getCustomSortableColumns(columns, dataConfigs) {
+    var sortConfigs = dataConfigs
+        .filter(function (c) {
+        return c.type === ChartConfig_1.ChartDataSectionType.AGGREGATE ||
+            c.type === ChartConfig_1.ChartDataSectionType.GROUP;
+    })
+        .flatMap(function (config) { return config.rows || []; });
+    if (!sortConfigs || sortConfigs.length === 0) {
+        return columns;
+    }
+    var sortConfig = sortConfigs[0];
+    if (!sortConfig.colName || !sortConfig.sort) {
+        return columns;
+    }
+    var sort = sortConfig.sort;
+    if (!sort || sort.type !== ChartConfig_1.SortActionType.CUSTOMIZE) {
+        return columns;
+    }
+    var sortValues = sortConfig.sort.value || [];
+    return columns.sort(function (prev, next) {
+        return sortValues.indexOf(prev[sortConfig.colName]) -
+            sortValues.indexOf(next[sortConfig.colName]);
+    });
+}
+exports.getCustomSortableColumns = getCustomSortableColumns;
+function getReference(settingConfigs, dataColumns, dataConfig, isHorizionDisplay) {
+    var referenceTabs = getSettingValue(settingConfigs, 'reference.panel.configuration', 'rows');
+    return {
+        markLine: getMarkLine(referenceTabs, dataColumns, dataConfig, isHorizionDisplay),
+        markArea: getMarkArea(referenceTabs, dataColumns, isHorizionDisplay)
+    };
+}
+exports.getReference = getReference;
+function getReference2(settingConfigs, dataSetRows, dataConfig, isHorizionDisplay) {
+    var referenceTabs = getSettingValue(settingConfigs, 'reference.panel.configuration', 'rows');
+    return {
+        markLine: getMarkLine2(referenceTabs, dataSetRows, dataConfig, isHorizionDisplay),
+        markArea: getMarkArea2(referenceTabs, dataSetRows, isHorizionDisplay)
+    };
+}
+exports.getReference2 = getReference2;
+function getMarkLine(refTabs, dataColumns, dataConfig, isHorizionDisplay) {
+    var markLineData = refTabs === null || refTabs === void 0 ? void 0 : refTabs.reduce(function (acc, cur) {
+        var _a;
+        var markLineConfigs = (_a = cur === null || cur === void 0 ? void 0 : cur.rows) === null || _a === void 0 ? void 0 : _a.filter(function (r) { return r.key === 'markLine'; });
+        acc.push.apply(acc, markLineConfigs);
+        return acc;
+    }, []).map(function (ml) {
+        return getMarkLineData(ml, dataColumns, 'valueType', 'constantValue', 'metric', dataConfig, isHorizionDisplay);
+    }).filter(Boolean);
+    return {
+        data: markLineData
+    };
+}
+function getMarkLineData(mark, dataColumns, valueTypeKey, constantValueKey, metricKey, dataConfig, isHorizionDisplay) {
+    var _a;
+    var name = mark.label;
+    var valueKey = isHorizionDisplay ? 'xAxis' : 'yAxis';
+    var show = getSettingValue(mark.rows, 'showLabel', 'value');
+    var enableMarkLine = getSettingValue(mark.rows, 'enableMarkLine', 'value');
+    var position = getSettingValue(mark.rows, 'position', 'value');
+    var font = getSettingValue(mark.rows, 'font', 'value');
+    var lineStyle = getSettingValue(mark.rows, 'lineStyle', 'value');
+    var valueType = getSettingValue(mark.rows, valueTypeKey, 'value');
+    var metricUid = getSettingValue(mark.rows, metricKey, 'value');
+    var metr = getValueByColumnKey(dataConfig);
+    var metricDatas = dataConfig.uid === metricUid ? dataColumns.map(function (d) { return +d[metr]; }) : [];
+    var constantValue = getSettingValue(mark.rows, constantValueKey, 'value');
+    var yAxis = 0;
+    switch (valueType) {
+        case 'constant':
+            yAxis = constantValue;
+            break;
+        case 'average':
+            yAxis = (0, object_1.meanValue)(metricDatas);
+            break;
+        case 'max':
+            yAxis = Math.max.apply(Math, metricDatas);
+            break;
+        case 'min':
+            yAxis = Math.min.apply(Math, metricDatas);
+            break;
+    }
+    if (!enableMarkLine) {
+        return null;
+    }
+    return _a = {},
+        _a[valueKey] = yAxis,
+        _a.name = name,
+        _a.label = __assign({ show: show, position: position }, font),
+        _a.lineStyle = lineStyle,
+        _a;
+}
+function getMarkLine2(refTabs, dataSetRows, dataConfig, isHorizionDisplay) {
+    var markLineData = refTabs === null || refTabs === void 0 ? void 0 : refTabs.reduce(function (acc, cur) {
+        var _a;
+        var markLineConfigs = (_a = cur === null || cur === void 0 ? void 0 : cur.rows) === null || _a === void 0 ? void 0 : _a.filter(function (r) { return r.key === 'markLine'; });
+        acc.push.apply(acc, markLineConfigs);
+        return acc;
+    }, []).map(function (ml) {
+        return getMarkLineData2(ml, dataSetRows, 'valueType', 'constantValue', 'metric', dataConfig, isHorizionDisplay);
+    }).filter(Boolean);
+    return {
+        data: markLineData
+    };
+}
+function getMarkLineData2(mark, dataSetRows, valueTypeKey, constantValueKey, metricKey, dataConfig, isHorizionDisplay) {
+    var _a;
+    var name = mark.label;
+    var valueKey = isHorizionDisplay ? 'xAxis' : 'yAxis';
+    var show = getSettingValue(mark.rows, 'showLabel', 'value');
+    var enableMarkLine = getSettingValue(mark.rows, 'enableMarkLine', 'value');
+    var position = getSettingValue(mark.rows, 'position', 'value');
+    var font = getSettingValue(mark.rows, 'font', 'value');
+    var lineStyle = getSettingValue(mark.rows, 'lineStyle', 'value');
+    var valueType = getSettingValue(mark.rows, valueTypeKey, 'value');
+    var metricUid = getSettingValue(mark.rows, metricKey, 'value');
+    var metricDatas = dataConfig.uid === metricUid
+        ? dataSetRows.map(function (d) { return +d.getCell(dataConfig); })
+        : [];
+    var constantValue = getSettingValue(mark.rows, constantValueKey, 'value');
+    var yAxis = 0;
+    switch (valueType) {
+        case 'constant':
+            yAxis = constantValue;
+            break;
+        case 'average':
+            yAxis = (0, object_1.meanValue)(metricDatas);
+            break;
+        case 'max':
+            yAxis = Math.max.apply(Math, metricDatas);
+            break;
+        case 'min':
+            yAxis = Math.min.apply(Math, metricDatas);
+            break;
+    }
+    if (!enableMarkLine) {
+        return null;
+    }
+    return _a = {},
+        _a[valueKey] = yAxis,
+        _a.name = name,
+        _a.label = __assign({ show: show, position: position }, font),
+        _a.lineStyle = lineStyle,
+        _a;
+}
+function getMarkAreaData2(mark, dataSetRows, valueTypeKey, constantValueKey, metricKey, isHorizionDisplay) {
+    var _a;
+    var valueKey = isHorizionDisplay ? 'xAxis' : 'yAxis';
+    var show = getSettingValue(mark.rows, 'showLabel', 'value');
+    var enableMarkArea = getSettingValue(mark.rows, 'enableMarkArea', 'value');
+    var position = getSettingValue(mark.rows, 'position', 'value');
+    var font = getSettingValue(mark.rows, 'font', 'value');
+    var borderStyle = getSettingValue(mark.rows, 'borderStyle', 'value');
+    var opacity = getSettingValue(mark.rows, 'opacity', 'value');
+    var backgroundColor = getSettingValue(mark.rows, 'backgroundColor', 'value');
+    var name = mark.value;
+    var valueType = getSettingValue(mark.rows, valueTypeKey, 'value');
+    var metric = getSettingValue(mark.rows, metricKey, 'value');
+    var metricDatas = dataSetRows.map(function (d) { return +d.getCellByKey(metric); });
+    var constantValue = getSettingValue(mark.rows, constantValueKey, 'value');
+    var yAxis = 0;
+    switch (valueType) {
+        case 'constant':
+            yAxis = constantValue;
+            break;
+        case 'average':
+            yAxis = (0, object_1.meanValue)(metricDatas);
+            break;
+        case 'max':
+            yAxis = Math.max.apply(Math, metricDatas);
+            break;
+        case 'min':
+            yAxis = Math.min.apply(Math, metricDatas);
+            break;
+    }
+    if (!enableMarkArea) {
+        return null;
+    }
+    return _a = {},
+        _a[valueKey] = yAxis,
+        _a.name = name,
+        _a.label = __assign({ show: show, position: position }, font),
+        _a.itemStyle = {
+            opacity: opacity,
+            color: backgroundColor,
+            borderColor: borderStyle.color,
+            borderWidth: borderStyle.width,
+            borderType: borderStyle.type
+        },
+        _a;
+}
+function getMarkAreaData(mark, dataColumns, valueTypeKey, constantValueKey, metricKey, isHorizionDisplay) {
+    var _a;
+    var valueKey = isHorizionDisplay ? 'xAxis' : 'yAxis';
+    var show = getSettingValue(mark.rows, 'showLabel', 'value');
+    var enableMarkArea = getSettingValue(mark.rows, 'enableMarkArea', 'value');
+    var position = getSettingValue(mark.rows, 'position', 'value');
+    var font = getSettingValue(mark.rows, 'font', 'value');
+    var borderStyle = getSettingValue(mark.rows, 'borderStyle', 'value');
+    var opacity = getSettingValue(mark.rows, 'opacity', 'value');
+    var backgroundColor = getSettingValue(mark.rows, 'backgroundColor', 'value');
+    var name = mark.value;
+    var valueType = getSettingValue(mark.rows, valueTypeKey, 'value');
+    var metric = getSettingValue(mark.rows, metricKey, 'value');
+    var metricDatas = dataColumns.map(function (d) { return +d[metric]; });
+    var constantValue = getSettingValue(mark.rows, constantValueKey, 'value');
+    var yAxis = 0;
+    switch (valueType) {
+        case 'constant':
+            yAxis = constantValue;
+            break;
+        case 'average':
+            yAxis = (0, object_1.meanValue)(metricDatas);
+            break;
+        case 'max':
+            yAxis = Math.max.apply(Math, metricDatas);
+            break;
+        case 'min':
+            yAxis = Math.min.apply(Math, metricDatas);
+            break;
+    }
+    if (!enableMarkArea) {
+        return null;
+    }
+    return _a = {},
+        _a[valueKey] = yAxis,
+        _a.name = name,
+        _a.label = __assign({ show: show, position: position }, font),
+        _a.itemStyle = {
+            opacity: opacity,
+            color: backgroundColor,
+            borderColor: borderStyle.color,
+            borderWidth: borderStyle.width,
+            borderType: borderStyle.type
+        },
+        _a;
+}
+function getMarkArea(refTabs, dataColumns, isHorizionDisplay) {
+    var refAreas = refTabs === null || refTabs === void 0 ? void 0 : refTabs.reduce(function (acc, cur) {
+        var _a;
+        var markLineConfigs = (_a = cur === null || cur === void 0 ? void 0 : cur.rows) === null || _a === void 0 ? void 0 : _a.filter(function (r) { return r.key === 'markArea'; });
+        acc.push.apply(acc, markLineConfigs);
+        return acc;
+    }, []);
+    return {
+        data: refAreas === null || refAreas === void 0 ? void 0 : refAreas.map(function (mark) {
+            var markAreaData = ['start', 'end']
+                .map(function (prefix) {
+                return getMarkAreaData(mark, dataColumns, "".concat(prefix, "ValueType"), "".concat(prefix, "ConstantValue"), "".concat(prefix, "Metric"), isHorizionDisplay);
+            })
+                .filter(Boolean);
+            return markAreaData;
+        }).filter(function (m) { return Boolean(m === null || m === void 0 ? void 0 : m.length); })
+    };
+}
+function getMarkArea2(refTabs, dataSetRows, isHorizionDisplay) {
+    var refAreas = refTabs === null || refTabs === void 0 ? void 0 : refTabs.reduce(function (acc, cur) {
+        var _a;
+        var markLineConfigs = (_a = cur === null || cur === void 0 ? void 0 : cur.rows) === null || _a === void 0 ? void 0 : _a.filter(function (r) { return r.key === 'markArea'; });
+        acc.push.apply(acc, markLineConfigs);
+        return acc;
+    }, []);
+    return {
+        data: refAreas === null || refAreas === void 0 ? void 0 : refAreas.map(function (mark) {
+            var markAreaData = ['start', 'end']
+                .map(function (prefix) {
+                return getMarkAreaData2(mark, dataSetRows, "".concat(prefix, "ValueType"), "".concat(prefix, "ConstantValue"), "".concat(prefix, "Metric"), isHorizionDisplay);
+            })
+                .filter(Boolean);
+            return markAreaData;
+        }).filter(function (m) { return Boolean(m === null || m === void 0 ? void 0 : m.length); })
+    };
+}
+function getAxisLine(show, lineStyle) {
+    return {
+        show: show,
+        lineStyle: lineStyle
+    };
+}
+exports.getAxisLine = getAxisLine;
+function getAxisLabel(show, font, interval, rotate) {
+    if (interval === void 0) { interval = null; }
+    if (rotate === void 0) { rotate = null; }
+    return __assign({ show: show, interval: interval, rotate: rotate }, font);
+}
+exports.getAxisLabel = getAxisLabel;
+function getSplitLine(show, lineStyle) {
+    return {
+        show: show,
+        lineStyle: lineStyle
+    };
+}
+exports.getSplitLine = getSplitLine;
+function getAxisTick(show, lineStyle) {
+    return {
+        show: show,
+        lineStyle: lineStyle
+    };
+}
+exports.getAxisTick = getAxisTick;
+function getNameTextStyle(fontFamily, fontSize, color) {
+    return {
+        fontFamily: fontFamily,
+        fontSize: fontSize,
+        color: color
+    };
+}
+exports.getNameTextStyle = getNameTextStyle;
+/**
+ * [中文] 将服务端返回数据转换为ChartDataSet模型
+ * &lt;/br>
+ * [EN] Create ChartDataSet Model with sorted values
+ *
+ * @export
+ * @template T
+ * @param {T[][]} [datas]
+ * @param {ChartDatasetMeta[]} [metas]
+ * @param {ChartDataConfig[]} [sortedConfigs]
+ * @return {*}  {IChartDataSet&lt;T>}
+ */
+function transformToDataSet(datas, metas, sortedConfigs) {
+    var ds = new ChartDataSet_1.ChartDataSet(datas || [], metas || []);
+    ds.sortBy(sortedConfigs || []);
+    return ds;
+}
+exports.transformToDataSet = transformToDataSet;
+/**
+ * [中文] 将服务端返回数据转换为一维对象数组结构, 已过时，请使用transformToDataSet
+ * &lt;/br>
+ * [EN] transform dataset to object array, please use transformToDataSet instead
+ *
+ * @deprecated shoule use DataSet model, @see {@link transformToDataSet}
+ * @description
+ * Support:
+ *  1. Case Insensitive to get value
+ *  2. More util helper
+ * @example
+ *
+ * const columns = [
+ *      ['r1-c1-v', 'r1-c2-v'],
+ *      ['r2-c1-v', 'r2-c2-v'],
+ *    ];
+ * const metas = [{ name: 'name' }, { name: 'age' }];
+ * const datas = transformToObjectArray(columns, metas);
+ * console.log(datas); // [{"name":"r1-c1-v","age":"r1-c2-v2"},{"name":"r2-c1-v","age":"r2-c2-v"}]
+ *
+ * @export
+ * @param {string[][]} [columns]
+ * @param {ChartDatasetMeta[]} [metas]
+ * @return {*}
+ */
+function transformToObjectArray(columns, metas) {
+    if (!columns || !metas) {
+        return [];
+    }
+    return debugger_1.Debugger.instance.measure('transformToObjectArray', function () {
+        var _a;
+        var result = Array.apply(null, Array(columns.length));
+        for (var j = 0, outterLength = result.length; j &lt; outterLength; j++) {
+            var objCol = {};
+            for (var i = 0, innerLength = metas.length; i &lt; innerLength; i++) {
+                var key = (_a = metas === null || metas === void 0 ? void 0 : metas[i]) === null || _a === void 0 ? void 0 : _a.name;
+                if (!!key) {
+                    objCol[key] = columns[j][i];
+                }
+            }
+            result[j] = objCol;
+        }
+        return result;
+    }, false);
+}
+exports.transformToObjectArray = transformToObjectArray;
+function getValueByColumnKey(field) {
+    if (!field) {
+        return '';
+    }
+    if (!field.aggregate) {
+        return field.colName;
+    }
+    return "".concat(field.aggregate, "(").concat(field.colName, ")");
+}
+exports.getValueByColumnKey = getValueByColumnKey;
+/**
+ * [中文] 获取字段的图表显示名称
+ * &lt;/br>
+ * [EN] Get data field render name by alias, colName and aggregate
+ *
+ * @export
+ * @param {ChartDataSectionField} [field]
+ * @return {string}
+ */
+function getColumnRenderName(field) {
+    var _a;
+    if (!field) {
+        return '[unknown]';
+    }
+    if ((_a = field.alias) === null || _a === void 0 ? void 0 : _a.name) {
+        return field.alias.name;
+    }
+    return (0, internalChartHelper_1.getColumnRenderOriginName)(field);
+}
+exports.getColumnRenderName = getColumnRenderName;
+function getUnusedHeaderRows(allRows, originalRows) {
+    var oldFlattenedColNames = originalRows
+        .flatMap(function (row) { return (0, internalChartHelper_1.flattenHeaderRowsWithoutGroupRow)(row); })
+        .map(function (r) { return r.colName; });
+    return (allRows || []).reduce(function (acc, cur) {
+        if (!oldFlattenedColNames.includes(cur.colName)) {
+            acc.push(cur);
+        }
+        return acc;
+    }, []);
+}
+exports.getUnusedHeaderRows = getUnusedHeaderRows;
+function getDataColumnMaxAndMin(dataset, config) {
+    if (!config || !(dataset === null || dataset === void 0 ? void 0 : dataset.length)) {
+        return { min: 0, max: 100 };
+    }
+    var datas = dataset.map(function (row) { return row[getValueByColumnKey(config)]; });
+    var min = Number.isNaN(Math.min.apply(Math, datas)) ? 0 : Math.min.apply(Math, datas);
+    var max = Number.isNaN(Math.max.apply(Math, datas)) ? 100 : Math.max.apply(Math, datas);
+    return { min: min, max: max };
+}
+exports.getDataColumnMaxAndMin = getDataColumnMaxAndMin;
+function getDataColumnMaxAndMin2(chartDataSetRows, config) {
+    if (!config || !(chartDataSetRows === null || chartDataSetRows === void 0 ? void 0 : chartDataSetRows.length)) {
+        return { min: 0, max: 100 };
+    }
+    var datas = (chartDataSetRows || []).map(function (row) {
+        return Number(row.getCell(config));
+    });
+    var min = Number.isNaN(Math.min.apply(Math, datas)) ? 0 : Math.min.apply(Math, datas);
+    var max = Number.isNaN(Math.max.apply(Math, datas)) ? 100 : Math.max.apply(Math, datas);
+    return { min: min, max: max };
+}
+exports.getDataColumnMaxAndMin2 = getDataColumnMaxAndMin2;
+function getSeriesTooltips4Scatter(params, tooltipItemConfigs, start) {
+    var _a;
+    var dataValues = (_a = params === null || params === void 0 ? void 0 : params[0]) === null || _a === void 0 ? void 0 : _a.value;
+    return tooltipItemConfigs.map(function (config, index) {
+        return valueFormatter(config, dataValues === null || dataValues === void 0 ? void 0 : dataValues[!!start ? start + index : index]);
+    });
+}
+exports.getSeriesTooltips4Scatter = getSeriesTooltips4Scatter;
+function getSeriesTooltips4Rectangular2(chartDataSet, tooltipParam, groupConfigs, colorConfigs, aggConfigs, infoConfigs, sizeConfigs) {
+    var _a, _b;
+    if ((tooltipParam === null || tooltipParam === void 0 ? void 0 : tooltipParam.componentType) !== 'series') {
+        return '';
+    }
+    var aggConfigName = (_a = tooltipParam === null || tooltipParam === void 0 ? void 0 : tooltipParam.data) === null || _a === void 0 ? void 0 : _a.name;
+    var row = ((_b = tooltipParam === null || tooltipParam === void 0 ? void 0 : tooltipParam.data) === null || _b === void 0 ? void 0 : _b.rowData) || {};
+    var tooltips = []
+        .concat(groupConfigs || [])
+        .concat(colorConfigs || [])
+        .concat(aggConfigs.filter(function (agg) { return getColumnRenderName(agg) === aggConfigName; }) ||
+        [])
+        .concat(sizeConfigs || [])
+        .concat(infoConfigs || [])
+        .map(function (config) {
+        return valueFormatter(config, row === null || row === void 0 ? void 0 : row[chartDataSet.getFieldKey(config)]);
+    });
+    return tooltips.join('&lt;br />');
+}
+exports.getSeriesTooltips4Rectangular2 = getSeriesTooltips4Rectangular2;
+function getSeriesTooltips4Polar2(chartDataSet, tooltipParam, groupConfigs, colorConfigs, aggConfigs, infoConfigs, sizeConfigs) {
+    var _a;
+    var row = ((_a = tooltipParam === null || tooltipParam === void 0 ? void 0 : tooltipParam.data) === null || _a === void 0 ? void 0 : _a.rowData) || {};
+    var tooltips = []
+        .concat(groupConfigs || [])
+        .concat(colorConfigs || [])
+        .concat(aggConfigs || [])
+        .concat(sizeConfigs || [])
+        .concat(infoConfigs || [])
+        .map(function (config) {
+        return valueFormatter(config, row === null || row === void 0 ? void 0 : row[chartDataSet.getFieldKey(config)]);
+    });
+    return tooltips.join('&lt;br />');
+}
+exports.getSeriesTooltips4Polar2 = getSeriesTooltips4Polar2;
+function getSeriesTooltips4Rectangular(params, groupConfigs, aggConfigs, dataColumns) {
+    if (!(aggConfigs === null || aggConfigs === void 0 ? void 0 : aggConfigs.length)) {
+        return [];
+    }
+    if (!(groupConfigs === null || groupConfigs === void 0 ? void 0 : groupConfigs.length)) {
+        return aggConfigs.map(function (config) { var _a; return valueFormatter(config, (_a = dataColumns === null || dataColumns === void 0 ? void 0 : dataColumns[0]) === null || _a === void 0 ? void 0 : _a[getValueByColumnKey(config)]); });
+    }
+    if (groupConfigs === null || groupConfigs === void 0 ? void 0 : groupConfigs[0]) {
+        var groupConfig_1 = groupConfigs === null || groupConfigs === void 0 ? void 0 : groupConfigs[0];
+        var dataRow_1 = dataColumns.find(function (dc) { var _a; return dc[getValueByColumnKey(groupConfig_1)] === ((_a = params === null || params === void 0 ? void 0 : params[0]) === null || _a === void 0 ? void 0 : _a.axisValue); });
+        return aggConfigs.map(function (config) {
+            return valueFormatter(config, dataRow_1 === null || dataRow_1 === void 0 ? void 0 : dataRow_1[getValueByColumnKey(config)]);
+        });
+    }
+    return [];
+}
+exports.getSeriesTooltips4Rectangular = getSeriesTooltips4Rectangular;
+/**
+ * [中文] 获取字段的Tooltip显示名称和内容
+ * &lt;/br>
+ * [EN] Get chart render string with field name and value
+ *
+ * @export
+ * @param {ChartDataSectionField} [config]
+ * @param {number} [value]
+ * @return {string}
+ */
+function valueFormatter(config, value) {
+    return "".concat(getColumnRenderName(config), ": ").concat((0, number_1.toFormattedValue)(value, config === null || config === void 0 ? void 0 : config.format));
+}
+exports.valueFormatter = valueFormatter;
+function getScatterSymbolSizeFn(valueIndex, max, min, cycleRatio) {
+    min = Math.min(0, min);
+    var scaleRatio = cycleRatio || 1;
+    var defaultScatterPointPixelSize = 10;
+    var distance = max - min === 0 ? 100 : max - min;
+    return function (val) {
+        return Math.max(3, (((val === null || val === void 0 ? void 0 : val[valueIndex]) - min) / distance) *
+            scaleRatio *
+            defaultScatterPointPixelSize *
+            2);
+    };
+}
+exports.getScatterSymbolSizeFn = getScatterSymbolSizeFn;
+function getGridStyle(styles) {
+    var _a = getStyles(styles, ['margin'], ['containLabel', 'marginLeft', 'marginRight', 'marginBottom', 'marginTop']), containLabel = _a[0], left = _a[1], right = _a[2], bottom = _a[3], top = _a[4];
+    return { left: left, right: right, bottom: bottom, top: top, containLabel: containLabel };
+}
+exports.getGridStyle = getGridStyle;
+// TODO(Stephen): tobe used chart DataSetRow model for all charts
+function getExtraSeriesRowData(data) {
+    if (data instanceof ChartDataSet_1.ChartDataSetRow) {
+        return {
+            rowData: data === null || data === void 0 ? void 0 : data.convertToObject()
+        };
+    }
+    return {
+        rowData: data
+    };
+}
+exports.getExtraSeriesRowData = getExtraSeriesRowData;
+function getExtraSeriesDataFormat(format) {
+    return {
+        format: format
+    };
+}
+exports.getExtraSeriesDataFormat = getExtraSeriesDataFormat;
+function getColorizeGroupSeriesColumns(chartDataSet, groupByKey, xAxisColumnName, aggregateKeys, infoColumnNames) {
+    var groupedDataColumnObject = chartDataSet === null || chartDataSet === void 0 ? void 0 : chartDataSet.reduce(function (acc, cur) {
+        var colKey = cur.getCellByKey(groupByKey) || 'defaultGroupKey';
+        if (!acc[colKey]) {
+            acc[colKey] = [];
+        }
+        var value = aggregateKeys
+            .concat([xAxisColumnName])
+            .concat(infoColumnNames || [])
+            .concat([groupByKey])
+            .reduce(function (a, k) {
+            a[k] = cur.getCellByKey(k);
+            return a;
+        }, {});
+        acc[colKey].push(value);
+        return acc;
+    }, {});
+    var collection = [];
+    Object.entries(groupedDataColumnObject).forEach(function (_a) {
+        var k = _a[0], v = _a[1];
+        var a = {};
+        a[k] = v;
+        collection.push(a);
+    });
+    return collection;
+}
+exports.getColorizeGroupSeriesColumns = getColorizeGroupSeriesColumns;
+/**
+ * [中文] 是否满足当前meta中标识的限制要求，以满足图表绘制
+ * &lt;/br>
+ * [EN] Check if current config with requried fields match the chart basic requirement of meta info.
+ *
+ * @example
+ *
+ *  const meta = {
+ *      requirements: [
+ *        {
+ *          group: [1, 999],
+ *          aggregate: [1, 999],
+ *        },
+ *      ],
+ *    };
+ *    const config = {
+ *     datas: [
+ *        {
+ *         type: 'group',
+ *          required: true,
+ *          rows: [
+ *            {
+ *              colName: 'category',
+ *            },
+ *          ],
+ *        },
+ *        {
+ *          type: 'aggregate',
+ *          required: true,
+ *          rows: [
+ *            {
+ *              colName: 'amount',
+ *            },
+ *          ],
+ *        },
+ *      ],
+ *    };
+ *  const isMatch = isMatchRequirement(meta, config);
+ *  console.log(isMatch); // true;
+ *
+ * @export
+ * @param {ChartMetadata} meta
+ * @param {ChartConfig} config
+ * @return {boolean}
+ */
+function isMatchRequirement(meta, config) {
+    var dataConfigs = config.datas || [];
+    var groupedFieldConfigs = (0, internalChartHelper_1.getRequiredGroupedSections)(dataConfigs).flatMap(function (config) { return config.rows || []; });
+    var aggregateFieldConfigs = (0, internalChartHelper_1.getRequiredAggregatedSections)(dataConfigs).flatMap(function (config) { return config.rows || []; });
+    var requirements = meta.requirements || [];
+    return requirements.some(function (r) {
+        var group = r === null || r === void 0 ? void 0 : r[ChartConfig_1.ChartDataSectionType.GROUP];
+        var aggregate = r === null || r === void 0 ? void 0 : r[ChartConfig_1.ChartDataSectionType.AGGREGATE];
+        return ((0, internalChartHelper_1.isInRange)(group, groupedFieldConfigs.length) &amp;&amp;
+            (0, internalChartHelper_1.isInRange)(aggregate, aggregateFieldConfigs.length));
+    });
+}
+exports.isMatchRequirement = isMatchRequirement;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Thu Feb 10 2022 17:56:34 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
