@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#__assign">__assign</a></li><li><a href="global.html#getColumnRenderName">getColumnRenderName</a></li><li><a href="global.html#getDefaultThemeColor">getDefaultThemeColor</a></li><li><a href="global.html#getSettingValue">getSettingValue</a></li><li><a href="global.html#getStyles">getStyles</a></li><li><a href="global.html#getStyleValue">getStyleValue</a></li><li><a href="global.html#getStyleValueByGroup">getStyleValueByGroup</a></li><li><a href="global.html#getValue">getValue</a></li><li><a href="global.html#isMatchRequirement">isMatchRequirement</a></li><li><a href="global.html#transformToDataSet">transformToDataSet</a></li><li><a href="global.html#transformToObjectArray">transformToObjectArray</a></li><li><a href="global.html#valueFormatter">valueFormatter</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#__assign">__assign</a></li><li><a href="global.html#getColumnRenderName">getColumnRenderName</a></li><li><a href="global.html#getDefaultThemeColor">getDefaultThemeColor</a></li><li><a href="global.html#getSettingValue">getSettingValue</a></li><li><a href="global.html#getStyles">getStyles</a></li><li><a href="global.html#getStyleValue">getStyleValue</a></li><li><a href="global.html#getStyleValueByGroup">getStyleValueByGroup</a></li><li><a href="global.html#getValue">getValue</a></li><li><a href="global.html#isMatchRequirement">isMatchRequirement</a></li><li><a href="global.html#toFormattedValue">toFormattedValue</a></li><li><a href="global.html#transformToDataSet">transformToDataSet</a></li><li><a href="global.html#transformToObjectArray">transformToObjectArray</a></li><li><a href="global.html#valueFormatter">valueFormatter</a></li></ul>
 </nav>
 
 <div id="main">
@@ -81,14 +81,171 @@ var __spreadArray = (this &amp;&amp; this.__spreadArray) || function (to, from, 
     return to.concat(ar || Array.prototype.slice.call(from));
 };
 exports.__esModule = true;
-exports.isMatchRequirement = exports.getColorizeGroupSeriesColumns = exports.getExtraSeriesDataFormat = exports.getExtraSeriesRowData = exports.getGridStyle = exports.getScatterSymbolSizeFn = exports.valueFormatter = exports.getSeriesTooltips4Rectangular = exports.getSeriesTooltips4Polar2 = exports.getSeriesTooltips4Rectangular2 = exports.getSeriesTooltips4Scatter = exports.getDataColumnMaxAndMin2 = exports.getDataColumnMaxAndMin = exports.getUnusedHeaderRows = exports.getColumnRenderName = exports.getValueByColumnKey = exports.transformToObjectArray = exports.transformToDataSet = exports.getNameTextStyle = exports.getAxisTick = exports.getSplitLine = exports.getAxisLabel = exports.getAxisLine = exports.getReference2 = exports.getReference = exports.getCustomSortableColumns = exports.getValue = exports.getStyles = exports.getStyleValueByGroup = exports.getSettingValue = exports.getStyleValue = exports.getDefaultThemeColor = void 0;
+exports.isMatchRequirement = exports.getColorizeGroupSeriesColumns = exports.getExtraSeriesDataFormat = exports.getExtraSeriesRowData = exports.getGridStyle = exports.getScatterSymbolSizeFn = exports.valueFormatter = exports.getSeriesTooltips4Rectangular = exports.getSeriesTooltips4Polar2 = exports.getSeriesTooltips4Rectangular2 = exports.getSeriesTooltips4Scatter = exports.getDataColumnMaxAndMin2 = exports.getDataColumnMaxAndMin = exports.getUnusedHeaderRows = exports.getColumnRenderName = exports.getValueByColumnKey = exports.transformToObjectArray = exports.transformToDataSet = exports.getNameTextStyle = exports.getAxisTick = exports.getSplitLine = exports.getAxisLabel = exports.getAxisLine = exports.getReference2 = exports.getReference = exports.getCustomSortableColumns = exports.getValue = exports.getStyles = exports.getStyleValueByGroup = exports.getSettingValue = exports.getStyleValue = exports.getDefaultThemeColor = exports.toFormattedValue = void 0;
 var echarts_default_theme_json_1 = require("app/assets/theme/echarts_default_theme.json");
 var ChartDataSet_1 = require("app/components/ChartGraph/models/ChartDataSet");
 var ChartConfig_1 = require("app/types/ChartConfig");
+var globalConstants_1 = require("globalConstants");
+var moment_1 = require("moment");
 var debugger_1 = require("utils/debugger");
 var object_1 = require("utils/object");
 var internalChartHelper_1 = require("./internalChartHelper");
-var number_1 = require("./number");
+/**
+ * [中文] 获取格式聚合数据
+ * &lt;/br>
+ * [EN] Gets format aggregate data
+ *
+ * @example
+ * const format = {
+ *   percentage: {
+ *     decimalPlaces: 2,
+ *   },
+ *   type: "percentage",
+ * }
+ * const formattedData = toFormattedValue('1', format);
+ * console.log(formattedData); // '100.00%';
+ * @export
+ * @param {(number | string)} [value]
+ * @param {IFieldFormatConfig} [format]
+ * @return {*}
+ */
+function toFormattedValue(value, format) {
+    if (value === null || value === undefined) {
+        return '-';
+    }
+    if (!format || format.type === ChartConfig_1.FieldFormatType.DEFAULT) {
+        return value;
+    }
+    if (!format.type) {
+        return value;
+    }
+    var formatType = format.type;
+    if (typeof value === 'string' &amp;&amp;
+        formatType !== ChartConfig_1.FieldFormatType.DATE &amp;&amp;
+        (!value || isNaN(+value))) {
+        return value;
+    }
+    var config = format[formatType];
+    if (!config) {
+        return value;
+    }
+    var formattedValue;
+    switch (formatType) {
+        case ChartConfig_1.FieldFormatType.NUMERIC:
+            var numericConfig = config;
+            formattedValue = (0, object_1.pipe)(unitFormater, decimalPlacesFormater, numericFormater)(value, numericConfig);
+            break;
+        case ChartConfig_1.FieldFormatType.CURRENCY:
+            var currencyConfig = config;
+            formattedValue = (0, object_1.pipe)(currencyFormater)(value, currencyConfig);
+            break;
+        case ChartConfig_1.FieldFormatType.PERCENTAGE:
+            var percentageConfig = config;
+            formattedValue = (0, object_1.pipe)(percentageFormater)(value, percentageConfig);
+            break;
+        case ChartConfig_1.FieldFormatType.SCIENTIFIC:
+            var scientificNotationConfig = config;
+            formattedValue = (0, object_1.pipe)(scientificNotationFormater)(value, scientificNotationConfig);
+            break;
+        case ChartConfig_1.FieldFormatType.DATE:
+            var dateConfig = config;
+            formattedValue = (0, object_1.pipe)(dateFormater)(value, dateConfig);
+            break;
+        default:
+            formattedValue = value;
+            break;
+    }
+    return formattedValue;
+}
+exports.toFormattedValue = toFormattedValue;
+function decimalPlacesFormater(value, config) {
+    if ((0, object_1.isEmpty)(config === null || config === void 0 ? void 0 : config.decimalPlaces)) {
+        return value;
+    }
+    if (isNaN(value)) {
+        return value;
+    }
+    if ((config === null || config === void 0 ? void 0 : config.decimalPlaces) &lt; 0 || (config === null || config === void 0 ? void 0 : config.decimalPlaces) > 100) {
+        return value;
+    }
+    return (+value).toFixed(config === null || config === void 0 ? void 0 : config.decimalPlaces);
+}
+function unitFormater(value, config) {
+    var _a;
+    if ((0, object_1.isEmpty)(config === null || config === void 0 ? void 0 : config.unitKey)) {
+        return value;
+    }
+    if (isNaN(+value)) {
+        return value;
+    }
+    var realUnit = ((_a = globalConstants_1.NumericUnitDescriptions.get(config === null || config === void 0 ? void 0 : config.unitKey)) === null || _a === void 0 ? void 0 : _a[0]) || 1;
+    return +value / realUnit;
+}
+function numericFormater(value, config) {
+    var _a;
+    if (isNaN(+value)) {
+        return value;
+    }
+    var valueWithPrefixs = [
+        (config === null || config === void 0 ? void 0 : config.prefix) || '',
+        thousandSeperatorFormater(value, config),
+        (_a = globalConstants_1.NumericUnitDescriptions.get((config === null || config === void 0 ? void 0 : config.unitKey) || globalConstants_1.NumberUnitKey.None)) === null || _a === void 0 ? void 0 : _a[1],
+        (config === null || config === void 0 ? void 0 : config.suffix) || '',
+    ].join('');
+    return valueWithPrefixs;
+}
+function thousandSeperatorFormater(value, config) {
+    if (isNaN(+value) || !(config === null || config === void 0 ? void 0 : config.useThousandSeparator)) {
+        return value;
+    }
+    var parts = value.toString().split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    var formatted = parts.join('.');
+    return formatted;
+}
+function currencyFormater(value, config) {
+    var _a, _b;
+    if (isNaN(+value)) {
+        return value;
+    }
+    var realUnit = ((_a = globalConstants_1.NumericUnitDescriptions.get(config === null || config === void 0 ? void 0 : config.unitKey)) === null || _a === void 0 ? void 0 : _a[0]) || 1;
+    return "".concat(new Intl.NumberFormat('zh-CN', {
+        style: 'currency',
+        currency: (config === null || config === void 0 ? void 0 : config.currency) || 'CNY',
+        minimumFractionDigits: config === null || config === void 0 ? void 0 : config.decimalPlaces,
+        useGrouping: config === null || config === void 0 ? void 0 : config.useThousandSeparator
+    }).format(value / realUnit), " ").concat((_b = globalConstants_1.NumericUnitDescriptions.get((config === null || config === void 0 ? void 0 : config.unitKey) || globalConstants_1.NumberUnitKey.None)) === null || _b === void 0 ? void 0 : _b[1]);
+}
+function percentageFormater(value, config) {
+    if (isNaN(+value)) {
+        return value;
+    }
+    var fractionDigits = 0;
+    if (!(0, object_1.isEmpty)(config === null || config === void 0 ? void 0 : config.decimalPlaces) &amp;&amp;
+        +(config === null || config === void 0 ? void 0 : config.decimalPlaces) >= 0 &amp;&amp;
+        +(config === null || config === void 0 ? void 0 : config.decimalPlaces) &lt;= 20) {
+        fractionDigits = +(config === null || config === void 0 ? void 0 : config.decimalPlaces);
+    }
+    return "".concat((+value * 100).toFixed(fractionDigits), "%");
+}
+function scientificNotationFormater(value, config) {
+    if (isNaN(+value)) {
+        return value;
+    }
+    var fractionDigits = 0;
+    if (!(0, object_1.isEmpty)(config === null || config === void 0 ? void 0 : config.decimalPlaces) &amp;&amp;
+        +(config === null || config === void 0 ? void 0 : config.decimalPlaces) >= 0 &amp;&amp;
+        +(config === null || config === void 0 ? void 0 : config.decimalPlaces) &lt;= 20) {
+        fractionDigits = +(config === null || config === void 0 ? void 0 : config.decimalPlaces);
+    }
+    return (+value).toExponential(fractionDigits);
+}
+function dateFormater(value, config) {
+    if (isNaN(+value) || (0, object_1.isEmpty)(config === null || config === void 0 ? void 0 : config.format)) {
+        return value;
+    }
+    return (0, moment_1["default"])(value).format(config === null || config === void 0 ? void 0 : config.format);
+}
 /**
  * [中文] 获取系统默认颜色
  * &lt;/br>
@@ -255,39 +412,39 @@ function getCustomSortableColumns(columns, dataConfigs) {
     });
 }
 exports.getCustomSortableColumns = getCustomSortableColumns;
-function getReference(settingConfigs, dataColumns, dataConfig, isHorizionDisplay) {
+function getReference(settingConfigs, dataColumns, dataConfig, isHorizonDisplay) {
     var referenceTabs = getSettingValue(settingConfigs, 'reference.panel.configuration', 'rows');
     return {
-        markLine: getMarkLine(referenceTabs, dataColumns, dataConfig, isHorizionDisplay),
-        markArea: getMarkArea(referenceTabs, dataColumns, isHorizionDisplay)
+        markLine: getMarkLine(referenceTabs, dataColumns, dataConfig, isHorizonDisplay),
+        markArea: getMarkArea(referenceTabs, dataColumns, isHorizonDisplay)
     };
 }
 exports.getReference = getReference;
-function getReference2(settingConfigs, dataSetRows, dataConfig, isHorizionDisplay) {
+function getReference2(settingConfigs, dataSetRows, dataConfig, isHorizonDisplay) {
     var referenceTabs = getSettingValue(settingConfigs, 'reference.panel.configuration', 'rows');
     return {
-        markLine: getMarkLine2(referenceTabs, dataSetRows, dataConfig, isHorizionDisplay),
-        markArea: getMarkArea2(referenceTabs, dataSetRows, isHorizionDisplay)
+        markLine: getMarkLine2(referenceTabs, dataSetRows, dataConfig, isHorizonDisplay),
+        markArea: getMarkArea2(referenceTabs, dataSetRows, isHorizonDisplay)
     };
 }
 exports.getReference2 = getReference2;
-function getMarkLine(refTabs, dataColumns, dataConfig, isHorizionDisplay) {
+function getMarkLine(refTabs, dataColumns, dataConfig, isHorizonDisplay) {
     var markLineData = refTabs === null || refTabs === void 0 ? void 0 : refTabs.reduce(function (acc, cur) {
         var _a;
         var markLineConfigs = (_a = cur === null || cur === void 0 ? void 0 : cur.rows) === null || _a === void 0 ? void 0 : _a.filter(function (r) { return r.key === 'markLine'; });
         acc.push.apply(acc, markLineConfigs);
         return acc;
     }, []).map(function (ml) {
-        return getMarkLineData(ml, dataColumns, 'valueType', 'constantValue', 'metric', dataConfig, isHorizionDisplay);
+        return getMarkLineData(ml, dataColumns, 'valueType', 'constantValue', 'metric', dataConfig, isHorizonDisplay);
     }).filter(Boolean);
     return {
         data: markLineData
     };
 }
-function getMarkLineData(mark, dataColumns, valueTypeKey, constantValueKey, metricKey, dataConfig, isHorizionDisplay) {
+function getMarkLineData(mark, dataColumns, valueTypeKey, constantValueKey, metricKey, dataConfig, isHorizonDisplay) {
     var _a;
     var name = mark.label;
-    var valueKey = isHorizionDisplay ? 'xAxis' : 'yAxis';
+    var valueKey = isHorizonDisplay ? 'xAxis' : 'yAxis';
     var show = getSettingValue(mark.rows, 'showLabel', 'value');
     var enableMarkLine = getSettingValue(mark.rows, 'enableMarkLine', 'value');
     var position = getSettingValue(mark.rows, 'position', 'value');
@@ -323,23 +480,23 @@ function getMarkLineData(mark, dataColumns, valueTypeKey, constantValueKey, metr
         _a.lineStyle = lineStyle,
         _a;
 }
-function getMarkLine2(refTabs, dataSetRows, dataConfig, isHorizionDisplay) {
+function getMarkLine2(refTabs, dataSetRows, dataConfig, isHorizonDisplay) {
     var markLineData = refTabs === null || refTabs === void 0 ? void 0 : refTabs.reduce(function (acc, cur) {
         var _a;
         var markLineConfigs = (_a = cur === null || cur === void 0 ? void 0 : cur.rows) === null || _a === void 0 ? void 0 : _a.filter(function (r) { return r.key === 'markLine'; });
         acc.push.apply(acc, markLineConfigs);
         return acc;
     }, []).map(function (ml) {
-        return getMarkLineData2(ml, dataSetRows, 'valueType', 'constantValue', 'metric', dataConfig, isHorizionDisplay);
+        return getMarkLineData2(ml, dataSetRows, 'valueType', 'constantValue', 'metric', dataConfig, isHorizonDisplay);
     }).filter(Boolean);
     return {
         data: markLineData
     };
 }
-function getMarkLineData2(mark, dataSetRows, valueTypeKey, constantValueKey, metricKey, dataConfig, isHorizionDisplay) {
+function getMarkLineData2(mark, dataSetRows, valueTypeKey, constantValueKey, metricKey, dataConfig, isHorizonDisplay) {
     var _a;
     var name = mark.label;
-    var valueKey = isHorizionDisplay ? 'xAxis' : 'yAxis';
+    var valueKey = isHorizonDisplay ? 'xAxis' : 'yAxis';
     var show = getSettingValue(mark.rows, 'showLabel', 'value');
     var enableMarkLine = getSettingValue(mark.rows, 'enableMarkLine', 'value');
     var position = getSettingValue(mark.rows, 'position', 'value');
@@ -376,9 +533,9 @@ function getMarkLineData2(mark, dataSetRows, valueTypeKey, constantValueKey, met
         _a.lineStyle = lineStyle,
         _a;
 }
-function getMarkAreaData2(mark, dataSetRows, valueTypeKey, constantValueKey, metricKey, isHorizionDisplay) {
+function getMarkAreaData2(mark, dataSetRows, valueTypeKey, constantValueKey, metricKey, isHorizonDisplay) {
     var _a;
-    var valueKey = isHorizionDisplay ? 'xAxis' : 'yAxis';
+    var valueKey = isHorizonDisplay ? 'xAxis' : 'yAxis';
     var show = getSettingValue(mark.rows, 'showLabel', 'value');
     var enableMarkArea = getSettingValue(mark.rows, 'enableMarkArea', 'value');
     var position = getSettingValue(mark.rows, 'position', 'value');
@@ -422,9 +579,9 @@ function getMarkAreaData2(mark, dataSetRows, valueTypeKey, constantValueKey, met
         },
         _a;
 }
-function getMarkAreaData(mark, dataColumns, valueTypeKey, constantValueKey, metricKey, isHorizionDisplay) {
+function getMarkAreaData(mark, dataColumns, valueTypeKey, constantValueKey, metricKey, isHorizonDisplay) {
     var _a;
-    var valueKey = isHorizionDisplay ? 'xAxis' : 'yAxis';
+    var valueKey = isHorizonDisplay ? 'xAxis' : 'yAxis';
     var show = getSettingValue(mark.rows, 'showLabel', 'value');
     var enableMarkArea = getSettingValue(mark.rows, 'enableMarkArea', 'value');
     var position = getSettingValue(mark.rows, 'position', 'value');
@@ -468,7 +625,7 @@ function getMarkAreaData(mark, dataColumns, valueTypeKey, constantValueKey, metr
         },
         _a;
 }
-function getMarkArea(refTabs, dataColumns, isHorizionDisplay) {
+function getMarkArea(refTabs, dataColumns, isHorizonDisplay) {
     var refAreas = refTabs === null || refTabs === void 0 ? void 0 : refTabs.reduce(function (acc, cur) {
         var _a;
         var markLineConfigs = (_a = cur === null || cur === void 0 ? void 0 : cur.rows) === null || _a === void 0 ? void 0 : _a.filter(function (r) { return r.key === 'markArea'; });
@@ -479,14 +636,14 @@ function getMarkArea(refTabs, dataColumns, isHorizionDisplay) {
         data: refAreas === null || refAreas === void 0 ? void 0 : refAreas.map(function (mark) {
             var markAreaData = ['start', 'end']
                 .map(function (prefix) {
-                return getMarkAreaData(mark, dataColumns, "".concat(prefix, "ValueType"), "".concat(prefix, "ConstantValue"), "".concat(prefix, "Metric"), isHorizionDisplay);
+                return getMarkAreaData(mark, dataColumns, "".concat(prefix, "ValueType"), "".concat(prefix, "ConstantValue"), "".concat(prefix, "Metric"), isHorizonDisplay);
             })
                 .filter(Boolean);
             return markAreaData;
         }).filter(function (m) { return Boolean(m === null || m === void 0 ? void 0 : m.length); })
     };
 }
-function getMarkArea2(refTabs, dataSetRows, isHorizionDisplay) {
+function getMarkArea2(refTabs, dataSetRows, isHorizonDisplay) {
     var refAreas = refTabs === null || refTabs === void 0 ? void 0 : refTabs.reduce(function (acc, cur) {
         var _a;
         var markLineConfigs = (_a = cur === null || cur === void 0 ? void 0 : cur.rows) === null || _a === void 0 ? void 0 : _a.filter(function (r) { return r.key === 'markArea'; });
@@ -497,7 +654,7 @@ function getMarkArea2(refTabs, dataSetRows, isHorizionDisplay) {
         data: refAreas === null || refAreas === void 0 ? void 0 : refAreas.map(function (mark) {
             var markAreaData = ['start', 'end']
                 .map(function (prefix) {
-                return getMarkAreaData2(mark, dataSetRows, "".concat(prefix, "ValueType"), "".concat(prefix, "ConstantValue"), "".concat(prefix, "Metric"), isHorizionDisplay);
+                return getMarkAreaData2(mark, dataSetRows, "".concat(prefix, "ValueType"), "".concat(prefix, "ConstantValue"), "".concat(prefix, "Metric"), isHorizonDisplay);
             })
                 .filter(Boolean);
             return markAreaData;
@@ -731,14 +888,23 @@ exports.getSeriesTooltips4Rectangular = getSeriesTooltips4Rectangular;
  * [中文] 获取字段的Tooltip显示名称和内容
  * &lt;/br>
  * [EN] Get chart render string with field name and value
- *
+ * @example
+ * const config = {
+ *   aggregate: "SUM"
+ *   colName: 'name',
+ *   type: 'STRING',
+ *   category: 'field',
+ *   uid: '123456',
+ * }
+ * const formatValue = valueFormatter(config, '示例')；
+ * console.log(formatValue) // SUM(name): 示例
  * @export
  * @param {ChartDataSectionField} [config]
  * @param {number} [value]
  * @return {string}
  */
 function valueFormatter(config, value) {
-    return "".concat(getColumnRenderName(config), ": ").concat((0, number_1.toFormattedValue)(value, config === null || config === void 0 ? void 0 : config.format));
+    return "".concat(getColumnRenderName(config), ": ").concat(toFormattedValue(value, config === null || config === void 0 ? void 0 : config.format));
 }
 exports.valueFormatter = valueFormatter;
 function getScatterSymbolSizeFn(valueIndex, max, min, cycleRatio) {
@@ -876,7 +1042,7 @@ exports.isMatchRequirement = isMatchRequirement;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Thu Feb 10 2022 17:56:34 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Mon Feb 14 2022 11:38:23 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
