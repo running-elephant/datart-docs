@@ -94,7 +94,7 @@
 <li>找到 <code>conf/jdbc-driver-ext.yml</code> 文件，添加关键配置，然后重启程序。</li>
 <li>以下以添加 <code>impala</code> 为例，在<code>conf/jdbc-driver-ext.yml</code>中添加以下配置。</li>
 </ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">IMPALA:</span></span><br><span class="line">  <span class="attr">db-type:</span> <span class="string">&quot;impala&quot;</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">&quot;impala&quot;</span></span><br><span class="line">  <span class="attr">literal-quote:</span> <span class="string">&quot;&#x27;&quot;</span></span><br><span class="line">  <span class="attr">identifier-quote:</span> <span class="string">&quot;`&quot;</span></span><br><span class="line"><span class="comment">#  literal-end-quote: &quot;`&quot;</span></span><br><span class="line"><span class="comment">#  identifier-end-quote: &quot;&#x27;&quot;</span></span><br><span class="line"><span class="comment">#  driver-class: &quot;com.mysql.cj.jdbc.Driver&quot; </span></span><br><span class="line"><span class="comment">#  url-prefix:</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">IMPALA:</span></span><br><span class="line">  <span class="attr">db-type:</span> <span class="string">&quot;impala&quot;</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">&quot;impala&quot;</span></span><br><span class="line">  <span class="attr">literal-quote:</span> <span class="string">&quot;&#x27;&quot;</span></span><br><span class="line">  <span class="attr">identifier-quote:</span> <span class="string">&quot;`&quot;</span></span><br><span class="line"><span class="comment">#  literal-end-quote: &quot;`&quot;</span></span><br><span class="line"><span class="comment">#  identifier-end-quote: &quot;&#x27;&quot;</span></span><br><span class="line"><span class="comment">#  driver-class: &quot;com.mysql.cj.jdbc.Driver&quot; </span></span><br><span class="line"><span class="comment">#  url-prefix:</span></span><br><span class="line"><span class="comment">#  quote-identifiers: </span></span><br></pre></td></tr></table></figure>
 
 <p>配置说明</p>
 <ul>
@@ -106,12 +106,13 @@
 <li><code>identifier-end-quote</code>: 非必填，当SQL字段/列名引号左右不一致时，需要填写。如Sql Server使用的 <code>[</code>,<code>]</code></li>
 <li><code>driver-class</code> : 非必填，驱动类名称。可在数据源界面指定。</li>
 <li><code>url-prefix</code>: 非必填，url连接串前缀。可在数据源界面配置。</li>
+<li><code>quote-identifiers</code>: 非必填，列名是否加引号，默认true。</li>
 </ul>
 <p>配置完成后，按照第一段描述添加驱动文件，重启服务端。刷新页面，就可以在JDBC数据源下找到刚才添加的 <code>impala</code> 数据库</p>
 
                 </div>
                 <footer class="article-footer">
-                  <time class="article-footer-updated" datetime="2022-03-11T04:30:24.184Z" itemprop="dateModified">Last updated: 2022-03-11</time>
+                  <time class="article-footer-updated" datetime="2022-03-11T09:38:04.212Z" itemprop="dateModified">Last updated: 2022-03-11</time>
                   <a href="chart_plugin.html" class="article-footer-prev" title="自定义插件化图表"><i class="fa fa-chevron-left"></i><span>Prev</span></a>
                 </footer>
               </div>
