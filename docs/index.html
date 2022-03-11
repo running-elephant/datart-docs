@@ -100,7 +100,7 @@
 
 <p>运行 <code>docker run -d --name datart -v your_path/datart.conf:/datart/config/datart.conf -p 8080:8080 datart/datart</code></p>
 <h2 id="1-2-将用户文件挂载到外部" class="article-heading"><a href="#1-2-将用户文件挂载到外部" class="headerlink" title="1.2. 将用户文件挂载到外部"></a>1.2. 将用户文件挂载到外部<a class="article-anchor" href="#1-2-将用户文件挂载到外部" aria-hidden="true"></a></h2><p>默认配置下，用户文件（头像，文件数据源等）保存在 <code>files</code> 文件夹下，将这个路径挂载到外部，以在进行应用升级时，能够保留这些文件。</p>
-<p>在配置文件中增加参数 <code>-v your_path/files:/datart/files</code> 即可。以下是完整命令</p>
+<p>在启动命令中增加参数 <code>-v your_path/files:/datart/files</code> 即可。以下是完整命令</p>
 <p><code>docker run -d --name datart -v your_path/datart.conf:/datart/config/datart.conf -v your_path/files:/datart/files -p 8080:8080 datart/datart</code></p>
 <h1 id="2-本地部署" class="article-heading"><a href="#2-本地部署" class="headerlink" title="2 本地部署"></a>2 本地部署<a class="article-anchor" href="#2-本地部署" aria-hidden="true"></a></h1><h2 id="2-1-环境准备" class="article-heading"><a href="#2-1-环境准备" class="headerlink" title="2.1 环境准备"></a>2.1 环境准备<a class="article-anchor" href="#2-1-环境准备" aria-hidden="true"></a></h2><ul>
 <li>JDK 1.8+</li>
@@ -184,7 +184,7 @@
 
                 </div>
                 <footer class="article-footer">
-                  <time class="article-footer-updated" datetime="2022-03-11T09:38:04.212Z" itemprop="dateModified">Last updated: 2022-03-11</time>
+                  <time class="article-footer-updated" datetime="2022-03-11T10:48:38.255Z" itemprop="dateModified">Last updated: 2022-03-11</time>
                   <a href="first-visualization.html" class="article-footer-next" title="第一个可视化作品"><span>Next</span><i class="fa fa-chevron-right"></i></a>
                 </footer>
               </div>
