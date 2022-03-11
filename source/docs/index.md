@@ -71,7 +71,9 @@ unzip datart-server-*-install.zip
 
 ***独立模式使用内置数据库作为应用数据库，目前无法保证数据迁移，建议配置外部数据库作为应用数据库***
 
-## 2.3 配置外部数据库，要求Mysql5.7及以上版本
+## 2.3 配置外部数据库
+
+***要求Mysql5.7及以上版本***
 
 - 创建数据库，指定数据库编码为utf8
 
@@ -101,13 +103,17 @@ mysql> CREATE DATABASE `datart` CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
     5. datart.webdriver-path(截图驱动)
 ```
 
-## 2.4. 完整配置 (可选) : 配置文件位于 config/profiles/application-config.yml
+## 2.4. 完整配置 (可选)
+
+***配置文件位于 config/profiles/application-config.yml***
 
 ***完整配置文件格式是yml格式,配置错误会导致程序无法启动。配置时一定要严格遵循yml格式。***
 
 ***application-config.yml直接由spring-boot处理,其中的oauth2,redis,mail等配置项完全遵循spring-boot-autoconfigure配置***
 
-### 2.4.1 数据库连接信息，可以在 `darart.conf` 文件中配置，也可直接修改这里的配置。推荐保留这里的默认配置，把数据库信息配置到 `darart.conf`文件中。
+### 2.4.1 数据库连接信息 
+
+**可以在 `darart.conf` 文件中配置，也可直接修改这里的配置。推荐保留这里的默认配置，把数据库信息配置到 `darart.conf`文件中**
 
 ***注：请务必保留连接串中的`allowMultiQueries=true`参数***
 
@@ -121,7 +127,7 @@ spring:
     password: ${datasource.password:123456}
 ```
 
-### 2.4.2 服务端属性配置
+### 2.4.2 服务端属性配置 (可选)
 
 - Web服务绑定IP和端口
 
@@ -232,7 +238,7 @@ docker run -p 4444:4444 -d --name selenium-chrome --shm-size="2g" selenium/stand
     host: { HOST }
 ```
 
-### 2.8 oauth2 
+### 2.8 oauth2 (可选)
 
 ```ymal
 # security:
