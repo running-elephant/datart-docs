@@ -25,6 +25,7 @@ IMPALA:
 #  identifier-end-quote: "'"
 #  driver-class: "com.mysql.cj.jdbc.Driver" 
 #  url-prefix:
+#  quote-identifiers: 
 ```
 
 配置说明
@@ -37,5 +38,6 @@ IMPALA:
 - `identifier-end-quote`: 非必填，当SQL字段/列名引号左右不一致时，需要填写。如Sql Server使用的 `[`,`]`
 - `driver-class` : 非必填，驱动类名称。可在数据源界面指定。
 - `url-prefix`: 非必填，url连接串前缀。可在数据源界面配置。
+- `quote-identifiers`: 非必填，列名是否加引号，默认true。
 
 配置完成后，按照第一段描述添加驱动文件，重启服务端。刷新页面，就可以在JDBC数据源下找到刚才添加的 `impala` 数据库
