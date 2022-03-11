@@ -55,7 +55,7 @@ datart.webdriver-path=http://127.0.0.1:4444/wd/hub
 
 - JDK 1.8+
 - MySql5.7+
-- datart安装包（datart-server-1.0.0-alpha.0-install.zip)
+- datart安装包（datart-server-*-install.zip)
 - Mail Server （可选）
 - [ChromeWebDriver](https://chromedriver.chromium.org/) （可选）
 - Redis （可选）
