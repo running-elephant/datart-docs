@@ -45,7 +45,7 @@ datart.webdriver-path=http://127.0.0.1:4444/wd/hub
 
 默认配置下，用户文件（头像，文件数据源等）保存在 `files` 文件夹下，将这个路径挂载到外部，以在进行应用升级时，能够保留这些文件。
 
-在配置文件中增加参数 `-v your_path/files:/datart/files` 即可。以下是完整命令
+在启动命令中增加参数 `-v your_path/files:/datart/files` 即可。以下是完整命令
 
 `docker run -d --name datart -v your_path/datart.conf:/datart/config/datart.conf -v your_path/files:/datart/files -p 8080:8080 datart/datart`
 
