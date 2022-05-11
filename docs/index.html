@@ -37,12 +37,12 @@
 <link rel="stylesheet" href="/datart-docs/css/navy.css">
 
   <!-- endbuild -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-lato@0.0.75/index.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <link rel="stylesheet" href="css/typeface-lato@0.0.75/index.min.css">
+  <link rel="stylesheet" href="css/font-awesome@4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/docsearch.js/1/docsearch.min.css">
   <!-- RSS -->
   <link rel="alternate" href="/datart-docs/atom.xml" title="datart" type="application/atom+xml">
-<meta name="generator" content="Hexo 6.0.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
   
   
@@ -96,7 +96,7 @@
 <p>启动后可访问 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://docker_ip:8080/">http://docker_ip:8080</a><br>默认账户:用户名<code>demo</code>,密码<code>123456</code></p>
 <h2 id="1-1-配置外部数据库" class="article-heading"><a href="#1-1-配置外部数据库" class="headerlink" title="1.1. 配置外部数据库"></a>1.1. 配置外部数据库<a class="article-anchor" href="#1-1-配置外部数据库" aria-hidden="true"></a></h2><p>在没有外部数据库配置的情况下，Datart使用H2作为应用程序数据库。 强烈建议您将自己的Mysql数据库配置为应用程序数据库。  </p>
 <p>创建空文件 <code>datart.conf</code> ,将以下内容粘贴到到文件中。并配置数据库连接信息。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta"># </span><span class="language-bash">数据库连接配置</span></span><br><span class="line">datasource.ip=   </span><br><span class="line">datasource.port=</span><br><span class="line">datasource.database=</span><br><span class="line">datasource.username=</span><br><span class="line">datasource.password=</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">server</span></span><br><span class="line">server.port=8080</span><br><span class="line">server.address=0.0.0.0</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">datart config</span></span><br><span class="line">datart.address=http://127.0.0.1</span><br><span class="line">datart.send-mail=false</span><br><span class="line">datart.webdriver-path=http://127.0.0.1:4444/wd/hub</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">数据库连接配置</span></span><br><span class="line">datasource.ip=   </span><br><span class="line">datasource.port=</span><br><span class="line">datasource.database=</span><br><span class="line">datasource.username=</span><br><span class="line">datasource.password=</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">server</span></span><br><span class="line">server.port=8080</span><br><span class="line">server.address=0.0.0.0</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">datart config</span></span><br><span class="line">datart.address=http://127.0.0.1</span><br><span class="line">datart.send-mail=false</span><br><span class="line">datart.webdriver-path=http://127.0.0.1:4444/wd/hub</span><br></pre></td></tr></table></figure>
 
 <p>运行 <code>docker run -d --name datart -v your_path/datart.conf:/datart/config/datart.conf -p 8080:8080 datart/datart</code></p>
 <h2 id="1-2-将用户文件挂载到外部" class="article-heading"><a href="#1-2-将用户文件挂载到外部" class="headerlink" title="1.2. 将用户文件挂载到外部"></a>1.2. 将用户文件挂载到外部<a class="article-anchor" href="#1-2-将用户文件挂载到外部" aria-hidden="true"></a></h2><p>默认配置下，用户文件（头像，文件数据源等）保存在 <code>files</code> 文件夹下，将这个路径挂载到外部，以在进行应用升级时，能够保留这些文件。</p>
@@ -184,7 +184,7 @@
 
                 </div>
                 <footer class="article-footer">
-                  <time class="article-footer-updated" datetime="2022-03-14T03:10:23.273Z" itemprop="dateModified">Last updated: 2022-03-14</time>
+                  <time class="article-footer-updated" datetime="2022-05-11T04:38:04.593Z" itemprop="dateModified">Last updated: 2022-05-11</time>
                   <a href="first-visualization.html" class="article-footer-next" title="第一个可视化作品"><span>Next</span><i class="fa fa-chevron-right"></i></a>
                 </footer>
               </div>
@@ -245,7 +245,7 @@
 </nav>
       <!-- Scripts -->
 <!-- Cookie -->
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="js/js-cookie@2/src/js.cookie.min.js"></script>
 <!-- build:js build/js/main.js -->
 
 <script src="/datart-docs/js/lang_select.js"></script>
