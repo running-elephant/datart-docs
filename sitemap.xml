@@ -20,33 +20,6 @@
   </url>
   
   <url>
-    <loc>https://github.com/running-elephant/datart-docs.git/docs/server-aggregation</loc>
-    
-    <lastmod>2022-05-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://github.com/running-elephant/datart-docs.git/docs/schedule</loc>
-    
-    <lastmod>2022-05-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://github.com/running-elephant/datart-docs.git/docs/source</loc>
-    
-    <lastmod>2022-05-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://github.com/running-elephant/datart-docs.git/docs/storyboard</loc>
     
     <lastmod>2022-05-17</lastmod>
@@ -75,6 +48,15 @@
   
   <url>
     <loc>https://github.com/running-elephant/datart-docs.git/docs/logged-in-user-setting</loc>
+    
+    <lastmod>2022-05-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://github.com/running-elephant/datart-docs.git/docs/server-aggregation</loc>
     
     <lastmod>2022-05-17</lastmod>
     
@@ -138,6 +120,24 @@
   
   <url>
     <loc>https://github.com/running-elephant/datart-docs.git/docs/permission</loc>
+    
+    <lastmod>2022-05-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://github.com/running-elephant/datart-docs.git/docs/schedule</loc>
+    
+    <lastmod>2022-05-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://github.com/running-elephant/datart-docs.git/docs/source</loc>
     
     <lastmod>2022-05-17</lastmod>
     
