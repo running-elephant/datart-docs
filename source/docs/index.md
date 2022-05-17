@@ -202,7 +202,7 @@ spring:
 下表为常见免费邮箱 SMTP 服务地址及端口：
 ![mail.png](/datart-docs/images/deployment/mail.png)
 
-### 2.6截图配置 (可选)
+### 2.6 截图配置 (可选)
 
 - 截图配置用于定时任务中的发送图片功能。
 
