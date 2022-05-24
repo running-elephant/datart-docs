@@ -284,23 +284,23 @@ spring:
 
 在 `spring.security.oauth2.client` 底下有 `registration` 和 `provider` 两个配置项，`registration` 包含所有客户端的注册信息，`provider` 包含所有客户端所访问的 OAuth2 服务提供者的相关信息。下方表格将参照示例说明每一个配置项的作用：
 
-| 配置项                                                     | 说明                                                                                                                                                                                    |
-| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| registration.[registrationId]                              | 注册 ID；自定义名称，示例中命名为 cas                                                                                                                                                   |
-| registration.[registrationId].provider                     | 关联服务提供者 ID；通过此项来关联到 provider 下配置的具体服务提供者                                                                                                                     |
-| registration.[registrationId].client-id                    | 客户端 ID；从 OAuth2 服务网站获取的 Client ID                                                                                                                                           |
-| registration.[registrationId].client-name                  | 客户端名称；内容自定义                                                                                                                                                                  |
-| registration.[registrationId].client-secret                | 客户端密钥；从 OAuth2 服务网站获取的 Client Secret                                                                                                                                      |
-| registration.[registrationId].authorization-grant-type     | 授权许可类型；示例中为 `authorization_code`，更多信息请参考[The OAuth 2.0 Authorization Framework Authorization Grant types](https://datatracker.ietf.org/doc/html/rfc6749#section-1.3) |
-| registration.[registrationId].client-authentication-method | 客户端认证方法；http method，示例中为 `post`                                                                                                                                            |
-| registration.[registrationId].redirect-uri                 | 认证成功回调地址；支持模板语法                                                                                                                                                          |
-| registration.[registrationId].scope                        | 请求范围；指从授权请求获取的内容范围，例如 openid、email 或 profile。示例中从授权请求获取了 userinfo                                                                                    |
-| provider.[providerId]                                      | 服务提供者 ID；自定义名称，示例中命名为 cas                                                                                                                                             |
-| provider.[providerId].authorization-uri                    | 授权请求的 URL                                                                                                                                                                          |
-| provider.[providerId].token-uri                            | 获取 Token 请求的 URL                                                                                                                                                                   |
-| provider.[providerId].user-info-uri                        | 获取用户信息请求的 URL                                                                                                                                                                  |
-| provider.[providerId].user-name-attribute                  | 用户信息中用于标记用户名称或 ID 的属性。示例中为 id                                                                                                                                     |
-| provider.[providerId].userMapping                          | 用户信息与 datart 用户的属性映射设置。datart 通过该映射配置来定位到系统中的具体用户                                                                                                     |
+| 配置项                                                     | 说明                                                                                                                                                                                     |
+| ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| registration.[registrationId]                              | 注册 ID；自定义名称，示例中命名为 cas                                                                                                                                                    |
+| registration.[registrationId].provider                     | 关联服务提供者 ID；通过此项来关联到 provider 下配置的具体服务提供者                                                                                                                      |
+| registration.[registrationId].client-id                    | 客户端 ID；从 OAuth2 服务网站获取的 Client ID                                                                                                                                            |
+| registration.[registrationId].client-name                  | 客户端名称；内容自定义                                                                                                                                                                   |
+| registration.[registrationId].client-secret                | 客户端密钥；从 OAuth2 服务网站获取的 Client Secret                                                                                                                                       |
+| registration.[registrationId].authorization-grant-type     | 授权许可类型；示例中为 `authorization_code`，更多信息请参考 [The OAuth 2.0 Authorization Framework Authorization Grant types](https://datatracker.ietf.org/doc/html/rfc6749#section-1.3) |
+| registration.[registrationId].client-authentication-method | 客户端认证方法；http method，示例中为 `post`                                                                                                                                             |
+| registration.[registrationId].redirect-uri                 | 认证成功回调地址；支持模板语法                                                                                                                                                           |
+| registration.[registrationId].scope                        | 请求范围；指从授权请求获取的内容范围，例如 openid、email 或 profile。示例中从授权请求获取了 userinfo                                                                                     |
+| provider.[providerId]                                      | 服务提供者 ID；自定义名称，示例中命名为 cas                                                                                                                                              |
+| provider.[providerId].authorization-uri                    | 授权请求的 URL                                                                                                                                                                           |
+| provider.[providerId].token-uri                            | 获取 Token 请求的 URL                                                                                                                                                                    |
+| provider.[providerId].user-info-uri                        | 获取用户信息请求的 URL                                                                                                                                                                   |
+| provider.[providerId].user-name-attribute                  | 用户信息中用于标记用户名称或 ID 的属性。示例中为 id                                                                                                                                      |
+| provider.[providerId].userMapping                          | 用户信息与 datart 用户的属性映射设置。datart 通过该映射配置来定位到系统中的具体用户                                                                                                      |
 
 如想了解更多信息，可以参考 [spring security oauth2](https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html) 官方文档。
 
@@ -311,10 +311,10 @@ spring:
 ```yaml
 spring:
   ldap:
-    urls: ldap://{IP}:{PORT}
-    base: xxx
-    username: { username }
-    password: { password }
+    urls: ldap://192.168.100.6:389
+    base: dc=example,dc=com
+    username: cn=admin,dc=example,dc=com
+    password: 123456
 ```
 
 | 配置项   | 说明                                                                                                          |
