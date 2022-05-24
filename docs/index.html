@@ -92,11 +92,13 @@
 <li>用户名：demo</li>
 <li>密码：123456</li>
 </ul>
-<h1 id="1-Docker-部署" class="article-heading"><a href="#1-Docker-部署" class="headerlink" title="1. Docker 部署"></a>1. Docker 部署<a class="article-anchor" href="#1-Docker-部署" aria-hidden="true"></a></h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -p 8080:8080 datart/datart </span><br></pre></td></tr></table></figure>
-<p>启动后可访问 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://docker_ip:8080/">http://docker_ip:8080</a><br>默认账户:用户名<code>demo</code>,密码<code>123456</code></p>
-<h2 id="1-1-配置外部数据库" class="article-heading"><a href="#1-1-配置外部数据库" class="headerlink" title="1.1. 配置外部数据库"></a>1.1. 配置外部数据库<a class="article-anchor" href="#1-1-配置外部数据库" aria-hidden="true"></a></h2><p>在没有外部数据库配置的情况下，Datart使用H2作为应用程序数据库。 强烈建议您将自己的Mysql数据库配置为应用程序数据库。  </p>
+<h1 id="1-Docker-部署" class="article-heading"><a href="#1-Docker-部署" class="headerlink" title="1. Docker 部署"></a>1. Docker 部署<a class="article-anchor" href="#1-Docker-部署" aria-hidden="true"></a></h1><p>datart 在 dockerhub 中的公共镜像地址为 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://hub.docker.com/r/datart/datart">datart/datart</a>。如果你本地已经安装了 docker，执行以下命令可以一键安装：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -p 8080:8080 datart/datart</span><br></pre></td></tr></table></figure>
+
+<p>镜像启动成功后，在浏览器中访问 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://docker_ip:8080/">http://docker_ip:8080</a> 进入登录页。镜像中提供初始账户，用户名<code>demo</code> 密码<code>123456</code></p>
+<h2 id="1-1-配置外部数据库" class="article-heading"><a href="#1-1-配置外部数据库" class="headerlink" title="1.1. 配置外部数据库"></a>1.1. 配置外部数据库<a class="article-anchor" href="#1-1-配置外部数据库" aria-hidden="true"></a></h2><p>在没有外部数据库配置的情况下，Datart 使用 H2 作为应用程序数据库。 强烈建议您将自己的 Mysql 数据库配置为应用程序数据库。</p>
 <p>创建空文件 <code>datart.conf</code> ,将以下内容粘贴到到文件中。并配置数据库连接信息。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">数据库连接配置</span></span><br><span class="line">datasource.ip=   </span><br><span class="line">datasource.port=</span><br><span class="line">datasource.database=</span><br><span class="line">datasource.username=</span><br><span class="line">datasource.password=</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">server</span></span><br><span class="line">server.port=8080</span><br><span class="line">server.address=0.0.0.0</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">datart config</span></span><br><span class="line">datart.address=http://127.0.0.1</span><br><span class="line">datart.send-mail=false</span><br><span class="line">datart.webdriver-path=http://127.0.0.1:4444/wd/hub</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">数据库连接配置</span></span><br><span class="line">datasource.ip=</span><br><span class="line">datasource.port=</span><br><span class="line">datasource.database=</span><br><span class="line">datasource.username=</span><br><span class="line">datasource.password=</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">server</span></span><br><span class="line">server.port=8080</span><br><span class="line">server.address=0.0.0.0</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">datart config</span></span><br><span class="line">datart.address=http://127.0.0.1</span><br><span class="line">datart.send-mail=false</span><br><span class="line">datart.webdriver-path=http://127.0.0.1:4444/wd/hub</span><br></pre></td></tr></table></figure>
 
 <p>运行 <code>docker run -d --name datart -v your_path/datart.conf:/datart/config/datart.conf -p 8080:8080 datart/datart</code></p>
 <h2 id="1-2-将用户文件挂载到外部" class="article-heading"><a href="#1-2-将用户文件挂载到外部" class="headerlink" title="1.2. 将用户文件挂载到外部"></a>1.2. 将用户文件挂载到外部<a class="article-anchor" href="#1-2-将用户文件挂载到外部" aria-hidden="true"></a></h2><p>默认配置下，用户文件（头像，文件数据源等）保存在 <code>files</code> 文件夹下，将这个路径挂载到外部，以在进行应用升级时，能够保留这些文件。</p>
@@ -105,86 +107,190 @@
 <h1 id="2-本地部署" class="article-heading"><a href="#2-本地部署" class="headerlink" title="2 本地部署"></a>2 本地部署<a class="article-anchor" href="#2-本地部署" aria-hidden="true"></a></h1><h2 id="2-1-环境准备" class="article-heading"><a href="#2-1-环境准备" class="headerlink" title="2.1 环境准备"></a>2.1 环境准备<a class="article-anchor" href="#2-1-环境准备" aria-hidden="true"></a></h2><ul>
 <li>JDK 1.8+</li>
 <li>MySql5.7+</li>
-<li>datart安装包（datart-server-*-install.zip)</li>
+<li>datart 安装包（datart-server-*-install.zip)</li>
 <li>Mail Server （可选）</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://chromedriver.chromium.org/">ChromeWebDriver</a> （可选）</li>
 <li>Redis （可选）</li>
 </ul>
-<p> 解压安装包</p>
+<p>解压安装包</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">unzip datart-server-*-install.zip</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-2-以独立模式运行" class="article-heading"><a href="#2-2-以独立模式运行" class="headerlink" title="2.2 以独立模式运行"></a>2.2 以独立模式运行<a class="article-anchor" href="#2-2-以独立模式运行" aria-hidden="true"></a></h2><p>安装包解压后，即可运行 ./bin/datart-server.sh start 来启动datart,启动后默认访问地址是: <a target="_blank" rel="noopener external nofollow noreferrer" href="http://127.0.0.1:8080/">http://127.0.0.1:8080</a>,默认用户<code>demo/123456</code></p>
-<p><em><strong>独立模式使用内置数据库作为应用数据库，目前无法保证数据迁移，建议配置外部数据库作为应用数据库</strong></em></p>
-<h2 id="2-3-配置外部数据库" class="article-heading"><a href="#2-3-配置外部数据库" class="headerlink" title="2.3 配置外部数据库"></a>2.3 配置外部数据库<a class="article-anchor" href="#2-3-配置外部数据库" aria-hidden="true"></a></h2><p><em><strong>要求Mysql5.7及以上版本</strong></em></p>
+<h2 id="2-2-以独立模式运行" class="article-heading"><a href="#2-2-以独立模式运行" class="headerlink" title="2.2 以独立模式运行"></a>2.2 以独立模式运行<a class="article-anchor" href="#2-2-以独立模式运行" aria-hidden="true"></a></h2><p>安装包解压后，即可运行 ./bin/datart-server.sh start 来启动 datart,启动后默认访问地址是: <a target="_blank" rel="noopener external nofollow noreferrer" href="http://127.0.0.1:8080/">http://127.0.0.1:8080</a>,默认用户<code>demo/123456</code></p>
+<p><strong><em>独立模式使用内置数据库作为应用数据库，目前无法保证数据迁移，建议配置外部数据库作为应用数据库</em></strong></p>
+<h2 id="2-3-配置外部数据库" class="article-heading"><a href="#2-3-配置外部数据库" class="headerlink" title="2.3 配置外部数据库"></a>2.3 配置外部数据库<a class="article-anchor" href="#2-3-配置外部数据库" aria-hidden="true"></a></h2><p><strong><em>要求 Mysql5.7 及以上版本</em></strong></p>
 <ul>
-<li>创建数据库，指定数据库编码为utf8</li>
+<li>创建数据库，指定数据库编码为 utf8</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; CREATE DATABASE `datart` CHARACTER SET <span class="string">&#x27;utf8&#x27;</span> COLLATE <span class="string">&#x27;utf8_general_ci&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<p><em><strong>注意：1.0.0-beta.2版本以前，需要手动执行<code>bin/datart.sql</code>来初始化数据库。此版本及以上版本，创建好数据库即可，在初次连接时会自动初始化数据库</strong></em></p>
-<p><em><strong>首次连接数据库(或者版本升级)时,建议使用一个权限较高的数据库账号登录(建议root账号)。因为首次连接会执行数据库初始化脚本，如果使用的数据库账号权限太低，会导致数据库初始化失败</strong></em></p>
+<p><strong><em>注意：1.0.0-beta.2 版本以前，需要手动执行<code>bin/datart.sql</code>来初始化数据库。此版本及以上版本，创建好数据库即可，在初次连接时会自动初始化数据库</em></strong></p>
+<p><strong><em>首次连接数据库(或者版本升级)时,建议使用一个权限较高的数据库账号登录(建议 root 账号)。因为首次连接会执行数据库初始化脚本，如果使用的数据库账号权限太低，会导致数据库初始化失败</em></strong></p>
 <ul>
 <li>基础配置：配置文件位于 config/datart.conf</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">数据库配置(必填):</span><br><span class="line"> 1. datasource.ip(数据库IP地址)</span><br><span class="line"> 2. datasource.port(数据库端口数据库端口)</span><br><span class="line"> 3. datasource.database(指定数据库)</span><br><span class="line"> 4. datasource.username(用户名)</span><br><span class="line"> 5. datasource.password(密码)</span><br><span class="line"> </span><br><span class="line">其它配置(选填):</span><br><span class="line"> 1. server.port(应用绑定端口地址,默认8080)</span><br><span class="line"> 2. server.address(应用绑定IP地址,默认 0.0.0.0)</span><br><span class="line"> 3. datart.address(datart 外部可访问地址,默认http://127.0.0.1)</span><br><span class="line"> 4. datart.send-mail(用户注册是否使用邮件激活,默认 <span class="literal">false</span> )</span><br><span class="line"> 5. datart.webdriver-path(截图驱动)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">数据库配置(必填):</span><br><span class="line"> 1. datasource.ip(数据库IP地址)</span><br><span class="line"> 2. datasource.port(数据库端口数据库端口)</span><br><span class="line"> 3. datasource.database(指定数据库)</span><br><span class="line"> 4. datasource.username(用户名)</span><br><span class="line"> 5. datasource.password(密码)</span><br><span class="line"></span><br><span class="line">其它配置(选填):</span><br><span class="line"> 1. server.port(应用绑定端口地址,默认8080)</span><br><span class="line"> 2. server.address(应用绑定IP地址,默认 0.0.0.0)</span><br><span class="line"> 3. datart.address(datart 外部可访问地址,默认http://127.0.0.1)</span><br><span class="line"> 4. datart.send-mail(用户注册是否使用邮件激活,默认 <span class="literal">false</span> )</span><br><span class="line"> 5. datart.webdriver-path(截图驱动)</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-4-完整配置-可选" class="article-heading"><a href="#2-4-完整配置-可选" class="headerlink" title="2.4. 完整配置 (可选)"></a>2.4. 完整配置 (可选)<a class="article-anchor" href="#2-4-完整配置-可选" aria-hidden="true"></a></h2><p><em><strong>配置文件位于 config/profiles/application-config.yml</strong></em></p>
-<p><em><strong>完整配置文件格式是yml格式,配置错误会导致程序无法启动。配置时一定要严格遵循yml格式。</strong></em></p>
-<p><em><strong>application-config.yml直接由spring-boot处理,其中的oauth2,redis,mail等配置项完全遵循spring-boot-autoconfigure配置</strong></em></p>
+<h2 id="2-4-完整配置（可选）" class="article-heading"><a href="#2-4-完整配置（可选）" class="headerlink" title="2.4. 完整配置（可选）"></a>2.4. 完整配置（可选）<a class="article-anchor" href="#2-4-完整配置（可选）" aria-hidden="true"></a></h2><p><strong><em>配置文件位于 config/profiles/application-config.yml</em></strong></p>
+<p><strong><em>完整配置文件格式是 yml 格式,配置错误会导致程序无法启动。配置时一定要严格遵循 yml 格式。</em></strong></p>
+<p><strong><em>application-config.yml 直接由 spring-boot 处理,其中的 oauth2,redis,mail 等配置项完全遵循 spring-boot-autoconfigure 配置</em></strong></p>
 <h3 id="2-4-1-数据库连接信息" class="article-heading"><a href="#2-4-1-数据库连接信息" class="headerlink" title="2.4.1 数据库连接信息"></a>2.4.1 数据库连接信息<a class="article-anchor" href="#2-4-1-数据库连接信息" aria-hidden="true"></a></h3><p><strong>可以在 <code>darart.conf</code> 文件中配置，也可直接修改这里的配置。推荐保留这里的默认配置，把数据库信息配置到 <code>darart.conf</code>文件中</strong></p>
-<p><em><strong>注：请务必保留连接串中的<code>allowMultiQueries=true</code>参数</strong></em></p>
+<p><strong><em>注：请务必保留连接串中的<code>allowMultiQueries=true</code>参数</em></strong></p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://$&#123;datasource.ip:null&#125;:$&#123;datasource.port:3306&#125;/$&#123;datasource.database:datart&#125;?&amp;allowMultiQueries=true&amp;characterEncoding=utf-8</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">$&#123;datasource.username:root&#125;</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">$&#123;datasource.password:123456&#125;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="2-4-2-服务端属性配置-可选" class="article-heading"><a href="#2-4-2-服务端属性配置-可选" class="headerlink" title="2.4.2 服务端属性配置 (可选)"></a>2.4.2 服务端属性配置 (可选)<a class="article-anchor" href="#2-4-2-服务端属性配置-可选" aria-hidden="true"></a></h3><ul>
-<li>Web服务绑定IP和端口</li>
+<h3 id="2-4-2-服务端属性配置（可选）" class="article-heading"><a href="#2-4-2-服务端属性配置（可选）" class="headerlink" title="2.4.2 服务端属性配置（可选）"></a>2.4.2 服务端属性配置（可选）<a class="article-anchor" href="#2-4-2-服务端属性配置（可选）" aria-hidden="true"></a></h3><ul>
+<li>Web 服务绑定 IP 和端口</li>
 </ul>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="string">$&#123;server.port:8080&#125;</span></span><br><span class="line">  <span class="attr">address:</span> <span class="string">$&#123;server.ip:0.0.0.0&#125;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>配置服务端访问地址，创建分享，激活/邀请用户时，将使用这个地址作为服务端访问地址。</li>
 </ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">datart:</span></span><br><span class="line">  <span class="attr">server:</span></span><br><span class="line">    <span class="attr">address:</span> <span class="string">$&#123;datart.address:http://127.0.0.1:8080&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">datart:</span></span><br><span class="line">  <span class="attr">server:</span></span><br><span class="line">    <span class="attr">address:</span> <span class="string">$&#123;datart.address:http://127.0.0.1:8080&#125;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>其它可选配置项</li>
 </ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">datart:</span></span><br><span class="line">  <span class="attr">user:</span></span><br><span class="line">    <span class="attr">active:</span></span><br><span class="line">      <span class="attr">send-mail:</span> <span class="literal">false</span>  <span class="comment"># 注册用户时是否需要邮件验证，如果没配置邮箱，这里需要设置为false</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">security:</span></span><br><span class="line">    <span class="attr">token:</span></span><br><span class="line">      <span class="attr">secret:</span> <span class="string">&quot;sHAS$as@fsdkKjd&quot;</span> <span class="comment">#加密密钥</span></span><br><span class="line">      <span class="attr">timeout-min:</span> <span class="number">30</span>  <span class="comment"># 登录会话有效时长，单位：分钟。</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">env:</span></span><br><span class="line">    <span class="attr">file-path:</span> <span class="string">$&#123;user.dir&#125;/files</span> <span class="comment"># 服务端文件保存位置 </span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">datart:</span></span><br><span class="line">  <span class="attr">user:</span></span><br><span class="line">    <span class="attr">active:</span></span><br><span class="line">      <span class="attr">send-mail:</span> <span class="literal">false</span> <span class="comment"># 注册用户时是否需要邮件验证，如果没配置邮箱，这里需要设置为false</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">security:</span></span><br><span class="line">    <span class="attr">token:</span></span><br><span class="line">      <span class="attr">secret:</span> <span class="string">&quot;sHAS$as@fsdkKjd&quot;</span> <span class="comment">#加密密钥</span></span><br><span class="line">      <span class="attr">timeout-min:</span> <span class="number">30</span> <span class="comment"># 登录会话有效时长，单位：分钟。</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">env:</span></span><br><span class="line">    <span class="attr">file-path:</span> <span class="string">$&#123;user.dir&#125;/files</span> <span class="comment"># 服务端文件保存位置</span></span><br></pre></td></tr></table></figure>
 
-<p><em>注意：加密密钥每个服务端部署前应该进行修改，且部署后不能再次修改。如果是集群部署，同一个集群内的secret要保持统一</em></p>
-<h3 id="2-5-邮件服务配置-可选" class="article-heading"><a href="#2-5-邮件服务配置-可选" class="headerlink" title="2.5 邮件服务配置 (可选)"></a>2.5 邮件服务配置 (可选)<a class="article-anchor" href="#2-5-邮件服务配置-可选" aria-hidden="true"></a></h3><p><em><strong>邮件服务用于定时任务发送，用户注册/激活/邀请等功能。要体验完整的datart功能，请务必正确的邮件服务。</strong></em></p>
+<p><em>注意：加密密钥每个服务端部署前应该进行修改，且部署后不能再次修改。如果是集群部署，同一个集群内的 secret 要保持统一</em></p>
+<h3 id="2-5-邮件服务配置（可选）" class="article-heading"><a href="#2-5-邮件服务配置（可选）" class="headerlink" title="2.5 邮件服务配置（可选）"></a>2.5 邮件服务配置（可选）<a class="article-anchor" href="#2-5-邮件服务配置（可选）" aria-hidden="true"></a></h3><p><strong><em>邮件服务用于定时任务发送，用户注册/激活/邀请等功能。要体验完整的 datart 功能，请务必正确的邮件服务。</em></strong></p>
 <ul>
 <li>以下为完整配置</li>
 </ul>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">mail:</span></span><br><span class="line">    <span class="attr">host:</span> &#123; <span class="string">邮箱服务地址</span> &#125;</span><br><span class="line">    <span class="attr">port:</span> &#123; <span class="string">端口号</span> &#125;</span><br><span class="line">    <span class="attr">username:</span> &#123; <span class="string">邮箱地址</span> &#125;</span><br><span class="line">    <span class="attr">fromAddress:</span></span><br><span class="line">    <span class="attr">password:</span> &#123; <span class="string">邮箱服务密码</span> &#125;</span><br><span class="line">    <span class="attr">senderName:</span> &#123; <span class="string">发送者昵称</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attr">properties:</span></span><br><span class="line">      <span class="attr">smtp:</span></span><br><span class="line">        <span class="attr">starttls:</span></span><br><span class="line">          <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">          <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">auth:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">mail:</span></span><br><span class="line">        <span class="attr">smtp:</span></span><br><span class="line">          <span class="attr">ssl:</span></span><br><span class="line">            <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
-<p><em><strong>配置说明</strong></em></p>
+<p><strong><em>配置说明</em></strong></p>
 <ul>
 <li><code>username</code>为邮箱地址，<code>password</code>邮箱服务密码，需要注意的是常见免费邮箱（如 163 邮箱、QQ 邮箱、gmail 等）这里应填客户端独立密码，可前往对应邮箱账号设置页面开启 SMTP<br>服务，并申请客户端授权码（或独立密码，各邮箱提供商叫法不同）</li>
 </ul>
 <p>下表为常见免费邮箱 SMTP 服务地址及端口：<br><img src="/datart-docs/images/deployment/mail.png" alt="mail.png"></p>
-<h3 id="2-6-截图配置-可选" class="article-heading"><a href="#2-6-截图配置-可选" class="headerlink" title="2.6 截图配置 (可选)"></a>2.6 截图配置 (可选)<a class="article-anchor" href="#2-6-截图配置-可选" aria-hidden="true"></a></h3><ul>
+<h3 id="2-6-截图配置（可选）" class="article-heading"><a href="#2-6-截图配置（可选）" class="headerlink" title="2.6 截图配置（可选）"></a>2.6 截图配置（可选）<a class="article-anchor" href="#2-6-截图配置（可选）" aria-hidden="true"></a></h3><ul>
 <li>截图配置用于定时任务中的发送图片功能。</li>
 </ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">datart:</span></span><br><span class="line">  <span class="attr">screenshot:</span></span><br><span class="line">    <span class="attr">timeout-seconds:</span> <span class="number">60</span></span><br><span class="line">    <span class="attr">webdriver-type:</span> <span class="string">CHROME</span></span><br><span class="line">    <span class="attr">webdriver-path:</span> &#123;<span class="string">Web</span> <span class="string">Driver</span> <span class="string">Path</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">datart:</span></span><br><span class="line">  <span class="attr">screenshot:</span></span><br><span class="line">    <span class="attr">timeout-seconds:</span> <span class="number">60</span></span><br><span class="line">    <span class="attr">webdriver-type:</span> <span class="string">CHROME</span></span><br><span class="line">    <span class="attr">webdriver-path:</span> &#123; <span class="string">Web</span> <span class="string">Driver</span> <span class="string">Path</span> &#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>配置说明<br><code>timeout-seconds</code> 指定截图超时时间<br><code>webdriver-type</code> 截图浏览器类型。(目前仅支持<code>CHROME</code>)<br><code>webdriver-path</code> webdriver地址。可执行文件的绝对地址，或远程webdriver的调用地址</li>
+<li>配置说明<br><code>timeout-seconds</code> 指定截图超时时间<br><code>webdriver-type</code> 截图浏览器类型。(目前仅支持<code>CHROME</code>)<br><code>webdriver-path</code> webdriver 地址。可执行文件的绝对地址，或远程 webdriver 的调用地址</li>
 </ul>
 <p>*</p>
-<p>注意：配置时请确保浏览器的版本和webdriver的版本匹配。推荐使用docker镜像 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://registry.hub.docker.com/r/selenium/standalone-chrome">selenium/standalone-chrome</a><br>来配置远程截图服务。*</p>
+<p>注意：配置时请确保浏览器的版本和 webdriver 的版本匹配。推荐使用 docker 镜像 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://registry.hub.docker.com/r/selenium/standalone-chrome">selenium/standalone-chrome</a><br>来配置远程截图服务。*</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -p 4444:4444 -d --name selenium-chrome --shm-size=&quot;2g&quot; selenium/standalone-chrome</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>然后配置 <code>webdriver-path: &quot;http://&#123;IP&#125;:4444/wd/hub&quot;</code></li>
 </ul>
-<h3 id="2-7-redis-可选" class="article-heading"><a href="#2-7-redis-可选" class="headerlink" title="2.7 redis (可选)"></a>2.7 redis (可选)<a class="article-anchor" href="#2-7-redis-可选" aria-hidden="true"></a></h3><ul>
-<li>redis用于查询结果缓存<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">redis:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">6379</span></span><br><span class="line">  <span class="attr">host:</span> &#123; <span class="string">HOST</span> &#125;</span><br></pre></td></tr></table></figure></li>
+<h3 id="2-7-redis（可选）" class="article-heading"><a href="#2-7-redis（可选）" class="headerlink" title="2.7 redis（可选）"></a>2.7 redis（可选）<a class="article-anchor" href="#2-7-redis（可选）" aria-hidden="true"></a></h3><ul>
+<li>redis 用于查询结果缓存</li>
 </ul>
-<h3 id="2-8-oauth2-可选" class="article-heading"><a href="#2-8-oauth2-可选" class="headerlink" title="2.8 oauth2 (可选)"></a>2.8 oauth2 (可选)<a class="article-anchor" href="#2-8-oauth2-可选" aria-hidden="true"></a></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># security:</span><br><span class="line">#   oauth2:</span><br><span class="line">#     client:</span><br><span class="line">#       registration:</span><br><span class="line">#         cas:</span><br><span class="line">#           provider: cas</span><br><span class="line">#           client-id: &quot;xxxxx&quot;</span><br><span class="line">#           client-name: &quot;Sign in with CAS&quot;</span><br><span class="line">#           client-secret: &quot;xxx&quot;</span><br><span class="line">#           authorization-grant-type: authorization_code</span><br><span class="line">#           client-authentication-method: post</span><br><span class="line">#           redirect-uri: &quot;&#123;baseUrl&#125;/login/oauth2/code/&#123;registrationId&#125;&quot;</span><br><span class="line">#           scope: userinfo</span><br><span class="line">#       provider:</span><br><span class="line">#         cas:</span><br><span class="line">#           authorization-uri: https://cas.xxx.com/cas/oauth2.0/authorize</span><br><span class="line">#           token-uri: https://cas.xxx.com/cas/oauth2.0/accessToken</span><br><span class="line">#           user-info-uri: https://cas.xxx.com/cas/oauth2.0/profile</span><br><span class="line">#           user-name-attribute: id</span><br><span class="line">#           userMapping:</span><br><span class="line">#             email: &quot;attributes.email&quot;</span><br><span class="line">#             name: &quot;attributes.name&quot;</span><br><span class="line">#             avatar: &quot;attributes.avatar&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">6379</span></span><br><span class="line">    <span class="attr">host:</span> &#123; <span class="string">HOST</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-8-单点登录配置（可选）" class="article-heading"><a href="#2-8-单点登录配置（可选）" class="headerlink" title="2.8 单点登录配置（可选）"></a>2.8 单点登录配置（可选）<a class="article-anchor" href="#2-8-单点登录配置（可选）" aria-hidden="true"></a></h3><p>datart 支持配置基于 OAuth2 和 LDAP 的单点登录方式。</p>
+<p>用户首次使用所配置的单点登录方式登录成功后，datart 会使用用户的邮箱注册一个新账户。在此之后的登录都视为该账户登录。</p>
+<h4 id="2-8-1-OAuth2" class="article-heading"><a href="#2-8-1-OAuth2" class="headerlink" title="2.8.1 OAuth2"></a>2.8.1 OAuth2<a class="article-anchor" href="#2-8-1-OAuth2" aria-hidden="true"></a></h4><p>启用 OAuth2 登录需要在 <code>spring.security.oauth2.client</code> 下配置客户端信息，可以配置多个 OAuth2 客户端。在配置之前，需要到提供 OAuth2 服务的网站获取 <code>Client ID</code> 和 <code>Client Secret</code></p>
+<p>下面为一个 OAuth2 客户端的配置示例：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">security:</span></span><br><span class="line">    <span class="attr">oauth2:</span></span><br><span class="line">      <span class="attr">client:</span></span><br><span class="line">        <span class="attr">registration:</span></span><br><span class="line">          <span class="attr">cas:</span></span><br><span class="line">            <span class="attr">provider:</span> <span class="string">cas</span></span><br><span class="line">            <span class="attr">client-id:</span> <span class="string">&quot;xxxxx&quot;</span></span><br><span class="line">            <span class="attr">client-name:</span> <span class="string">&quot;Sign in with CAS&quot;</span></span><br><span class="line">            <span class="attr">client-secret:</span> <span class="string">&quot;xxx&quot;</span></span><br><span class="line">            <span class="attr">authorization-grant-type:</span> <span class="string">authorization_code</span></span><br><span class="line">            <span class="attr">client-authentication-method:</span> <span class="string">post</span></span><br><span class="line">            <span class="attr">redirect-uri:</span> <span class="string">&quot;&#123;baseUrl&#125;/login/oauth2/code/&#123;registrationId&#125;&quot;</span></span><br><span class="line">            <span class="attr">scope:</span> <span class="string">userinfo</span></span><br><span class="line">        <span class="attr">provider:</span></span><br><span class="line">          <span class="attr">cas:</span></span><br><span class="line">            <span class="attr">authorization-uri:</span> <span class="string">https://cas.xxx.com/cas/oauth2.0/authorize</span></span><br><span class="line">            <span class="attr">token-uri:</span> <span class="string">https://cas.xxx.com/cas/oauth2.0/accessToken</span></span><br><span class="line">            <span class="attr">user-info-uri:</span> <span class="string">https://cas.xxx.com/cas/oauth2.0/profile</span></span><br><span class="line">            <span class="attr">user-name-attribute:</span> <span class="string">id</span></span><br><span class="line">            <span class="attr">userMapping:</span></span><br><span class="line">              <span class="attr">email:</span> <span class="string">&quot;attributes.email&quot;</span></span><br><span class="line">              <span class="attr">name:</span> <span class="string">&quot;attributes.name&quot;</span></span><br><span class="line">              <span class="attr">avatar:</span> <span class="string">&quot;attributes.avatar&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>在 <code>spring.security.oauth2.client</code> 底下有 <code>registration</code> 和 <code>provider</code> 两个配置项，<code>registration</code> 包含所有客户端的注册信息，<code>provider</code> 包含所有客户端所访问的 OAuth2 服务提供者的相关信息。下方表格将参照示例说明每一个配置项的作用：</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>registration.[registrationId]</td>
+<td>注册 ID；自定义名称，示例中命名为 cas</td>
+</tr>
+<tr>
+<td>registration.[registrationId].provider</td>
+<td>关联服务提供者 ID；通过此项来关联到 provider 下配置的具体服务提供者</td>
+</tr>
+<tr>
+<td>registration.[registrationId].client-id</td>
+<td>客户端 ID；从 OAuth2 服务网站获取的 Client ID</td>
+</tr>
+<tr>
+<td>registration.[registrationId].client-name</td>
+<td>客户端名称；内容自定义</td>
+</tr>
+<tr>
+<td>registration.[registrationId].client-secret</td>
+<td>客户端密钥；从 OAuth2 服务网站获取的 Client Secret</td>
+</tr>
+<tr>
+<td>registration.[registrationId].authorization-grant-type</td>
+<td>授权许可类型；示例中为 <code>authorization_code</code>，更多信息请参考<a target="_blank" rel="noopener external nofollow noreferrer" href="https://datatracker.ietf.org/doc/html/rfc6749#section-1.3">The OAuth 2.0 Authorization Framework Authorization Grant types</a></td>
+</tr>
+<tr>
+<td>registration.[registrationId].client-authentication-method</td>
+<td>客户端认证方法；http method，示例中为 <code>post</code></td>
+</tr>
+<tr>
+<td>registration.[registrationId].redirect-uri</td>
+<td>认证成功回调地址；支持模板语法</td>
+</tr>
+<tr>
+<td>registration.[registrationId].scope</td>
+<td>请求范围；指从授权请求获取的内容范围，例如 openid、email 或 profile。示例中从授权请求获取了 userinfo</td>
+</tr>
+<tr>
+<td>provider.[providerId]</td>
+<td>服务提供者 ID；自定义名称，示例中命名为 cas</td>
+</tr>
+<tr>
+<td>provider.[providerId].authorization-uri</td>
+<td>授权请求的 URL</td>
+</tr>
+<tr>
+<td>provider.[providerId].token-uri</td>
+<td>获取 Token 请求的 URL</td>
+</tr>
+<tr>
+<td>provider.[providerId].user-info-uri</td>
+<td>获取用户信息请求的 URL</td>
+</tr>
+<tr>
+<td>provider.[providerId].user-name-attribute</td>
+<td>用户信息中用于标记用户名称或 ID 的属性。示例中为 id</td>
+</tr>
+<tr>
+<td>provider.[providerId].userMapping</td>
+<td>用户信息与 datart 用户的属性映射设置。datart 通过该映射配置来定位到系统中的具体用户</td>
+</tr>
+</tbody></table>
+<p>如想了解更多信息，可以参考 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html">spring security oauth2</a> 官方文档。</p>
+<h4 id="2-8-2-LDAP" class="article-heading"><a href="#2-8-2-LDAP" class="headerlink" title="2.8.2 LDAP"></a>2.8.2 LDAP<a class="article-anchor" href="#2-8-2-LDAP" aria-hidden="true"></a></h4><p>启用 LDAP 登录需要在 <code>spring.ldap</code> 下配置客户端信息。下面为开启 LDAP 登录的配置示例：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">ldap:</span></span><br><span class="line">    <span class="attr">urls:</span> <span class="string">ldap://&#123;IP&#125;:&#123;PORT&#125;</span></span><br><span class="line">    <span class="attr">base:</span> <span class="string">xxx</span></span><br><span class="line">    <span class="attr">username:</span> &#123; <span class="string">username</span> &#125;</span><br><span class="line">    <span class="attr">password:</span> &#123; <span class="string">password</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>urls</td>
+<td>LDAP 服务器 URL；格式固定为 <code>ldap://服务IP或域名:端口</code></td>
+</tr>
+<tr>
+<td>base</td>
+<td>基本专有名称（DN）</td>
+</tr>
+<tr>
+<td>username</td>
+<td>使用 LDAP 服务器进行身份验证时使用的用户名（principal）；常规情况下为管理员用户的 DN（例如 cn=Administrator）</td>
+</tr>
+<tr>
+<td>password</td>
+<td>使用 LDAP 服务器进行身份验证时使用的密码（credentials）</td>
+</tr>
+</tbody></table>
 
                 </div>
                 <footer class="article-footer">
-                  <time class="article-footer-updated" datetime="2022-05-17T16:01:40.409Z" itemprop="dateModified">Last updated: 2022-05-17</time>
+                  <time class="article-footer-updated" datetime="2022-05-24T04:10:38.384Z" itemprop="dateModified">Last updated: 2022-05-24</time>
                   <a href="first-visualization.html" class="article-footer-next" title="第一个可视化作品"><span>Next</span><i class="fa fa-chevron-right"></i></a>
                 </footer>
               </div>
@@ -192,7 +298,7 @@
             <aside id="article-toc" role="navigation">
               <div id="article-toc-inner">
                 <strong class="sidebar-title">Contents</strong>
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-%E5%9C%A8%E7%BA%BF%E4%BD%93%E9%AA%8C-Demo"><span class="toc-text">0. 在线体验 Demo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Docker-%E9%83%A8%E7%BD%B2"><span class="toc-text">1. Docker 部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E9%85%8D%E7%BD%AE%E5%A4%96%E9%83%A8%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">1.1. 配置外部数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%B0%86%E7%94%A8%E6%88%B7%E6%96%87%E4%BB%B6%E6%8C%82%E8%BD%BD%E5%88%B0%E5%A4%96%E9%83%A8"><span class="toc-text">1.2. 将用户文件挂载到外部</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2"><span class="toc-text">2 本地部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-text">2.1 环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E4%BB%A5%E7%8B%AC%E7%AB%8B%E6%A8%A1%E5%BC%8F%E8%BF%90%E8%A1%8C"><span class="toc-text">2.2 以独立模式运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E9%85%8D%E7%BD%AE%E5%A4%96%E9%83%A8%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">2.3 配置外部数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E5%AE%8C%E6%95%B4%E9%85%8D%E7%BD%AE-%E5%8F%AF%E9%80%89"><span class="toc-text">2.4. 完整配置 (可选)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E4%BF%A1%E6%81%AF"><span class="toc-text">2.4.1 数据库连接信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%B1%9E%E6%80%A7%E9%85%8D%E7%BD%AE-%E5%8F%AF%E9%80%89"><span class="toc-text">2.4.2 服务端属性配置 (可选)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE-%E5%8F%AF%E9%80%89"><span class="toc-text">2.5 邮件服务配置 (可选)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E6%88%AA%E5%9B%BE%E9%85%8D%E7%BD%AE-%E5%8F%AF%E9%80%89"><span class="toc-text">2.6 截图配置 (可选)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-redis-%E5%8F%AF%E9%80%89"><span class="toc-text">2.7 redis (可选)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-oauth2-%E5%8F%AF%E9%80%89"><span class="toc-text">2.8 oauth2 (可选)</span></a></li></ol></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-%E5%9C%A8%E7%BA%BF%E4%BD%93%E9%AA%8C-Demo"><span class="toc-text">0. 在线体验 Demo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Docker-%E9%83%A8%E7%BD%B2"><span class="toc-text">1. Docker 部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E9%85%8D%E7%BD%AE%E5%A4%96%E9%83%A8%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">1.1. 配置外部数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%B0%86%E7%94%A8%E6%88%B7%E6%96%87%E4%BB%B6%E6%8C%82%E8%BD%BD%E5%88%B0%E5%A4%96%E9%83%A8"><span class="toc-text">1.2. 将用户文件挂载到外部</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2"><span class="toc-text">2 本地部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-text">2.1 环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E4%BB%A5%E7%8B%AC%E7%AB%8B%E6%A8%A1%E5%BC%8F%E8%BF%90%E8%A1%8C"><span class="toc-text">2.2 以独立模式运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E9%85%8D%E7%BD%AE%E5%A4%96%E9%83%A8%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">2.3 配置外部数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E5%AE%8C%E6%95%B4%E9%85%8D%E7%BD%AE%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-text">2.4. 完整配置（可选）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E4%BF%A1%E6%81%AF"><span class="toc-text">2.4.1 数据库连接信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%B1%9E%E6%80%A7%E9%85%8D%E7%BD%AE%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-text">2.4.2 服务端属性配置（可选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-text">2.5 邮件服务配置（可选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E6%88%AA%E5%9B%BE%E9%85%8D%E7%BD%AE%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-text">2.6 截图配置（可选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-redis%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-text">2.7 redis（可选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E9%85%8D%E7%BD%AE%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-text">2.8 单点登录配置（可选）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-1-OAuth2"><span class="toc-text">2.8.1 OAuth2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8-2-LDAP"><span class="toc-text">2.8.2 LDAP</span></a></li></ol></li></ol></li></ol></li></ol>
                 <a href="#" id="article-toc-top">Back to Top</a>
               </div>
             </aside>
