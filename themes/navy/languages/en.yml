@@ -38,6 +38,8 @@ sidebar:
     chart_plugin: 自定义插件化图表
     chart_helper_api: 核心API描述文档
     jdbc: 扩展JDBC数据源
+    others: 其他
+    tenant_management_mode: 租户管理模式
 
 
     overview: Overview

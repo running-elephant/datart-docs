@@ -2,7 +2,7 @@
 title: 部署
 ---
 
-# 0. 在线体验 Demo
+# 0. 在线体验
 
 - http://datart-demo.retech.cc
 - 用户名：demo
@@ -16,70 +16,101 @@ datart 在 dockerhub 中的公共镜像地址为 [datart/datart](https://hub.doc
 docker run -p 8080:8080 datart/datart
 ```
 
-镜像启动成功后，在浏览器中访问 <http://docker_ip:8080> 进入登录页。镜像中提供初始账户，用户名`demo` 密码`123456`
+镜像启动成功后，在浏览器中访问 <http://docker_ip:8080> 进入登录页。镜像中提供初始账户，用户名 `demo` 密码 `123456`
 
-## 1.1. 配置外部数据库
+## 1.1 配置应用数据库
 
-在没有外部数据库配置的情况下，Datart 使用 H2 作为应用程序数据库。 强烈建议您将自己的 Mysql 数据库配置为应用程序数据库。
+在默认情况下，Datart 使用内置的 H2 作为应用程序数据库。 如果将 datart 用于生产环境，建议使用 MySQL 作为应用程序数据库。配置步骤如下：
 
-创建空文件 `datart.conf` ,将以下内容粘贴到到文件中。并配置数据库连接信息。
+1. 新建一个名为 `datart.conf` 的空文件，将以下内容填写完整，然后粘贴到到文件中
 
 ```shell
-# 数据库连接配置
-datasource.ip=
-datasource.port=
-datasource.database=
-datasource.username=
-datasource.password=
+# 应用数据库配置
+datasource.ip=localhost       # 数据库IP或域名
+datasource.port=3306          # 数据库端口
+datasource.database=datart    # 数据库名称
+datasource.username=root      # 用户名
+datasource.password=root      # 密码
 
-# server
-server.port=8080
-server.address=0.0.0.0
+# 应用服务器配置
+server.port=8080              # 服务器端口
+server.address=0.0.0.0        # 服务器地址（内网地址）
 
-# datart config
-datart.address=http://127.0.0.1
-datart.send-mail=false
-datart.webdriver-path=http://127.0.0.1:4444/wd/hub
+# datart 全局配置
+datart.address=http://127.0.0.1:8080                # 应用主页地址（公网地址）
+datart.send-mail=false                              # 注册账户时是否需要邮件激活
+datart.webdriver-path=http://127.0.0.1:4444/wd/hub  # ChromeDriver 地址（用于截图）
 ```
 
-运行 `docker run -d --name datart -v your_path/datart.conf:/datart/config/datart.conf -p 8080:8080 datart/datart`
+2. 运行以下命令，使用新建的 `datart.conf` 配置启动镜像
 
-## 1.2. 将用户文件挂载到外部
+```shell
+docker run -d --name datart -v your_path/datart.conf:/datart/config/datart.conf -p 8080:8080 datart/datart
+```
 
-默认配置下，用户文件（头像，文件数据源等）保存在 `files` 文件夹下，将这个路径挂载到外部，以在进行应用升级时，能够保留这些文件。
+## 1.2 文件挂载
 
-在启动命令中增加参数 `-v your_path/files:/datart/files` 即可。以下是完整命令
+在默认情况下，用户在应用中生成文件（头像、文件数据源等）保存在 `files` 路径下。为保证在应用升级时这些文件得以保留，可以将这个路径挂载到容器外部；在启动命令中增加参数 `-v your_path/files:/datart/files` 即可。以下是完整命令：
 
-`docker run -d --name datart -v your_path/datart.conf:/datart/config/datart.conf -v your_path/files:/datart/files -p 8080:8080 datart/datart`
+```shell
+docker run -d --name datart -v your_path/datart.conf:/datart/config/datart.conf -v your_path/files:/datart/files -p 8080:8080 datart/datart
+```
 
-# 2 本地部署
+# 2. 本地部署
 
 ## 2.1 环境准备
 
 - JDK 1.8+
 - MySql5.7+
 - datart 安装包（datart-server-\*-install.zip)
-- Mail Server （可选）
-- [ChromeWebDriver](https://chromedriver.chromium.org/) （可选）
+- [Chrome](https://www.google.com/chrome/) 和 [WebDriver](https://chromedriver.chromium.org/) （可选）
 - Redis （可选）
 
-解压安装包
+## 2.2 文件结构
+
+首先解压安装包
 
 ```bash
 unzip datart-server-*-install.zip
 ```
 
-## 2.2 以独立模式运行
+解压之后的文件结构如下
 
-安装包解压后，即可运行 ./bin/datart-server.sh start 来启动 datart,启动后默认访问地址是: <http://127.0.0.1:8080>,默认用户`demo/123456`
+```yml
+├── bin               # 执行脚本目录
+├── config            # 配置文件目录
+├── (files)           # 应用生成文件目录；应用运行后生成
+├── lib               # 项目依赖目录
+├── (logs)            # 日志目录；应用运行后生成
+├── static            # 静态资源目录
+├── nohup.out         # 缺省日志输出文件
+├── Deployment.md     # 部署说明
+├── Dockerfile
+└── LICENSE
+```
 
-**_独立模式使用内置数据库作为应用数据库，目前无法保证数据迁移，建议配置外部数据库作为应用数据库_**
+## 2.3 启动应用
 
-## 2.3 配置外部数据库
+运行 `bin` 目录下的脚本来启动应用，Linux 用户使用 `bin/datart-server.sh`，Windows 用户使用 `bin/datart-server.cmd`。以 Linux 系统举例，命令列表如下：
 
-**_要求 Mysql5.7 及以上版本_**
+```bash
+${DATART_HOME}/bin/datart-server.sh start       # 启动
+${DATART_HOME}/bin/datart-server.sh stop        # 停止
+${DATART_HOME}/bin/datart-server.sh status      # 查看状态
+${DATART_HOME}/bin/datart-server.sh restart     # 重启
+```
 
-- 创建数据库，指定数据库编码为 utf8
+### 2.3.1 直接运行
+
+安装包解压后，即可直接运行脚本启动应用。**需要注意的是，直接启动时使用的是内置的 H2 数据库作为应用数据库，升级应用时无法迁移数据，不建议在生产环境使用**
+
+启动之后通过 <http://127.0.0.1:8080> 地址访问应用主页，内置初始账户，用户名 `demo` 密码 `123456`
+
+### 2.3.2 配置应用数据库
+
+datart 目前支持配置 MySQL 作为应用数据库；**需要 MySQL 5.7 及以上版本**。配置步骤如下：
+
+1. 创建数据库，指定数据库编码为 utf8
 
 ```bash
 mysql> CREATE DATABASE `datart` CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
@@ -89,90 +120,183 @@ mysql> CREATE DATABASE `datart` CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
 
 **_首次连接数据库(或者版本升级)时,建议使用一个权限较高的数据库账号登录(建议 root 账号)。因为首次连接会执行数据库初始化脚本，如果使用的数据库账号权限太低，会导致数据库初始化失败_**
 
-- 基础配置：配置文件位于 config/datart.conf
+2. 编辑 `config/datart.conf` 文件完成配置
 
 ```bash
-   数据库配置(必填):
-    1. datasource.ip(数据库IP地址)
-    2. datasource.port(数据库端口数据库端口)
-    3. datasource.database(指定数据库)
-    4. datasource.username(用户名)
-    5. datasource.password(密码)
-
-   其它配置(选填):
-    1. server.port(应用绑定端口地址,默认8080)
-    2. server.address(应用绑定IP地址,默认 0.0.0.0)
-    3. datart.address(datart 外部可访问地址,默认http://127.0.0.1)
-    4. datart.send-mail(用户注册是否使用邮件激活,默认 false )
-    5. datart.webdriver-path(截图驱动)
+datasource.ip=localhost           # 数据库IP或域名
+datasource.port=3306              # 数据库端口
+datasource.database=datart        # 数据库名称
+datasource.username=root          # 用户名
+datasource.password=root          # 密码
 ```
 
-## 2.4. 完整配置（可选）
+# 3. 详细配置
 
-**_配置文件位于 config/profiles/application-config.yml_**
+datart 的所有应用配置文件在 `config` 目录下。如果需要使用 datart 的全部功能，在这之前先了解一下如何进行配置
 
-**_完整配置文件格式是 yml 格式,配置错误会导致程序无法启动。配置时一定要严格遵循 yml 格式。_**
+`config` 目录结构如下：
 
-**_application-config.yml 直接由 spring-boot 处理,其中的 oauth2,redis,mail 等配置项完全遵循 spring-boot-autoconfigure 配置_**
+```yml
+├── datart.conf
+├── jdbc-driver-ext.yml
+├── logback.xml
+└── profiles
+└── application-config.yml
+```
 
-### 2.4.1 数据库连接信息
+- `datart.conf` 为快捷配置文件；如果你只想快速体验 datart 的功能，配置它就足够了。`datart.conf` 本质上是 `application-config.yml` 中常用配置的快捷方式
+- `jdbc-driver-ext.yml` 为 JDBC 数据源扩展文件；详细内容请参考[数据源](source)和[扩展 JDBC 数据源](jdbc)
+- `logback.xml` 为日志配置文件
+- `application-config.yml` 为应用配置文件，包含所有的应用配置。建议将所有的应用配置文件拷贝都放置到 `profiles` 目录下
 
-**可以在 `darart.conf` 文件中配置，也可直接修改这里的配置。推荐保留这里的默认配置，把数据库信息配置到 `darart.conf`文件中**
+## 3.1 快捷配置
 
-**_注：请务必保留连接串中的`allowMultiQueries=true`参数_**
+`datart.conf` 为快捷配置文件；所有配置参数如下：
+
+```bash
+# ====== 应用数据库配置 ======
+
+# 数据库IP或域名
+datasource.ip=localhost
+
+# 数据库端口
+datasource.port=3306
+
+# 数据库名称
+datasource.database=datart
+
+# 用户名
+datasource.username=root
+
+# 密码
+datasource.password=root
+
+# ====== 应用服务器配置 ======
+
+# 服务器端口
+server.port=8080
+
+# 服务器地址
+#   Web 服务所绑定的本机网卡地址，一般为内网地址
+server.address=0.0.0.0
+
+# ====== datart 全局配置 ======
+
+# 应用主页地址
+#   浏览器访问应用主页输入的地址，一般为公网地址
+datart.address=http://127.0.0.1:8080
+
+# Chrome WebDriver 地址
+datart.webdriver-path=http://127.0.0.1:4444/wd/hub
+
+# 是否允许注册账户
+datart.user.register=true
+# 注册账户时，是否需要邮件激活
+datart.send-mail=false
+
+# 注册邮件有效期/小时, 默认48小时
+datart.register.expire-hours=
+# 邀请邮件有效期/小时, 默认48小时
+datart.invite.expire-hours=
+
+# 租户管理模式：platform-平台(默认)，team-团队
+datart.tenant-management-mode=platform
+
+# 团队管理员用户名/密码
+#   仅在team模式下有效，如果两项都正确填写，在启动应用时会在数据中重置该用户的密码
+datart.admin.username=admin
+datart.admin.password=123456
+```
+
+## 3.2 应用配置
+
+`application-config.yml` 为应用配置文件，里面包含 datart 应用的所有配置。`datart.conf` 中的内容实际上是 `application-config.yml` 部分配置项的快捷方式。
+
+在编辑配置时需要注意以下事项：
+
+1. **一定要严格遵循 yml 格式，注意空格与缩进，错误配置会导致程序无法正常启动**
+2. `application-config.yml` 直接由 spring-boot 处理，其中的 oauth2, redis, mail 等配置项完全遵循 spring-boot-autoconfigure 配置
+
+### 3.2.1 应用数据库配置
+
+`spring.datasource` 为应用数据库配置
 
 ```yaml
 spring:
   datasource:
+    # 驱动类名称
     driver-class-name: com.mysql.cj.jdbc.Driver
+    # 数据源类型
     type: com.alibaba.druid.pool.DruidDataSource
+    # 连接字符串
     url: jdbc:mysql://${datasource.ip:null}:${datasource.port:3306}/${datasource.database:datart}?&allowMultiQueries=true&characterEncoding=utf-8
+    # 用户名
     username: ${datasource.username:root}
+    # 密码
     password: ${datasource.password:123456}
 ```
 
-### 2.4.2 服务端属性配置（可选）
+**注意：请务必保留 url 中的`allowMultiQueries=true`参数**
 
-- Web 服务绑定 IP 和端口
+默认情况下，会读取 `datart.conf` 中的应用数据库配置项填充到模板中
+
+### 3.2.2 应用服务器配置
 
 ```yaml
 server:
+  # Web 服务绑定端口
   port: ${server.port:8080}
+  # Web 服务绑定地址
   address: ${server.ip:0.0.0.0}
 ```
+
+需要注意，所绑定的地址为本地网卡 IP 地址，一般为内网地址
+
+同样在默认情况下，会读取 `datart.conf` 中的应用服务器配置项填充到模板中
+
+### 3.2.3 datart 全局配置
 
 - 配置服务端访问地址，创建分享，激活/邀请用户时，将使用这个地址作为服务端访问地址。
 
 ```yaml
 datart:
   server:
+    # 应用主页地址；一般为公网地址
     address: ${datart.address:http://127.0.0.1:8080}
-```
 
-- 其它可选配置项
+  # 租户管理模式
+  #   platform: 平台模式
+  #   team: 团队模式
+  tenant-management-mode: platform
 
-```yaml
-datart:
   user:
     active:
-      send-mail: false # 注册用户时是否需要邮件验证，如果没配置邮箱，这里需要设置为false
+      # 注册用户时是否需要邮件激活
+      send-mail: false
 
   security:
     token:
-      secret: "sHAS$as@fsdkKjd" #加密密钥
-      timeout-min: 30 # 登录会话有效时长，单位：分钟。
+      # 加密密钥
+      secret: "sHAS$as@fsdkKjd"
+      # 登录会话有效时长（分钟）
+      timeout-min: 30
 
   env:
-    file-path: ${user.dir}/files # 服务端文件保存位置
+    # 应用生成文件保存路径
+    file-path: ${user.dir}/files
 ```
 
-_注意：加密密钥每个服务端部署前应该进行修改，且部署后不能再次修改。如果是集群部署，同一个集群内的 secret 要保持统一_
+- 应用主页地址：应用程序新建分享链接、截图、定时任务、激活账户、邀请成员时会使用到该地址
+- 租户管理模式：参考[租户管理模式](tenant-management-mode)中的详细介绍
+- 邮件激活：如果没有配置[邮件服务](#3-2-4-邮件服务配置)，请把它设为 false
+- 加密密钥：
+  - 密钥被用于应用鉴权 token 和 [JDBC 数据源密码](source#1-JDBC)加密
+  - 密钥在应用投入使用之后不建议修改，会导致解密错误
+  - 如果是集群部署 datart，同一个集群内的密钥要保持统一
 
-### 2.5 邮件服务配置（可选）
+### 3.2.4 邮件服务配置
 
-**_邮件服务用于定时任务发送，用户注册/激活/邀请等功能。要体验完整的 datart 功能，请务必正确的邮件服务。_**
-
-- 以下为完整配置
+邮件服务用于定时任务邮件发送，用户激活，组织成员邀请，如果需要使用这些功能，请务必正确地配置邮件服务
 
 ```yaml
 spring:
@@ -196,45 +320,37 @@ spring:
             enable: true
 ```
 
-**_配置说明_**
+`username` 为邮箱地址，`password` 为邮箱服务密码，需要注意的是常见免费邮箱（如 163 邮箱、QQ 邮箱、gmail 等）这里应填客户端独立密码，可前往对应邮箱账号设置页面开启 SMTP 服务，并申请客户端授权码（或独立密码，各邮箱提供商叫法不同）
 
-- `username`为邮箱地址，`password`邮箱服务密码，需要注意的是常见免费邮箱（如 163 邮箱、QQ 邮箱、gmail 等）这里应填客户端独立密码，可前往对应邮箱账号设置页面开启 SMTP
-  服务，并申请客户端授权码（或独立密码，各邮箱提供商叫法不同）
+以下为常见免费邮箱 SMTP 服务地址及端口：
 
-下表为常见免费邮箱 SMTP 服务地址及端口：
 ![mail.png](/datart-docs/images/deployment/mail.png)
 
-### 2.6 截图配置（可选）
+### 3.2.5 截图配置
 
-- 截图配置用于定时任务中的发送图片功能。
+在 datart 中，导出截图、导出 PDF、定时邮件发送截图，都需要完成截图配置后才能正常使用
 
 ```yaml
 datart:
   screenshot:
+    # 截图超时时间（秒）
     timeout-seconds: 60
+    # 工具类型；目前仅支持 CHROME
     webdriver-type: CHROME
+    # WebDriver 可执行文件地址；填写服务器路径或远程地址都可以
     webdriver-path: { Web Driver Path }
 ```
 
-- 配置说明
-  `timeout-seconds` 指定截图超时时间
-  `webdriver-type` 截图浏览器类型。(目前仅支持`CHROME`)
-  `webdriver-path` webdriver 地址。可执行文件的绝对地址，或远程 webdriver 的调用地址
+- datart 没有内置 Chrome 浏览器，需要自行安装
+- 请确保 Chrome 版本和 WebDriver 版本匹配。推荐使用 docker 镜像 [selenium/standalone-chrome](https://registry.hub.docker.com/r/selenium/standalone-chrome) 来配置远程截图服务，参考以下步骤：
 
-*
+  1. 执行命令 `docker run -p 4444:4444 -d --name selenium-chrome --shm-size="2g" selenium/standalone-chrome`
 
-注意：配置时请确保浏览器的版本和 webdriver 的版本匹配。推荐使用 docker 镜像 [selenium/standalone-chrome](https://registry.hub.docker.com/r/selenium/standalone-chrome)
-来配置远程截图服务。\*
+  2. 配置 `webdriver-path: "http://{IP}:4444/wd/hub"`
 
-```
-docker run -p 4444:4444 -d --name selenium-chrome --shm-size="2g" selenium/standalone-chrome
-```
+### 3.2.6 缓存（Redis）配置
 
-- 然后配置 `webdriver-path: "http://{IP}:4444/wd/hub"`
-
-### 2.7 redis（可选）
-
-- redis 用于查询结果缓存
+配置了 Redis 之后，可以在[数据视图的高级配置中中开启缓存](view#7-高级配置)
 
 ```yaml
 spring:
@@ -243,13 +359,13 @@ spring:
     host: { HOST }
 ```
 
-### 2.8 单点登录配置（可选）
+### 3.2.7 单点登录配置
 
 datart 支持配置基于 OAuth2 和 LDAP 的单点登录方式。
 
 用户首次使用所配置的单点登录方式登录成功后，datart 会使用用户的邮箱注册一个新账户。在此之后的登录都视为该账户登录。
 
-#### 2.8.1 OAuth2
+#### 3.2.7.1 OAuth2
 
 启用 OAuth2 登录需要在 `spring.security.oauth2.client` 下配置客户端信息，可以配置多个 OAuth2 客户端。在配置之前，需要到提供 OAuth2 服务的网站获取 `Client ID` 和 `Client Secret`
 
@@ -304,7 +420,7 @@ spring:
 
 如想了解更多信息，可以参考 [spring security oauth2](https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html) 官方文档。
 
-#### 2.8.2 LDAP
+#### 3.2.7.2 LDAP
 
 启用 LDAP 登录需要在 `spring.ldap` 下配置客户端信息。下面为开启 LDAP 登录的配置示例：
 
@@ -323,3 +439,18 @@ spring:
 | base     | 基本专有名称（DN）                                                                                            |
 | username | 使用 LDAP 服务器进行身份验证时使用的用户名（principal）；常规情况下为管理员用户的 DN（例如 cn=Administrator） |
 | password | 使用 LDAP 服务器进行身份验证时使用的密码（credentials）                                                       |
+
+## 3.3 日志配置
+
+`logback.xml` 为日志配置文件。在此仅对必要配置项做简单介绍，进一步了解请查看 [logback 官方文档](https://logback.qos.ch/manual/configuration.html)
+
+```xml
+<configuration>
+    <!-- 日志文件路径 -->
+    <property name="LOG_HOME" value="./logs"/>
+    <!-- SQL 日志等级 -->
+    <property name ="SQL_LEVEL" value="INFO"/>
+</configuration>
+```
+
+- 如果需要查看所有的查询 SQL 日志，请将 `SQL_LEVEL` 设置 `DEBUG`

@@ -17,3 +17,5 @@ docs:
   extensions:
     chart_plugin: chart_plugin.html
     jdbc: jdbc.html
+  others:
+    tenant_management_mode: tenant-management-mode.html
