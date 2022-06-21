@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>租户管理模式 | datart</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://github.com/running-elephant/datart-docs.git/docs/tenant-management-mode.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://github.com/running-elephant/datart-docs.git/docs/tenant-management-mode">
+    
+      <link rel="alternative" hreflang="zh-cn" href="https://github.com/running-elephant/datart-docs.git/zh-cn/docs/tenant-management-mode">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/datart-docs/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/datart-docs/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/datart-docs/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/datart-docs/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/datart-docs/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/datart-docs/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/datart-docs/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/datart-docs/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/datart-docs/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  
+<link rel="stylesheet" href="/datart-docs/css/navy.css">
+
+  <!-- endbuild -->
+  <link rel="stylesheet" href="/datart-docs/css/typeface-lato@0.0.75/index.min.css">
+  <link rel="stylesheet" href="/datart-docs/css/font-awesome@4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/datart-docs/css/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/datart-docs/atom.xml" title="datart" type="application/atom+xml">
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+  
+  
+  <body>
+    
+      <div id="container">
+        <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/datart-docs/" id="logo">datart</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/datart-docs/docs/" class="main-nav-link">文档</a><a href="/datart-docs/api/" class="main-nav-link">API</a><a href="/datart-docs/about/" class="main-nav-link">关于</a>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"></label>
+      <select id="lang-select" data-canonical="docs/tenant-management-mode.html">
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+        
+
+
+  <div id="content-wrap">
+    <div id="content" class="wrapper">
+      <div id="content-inner">
+        <article class="article-container" itemscope itemtype="http://schema.org/Article">
+          <div class="article-inner">
+            <div class="article">
+              <div class="inner">
+                <header class="article-header">
+                  <h1 class="article-title" itemprop="name">租户管理模式</h1>
+                  <a href="https://github.com/running-elephant/datart-docs/tree/master/source/docs/tenant-management-mode.md" class="article-edit-link" title="Improve this doc">
+                    <i class="fa fa-pencil"></i>
+                  </a>
+                </header>
+                <div class="article-content" itemprop="articleBody">
+                  <h1 id="场景" class="article-heading"><a href="#场景" class="headerlink" title="场景"></a>场景<a class="article-anchor" href="#场景" aria-hidden="true"></a></h1><p>不同的企业对数据可视化平台的定位不一样，datart 希望尽可能满足更多企业对数据可视化平台的使用和管理需求，在对租户的管理方面提供了两种模式</p>
+<h2 id="平台模式" class="article-heading"><a href="#平台模式" class="headerlink" title="平台模式"></a>平台模式<a class="article-anchor" href="#平台模式" aria-hidden="true"></a></h2><p>平台模式的租户管理规则如下：</p>
+<ul>
+<li>每个用户都可以新建组织，数量不限</li>
+<li>如果希望其他用户加入自己的组织，只能通过邀请的方式；不支持组织拥有者直接新建或删除用户</li>
+</ul>
+<p>平台模式适用于多部门、部门内数据需求自治的企业。在这种场景下，由每个部门的管理者负责创建组织、划分角色与权限、邀请其他成员参与制作和浏览可视化作品。如果有跨部门协作或浏览的用户，可以同时加入多个组织</p>
+<h2 id="团队模式" class="article-heading"><a href="#团队模式" class="headerlink" title="团队模式"></a>团队模式<a class="article-anchor" href="#团队模式" aria-hidden="true"></a></h2><p>团队模式的租户管理规则如下：</p>
+<ul>
+<li>整个应用仅有一个组织，所有用户都在该组织下；不支持新建其他组织</li>
+<li>组织拥有者可以直接新建和删除用户</li>
+</ul>
+<p>团队模式适用于有独立数据（技术）部门的企业。在这种场景下，需要对访问应用的每个用户做更精细化的管理</p>
+<h1 id="配置" class="article-heading"><a href="#配置" class="headerlink" title="配置"></a>配置<a class="article-anchor" href="#配置" aria-hidden="true"></a></h1><p>租户管理模式在 <code>datart.conf</code> 和 <code>application-config.yml</code> 中都可以设置</p>
+<p><code>datart.conf</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">datart.tenant-management-mode=platform</span><br></pre></td></tr></table></figure>
+
+<p><code>application-config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">tenant-management-mode:</span> <span class="string">platform</span></span><br></pre></td></tr></table></figure>
+
+<p>可填写的值及其含义：</p>
+<ul>
+<li>platform: 平台模式</li>
+<li>team: 团队模式</li>
+</ul>
+<h1 id="使用" class="article-heading"><a href="#使用" class="headerlink" title="使用"></a>使用<a class="article-anchor" href="#使用" aria-hidden="true"></a></h1><p>两种模式在功能上也有一些差异</p>
+<ol>
+<li>在主导航栏上，平台模式下有组织列表按钮，团队模式下没有</li>
+</ol>
+<img width="350" src="/datart-docs/images/tenant-management-mode/1.png" alt="1">
+<img width="350" src="/datart-docs/images/tenant-management-mode/2.png" alt="2">
+
+<ol start="2">
+<li>在成员与角色功能中</li>
+</ol>
+<p>平台模式下添加成员的方式为邀请成员，点击后弹出邀请成员对话框</p>
+<img width="270" src="/datart-docs/images/tenant-management-mode/3.png" alt="3">
+<img width="430" src="/datart-docs/images/tenant-management-mode/4.png" alt="4">
+
+<p>团队模式下添加成员方式为新建成员，点击后右侧会显示新建表单</p>
+<img width="270" src="/datart-docs/images/tenant-management-mode/5.png" alt="5">
+<img width="430" src="/datart-docs/images/tenant-management-mode/6.png" alt="6">
+
+<h1 id="注意事项" class="article-heading"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项<a class="article-anchor" href="#注意事项" aria-hidden="true"></a></h1><ul>
+<li>在选择租户管理模式之前请考虑好自身企业的使用场景</li>
+<li>从团队模式改变为平台模式，依然能够正常使用；从平台模式改变为团队模式可能导致应用无法正常运行</li>
+<li>如果没想好的话，请选择团队模式</li>
+</ul>
+
+                </div>
+                <footer class="article-footer">
+                  <time class="article-footer-updated" datetime="2022-06-21T09:01:04.483Z" itemprop="dateModified">Last updated: 2022-06-21</time>
+                  <a href="jdbc.html" class="article-footer-prev" title="扩展JDBC数据源"><i class="fa fa-chevron-left"></i><span>Prev</span></a>
+                </footer>
+              </div>
+            </div>
+            <aside id="article-toc" role="navigation">
+              <div id="article-toc-inner">
+                <strong class="sidebar-title">Contents</strong>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF"><span class="toc-text">场景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E5%8F%B0%E6%A8%A1%E5%BC%8F"><span class="toc-text">平台模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%A2%E9%98%9F%E6%A8%A1%E5%BC%8F"><span class="toc-text">团队模式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项</span></a></li></ol>
+                <a href="#" id="article-toc-top">Back to Top</a>
+              </div>
+            </aside>
+          </div>
+        </article>
+        <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">快速开始</strong><a href="index.html" class="sidebar-link">部署</a><a href="first-visualization.html" class="sidebar-link">第一个可视化作品</a><strong class="sidebar-title">可视化功能</strong><a href="source.html" class="sidebar-link">数据源</a><a href="view.html" class="sidebar-link">数据视图</a><a href="datachart.html" class="sidebar-link">数据图表</a><a href="dashboard.html" class="sidebar-link">仪表板</a><a href="storyboard.html" class="sidebar-link">故事板</a><a href="schedule.html" class="sidebar-link">定时任务</a><a href="variable.html" class="sidebar-link">变量</a><strong class="sidebar-title">用户与权限</strong><a href="organization.html" class="sidebar-link">组织</a><a href="member.html" class="sidebar-link">成员与角色</a><a href="permission.html" class="sidebar-link">权限</a><strong class="sidebar-title">自定义扩展</strong><a href="chart_plugin.html" class="sidebar-link">自定义插件化图表</a><a href="jdbc.html" class="sidebar-link">扩展JDBC数据源</a><strong class="sidebar-title">其他</strong><a href="tenant-management-mode.html" class="sidebar-link current">租户管理模式</a>
+  </div>
+</aside>
+      </div>
+    </div>
+  </div>
+
+        <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2022 <a href="https://github.com/running-elephant/datart/graphs/contributors" target="_blank">datart</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://github.com/running-elephant/datart" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+      </div>
+      <div id="mobile-nav-dimmer"></div>
+      <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/datart-docs/docs/" class="mobile-nav-link">文档</a><a href="/datart-docs/api/" class="mobile-nav-link">API</a><a href="/datart-docs/about/" class="mobile-nav-link">关于</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/running-elephant/datart" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">快速开始</strong><a href="index.html" class="mobile-nav-link">部署</a><a href="first-visualization.html" class="mobile-nav-link">第一个可视化作品</a><strong class="mobile-nav-title">可视化功能</strong><a href="source.html" class="mobile-nav-link">数据源</a><a href="view.html" class="mobile-nav-link">数据视图</a><a href="datachart.html" class="mobile-nav-link">数据图表</a><a href="dashboard.html" class="mobile-nav-link">仪表板</a><a href="storyboard.html" class="mobile-nav-link">故事板</a><a href="schedule.html" class="mobile-nav-link">定时任务</a><a href="variable.html" class="mobile-nav-link">变量</a><strong class="mobile-nav-title">用户与权限</strong><a href="organization.html" class="mobile-nav-link">组织</a><a href="member.html" class="mobile-nav-link">成员与角色</a><a href="permission.html" class="mobile-nav-link">权限</a><strong class="mobile-nav-title">自定义扩展</strong><a href="chart_plugin.html" class="mobile-nav-link">自定义插件化图表</a><a href="jdbc.html" class="mobile-nav-link">扩展JDBC数据源</a><strong class="mobile-nav-title">其他</strong><a href="tenant-management-mode.html" class="mobile-nav-link current">租户管理模式</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/tenant-management-mode.html">
+      
+        <option value="en" selected>English</option>
+      
+        <option value="zh-cn">简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+      <!-- Scripts -->
+<!-- Cookie -->
+<script src="/datart-docs/js/js-cookie@2/src/js.cookie.min.js"></script>
+<!-- build:js build/js/main.js -->
+
+<script src="/datart-docs/js/lang_select.js"></script>
+
+
+<script src="/datart-docs/js/mobile_nav.js"></script>
+
+<!-- endbuild -->
+
+
+    
+  </body>
+</html>
