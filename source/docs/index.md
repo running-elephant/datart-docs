@@ -270,9 +270,16 @@ datart:
   tenant-management-mode: platform
 
   user:
+    # 是否允许注册用户
+    register: true
     active:
       # 注册用户时是否需要邮件激活
       send-mail: false
+      # 激活邮件有效期（小时）
+      expire-hours: 48
+    invite:
+      # 邀请加入组织邮件有效期（小时）
+      expire-hours: 48
 
   security:
     token:
