@@ -201,11 +201,6 @@ datart.invite.expire-hours=
 
 # 租户管理模式：platform-平台(默认)，team-团队
 datart.tenant-management-mode=platform
-
-# 团队管理员用户名/密码
-#   仅在team模式下有效，如果两项都正确填写，在启动应用时会在数据中重置该用户的密码
-datart.admin.username=admin
-datart.admin.password=123456
 ```
 
 ## 3.2 应用配置
@@ -291,6 +286,10 @@ datart:
   env:
     # 应用生成文件保存路径
     file-path: ${user.dir}/files
+
+  migration:
+    # 是否自动执行数据库升级脚本
+    enable: true
 ```
 
 - 应用主页地址：应用程序新建分享链接、截图、定时任务、激活账户、邀请成员时会使用到该地址
@@ -438,14 +437,18 @@ spring:
     base: dc=example,dc=com
     username: cn=admin,dc=example,dc=com
     password: 123456
+    attribute-mapping:
+      username: cn
 ```
 
-| 配置项   | 说明                                                                                                          |
-| -------- | ------------------------------------------------------------------------------------------------------------- |
-| urls     | LDAP 服务器 URL；格式固定为 `ldap://服务IP或域名:端口`                                                        |
-| base     | 基本专有名称（DN）                                                                                            |
-| username | 使用 LDAP 服务器进行身份验证时使用的用户名（principal）；常规情况下为管理员用户的 DN（例如 cn=Administrator） |
-| password | 使用 LDAP 服务器进行身份验证时使用的密码（credentials）                                                       |
+| 配置项                     | 说明                                                                                                          |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| urls                       | LDAP 服务器 URL；格式固定为 `ldap://服务IP或域名:端口`                                                        |
+| base                       | 基本专有名称（DN）                                                                                            |
+| username                   | 使用 LDAP 服务器进行身份验证时使用的用户名（principal）；常规情况下为管理员用户的 DN（例如 cn=Administrator） |
+| password                   | 使用 LDAP 服务器进行身份验证时使用的密码（credentials）                                                       |
+| attribute-mapping          | 自定义属性映射                                                                                                |
+| attribute-mapping.username | 用户名对应的属性名称                                                                                          |
 
 ## 3.3 日志配置
 

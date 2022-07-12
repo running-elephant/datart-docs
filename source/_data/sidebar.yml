@@ -19,3 +19,4 @@ docs:
     jdbc: jdbc.html
   others:
     tenant_management_mode: tenant-management-mode.html
+    migration: migration.html

@@ -40,6 +40,7 @@ sidebar:
     jdbc: 扩展JDBC数据源
     others: 其他
     tenant_management_mode: 租户管理模式
+    migration: 资源迁移
 
 
     overview: Overview
@@ -47,7 +48,6 @@ sidebar:
     setup: Setup
     configuration: Configuration
     commands: Commands
-    migration: Migration
     basic_usage: Basic Usage
     writing: Writing
     front_matter: Front-matter

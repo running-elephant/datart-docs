@@ -13,13 +13,13 @@ title: 仪表板
 
 ![新建](/datart-docs/images/dashboard/create.jpg)
 
-## 1. 布局类型
+# 1. 布局类型
 
 仪表板拥有自动、自由两种布局类型
 
 ![布局](/datart-docs/images/dashboard/layout.png)
 
-### 1.1 自动布局
+## 1.1 自动布局
 
 ![](/datart-docs/images/dashboard/auto.gif)
 
@@ -27,13 +27,13 @@ title: 仪表板
 
 仪表板可视区域宽度在 768 像素以上时组件会按照用户定义的比例进行显示，在 768 像素以下时会响应为移动端观看模式
 
-### 1.2 自由布局
+## 1.2 自由布局
 
 ![](/datart-docs/images/dashboard/free.gif)
 
 自由布局可以用来制作大屏类应用，可以设定面板具体尺寸，任意调整组件大小，和位置。并且组件可以上下重叠。
 
-## 2. 制作仪表板
+# 2. 制作仪表板
 
 仪表板编辑栏
 
@@ -78,9 +78,9 @@ title: 仪表板
 1. 因为是自动布局，所以面板的基础属性由面板接管，属性包括画布边距，画布组件间距等。
 2. 画布的背景设计
 
-### 2.1 组件
+## 2.1 组件
 
-##### 组件概述
+#### 组件概述
 
 仪表板内由多个组件(widget)组成.
 
@@ -93,11 +93,11 @@ title: 仪表板
 
 未来还会扩展其他类型的组件等。
 
-##### 组件设计
+#### 组件设计
 
 ![](/datart-docs/images/dashboard/widgetSet.png)
 
-###### 组件名称
+##### 组件名称
 
 ![](/datart-docs/images/dashboard/widgetName.png)
 
@@ -105,33 +105,33 @@ title: 仪表板
 
 设置组件的名称颜色。
 
-###### 组件位置
+##### 组件位置
 
 在自由布局模式可以精确设置组件的位置。
 
-###### 组件尺寸
+##### 组件尺寸
 
 在自由布局模式可以精确设置组件的宽高。
 
-###### 组件背景
+##### 组件背景
 
 组件背景可以设置，组件的背景色，以及背景图片
 
-###### 组件内边距
+##### 组件内边距
 
 设置组件的内编辑，也可以理解为 widget 内的 padding 值
 
-###### 组件边框
+##### 组件边框
 
 组件边框可以设置其边框的显示隐藏，边框的粗细，边框的样式，边框的颜色,边框的圆角
 
 ![](/datart-docs/images/dashboard/widgetBorder.png)
 
-###### 组件自动刷新
+##### 组件自动刷新
 
 组件可以设置是否开启自动刷新，以及设置自动刷新的频率，开启后默认 60 秒刷新一次数据。
 
-##### 图层列表
+#### 图层列表
 
 ![](/datart-docs/images/dashboard/widgetList.jpg)
 
@@ -139,7 +139,7 @@ title: 仪表板
 
 ![](/datart-docs/images/dashboard/tuceng.gif)
 
-#### 2.1.1 图表组件
+### 2.1.1 图表组件
 
 ![](/datart-docs/images/dashboard/twoChart.jpg)
 
@@ -151,7 +151,7 @@ title: 仪表板
 
 是指在仪表板内创建的只属于当前仪表板的私有图表，不能被其他的仪表板使用。
 
-#### 2.1.2 媒体组件
+### 2.1.2 媒体组件
 
 ![](/datart-docs/images/dashboard/medialist.png)
 
@@ -189,7 +189,7 @@ iframe 组件
 
 视频的编辑和 iframe 很类似，你可以输入一个视频的地址。
 
-#### 2.1.3 容器组件
+### 2.1.3 容器组件
 
 容器组件，顾名思义这类组件是一个容器，可以放置其他的组件。
 
@@ -203,7 +203,7 @@ tab 容器(container-widget)
 
 ![](/datart-docs/images/dashboard/tab.gif)
 
-#### 2.1.4 筛选组件
+### 2.1.4 筛选组件
 
 <img src="/datart-docs/images/dashboard/filter.gif" style="zoom:150%;" />
 
@@ -215,7 +215,7 @@ tab 容器(container-widget)
 2. 选择要关联的组件以后，下面会展示选择的组件背后关联的数据视图，你可以选择这个筛选组件需要关联的数据视图的哪个字段或者变量，当然这个字段可能是（字符型，日期型，或者数值型）其中的一种。
    1. 接下来做相对应的控制器配置。
 
-##### 字符型
+#### 字符型
 
 ![](/datart-docs/images/dashboard/filter_str_changgui.png)
 
@@ -261,7 +261,7 @@ tab 容器(container-widget)
 
 设置完成后 效果如上图
 
-##### 数值型
+#### 数值型
 
 ![](/datart-docs/images/dashboard/filter_num_jh.jpg)
 
@@ -275,7 +275,7 @@ tab 容器(container-widget)
 
 `控制器` 可以选择 滑块 或者数值等。
 
-##### 日期型
+#### 日期型
 
 ![](/datart-docs/images/dashboard/filter_Date_1.png)
 
@@ -289,9 +289,9 @@ tab 容器(container-widget)
 
 `自定义`设置 可以选择一个时间范围， 选择一个开始时间，一个结束时间，这两个时间既可以是精确时间，也可以是一个程序运行时的相对时间。
 
-### 2.2 操作
+## 2.2 操作
 
-#### 前进/后退
+### 前进/后退
 
 当用户 不小心误删除了组件或者 其他误操作，都可以点击撤销按钮来回退操作， 重做按钮是和撤销按钮对应的操作。
 
@@ -299,11 +299,11 @@ tab 容器(container-widget)
 
 ![](/datart-docs/images/dashboard/redo.gif)
 
-#### 删除
+### 删除
 
 像上图演示的 可以对组件进行删除操作，在保存之前，都可以对删除的组件进行恢复。
 
-#### 复制/粘贴/
+### 复制/粘贴/
 
 利用复制粘贴按钮，可以轻松地复制一个组件
 
@@ -311,7 +311,7 @@ tab 容器(container-widget)
 
 ![](/datart-docs/images/dashboard/copy.gif)
 
-#### 置顶/置底
+### 置顶/置底
 
 在自由布局中 可以对组件进行图层置顶 和置底操作。
 
@@ -321,53 +321,57 @@ tab 容器(container-widget)
 
 ![](/datart-docs/images/dashboard/toTop2.gif)
 
-### 2.3 联动设置
+## 2.3 交互设置
 
-联动效果
+图表组件可以在右侧配置面板的“交互”栏设置交互行为；目前支持设置 3 种交互行为：联动、跳转和查看数据
+
+### 2.3.1 联动
+
+联动是以图表组件作为筛选控制器，点击图表元素，使其关联的其他图表组件筛选条件发生变化、并重新查询数据
 
 ![](/datart-docs/images/dashboard/linkage1.gif)
 
-仪表板中的组件之间可以配置联动关系
-
-联动设置,点击组件右上角进入编辑联动
+选中图表组件，在右侧配置面板点击“交互”栏，勾选左侧选框启用联动，点击标题打开配置面板
 
 ![](/datart-docs/images/dashboard/linkage2.png)
+![](/datart-docs/images/dashboard/linkage3.png)
 
-如下图可以把`地区天气`这个饼图组件作为联动的触发器，勾选需要它触发联动的组件，我们勾选了三个组件。
+需要配置以下内容：
 
-其中`chart_widget12`和`widget_chart`这两个组件和 触发器`地区天气`组件背后关联的是同一个数据视图所以不用做其他配置。
+1. 交互事件：触发联动交互的事件
 
-而`widget_渠道`这个组件背后的数据视图和触发器的数据视图不一样，所以我们要手动的制定一下他们数据视图相关字段的对应关系。比如我们让数据视图 `gdp-view`的【地区】对应 数据视图 `渠道数据`的【name_level2】。
+- 左键单击：鼠标左键点击触发
+- 右键菜单：打开鼠标右键菜单，通过选择菜单中的选项触发
 
-![](/datart-docs/images/dashboard/linkage3.jpg)
+2. 关联图表组件设置
 
-当你的组件设置了联动，并**_开启_**了它，那么你的组件上会有一个可以联动的(标记)icon。开始联动以后，点击这个 icon 可以取消联动效果
+首先，在列表里勾选上期望联动的图表组件；然后在关系设置里配置字段关系，关系设置有 2 个选项：
 
-![](/datart-docs/images/dashboard/linkage5.jpg)
+- 自动：如果参与联动交互的两个图表组件数据来源于同一个数据视图，关系可设为自动。在触发联动交互时，会将作用在触发器图表上的所有筛选条件，全部传递给拥有相同数据视图的关联图表组件
+- 自定义：以下情况适合设置自定义关系
 
-### 2.4 跳转设置
+  1. 参与联动交互的两个图表组件数据来源于不同数据视图；
+  2. 来源于同一个数据视图，但希望在联动时仅传递部分字段的筛选条件
 
-效果预览。点击图表上的值，到转到其他的仪表板或者图表
+  在这两种情况下，需要配置触发器与关联图表之间的字段关系，可以配置多条。在触发联动交互时，会将满足配置关系的筛选条件传递到关联图表
 
-![](/datart-docs/images/dashboard/jumpset0.gif)
+### 2.3.2 跳转
 
-组件右上角编辑按钮，进行跳转设置，跳转和联动都响应了鼠标的点击事件，所以同一个图表，跳转和联动同一时间只能设置一个。
+图表组件的跳转交互配置与使用与独立图表一致，请参考[图表跳转配置](datachart#1-5-1-跳转)和[图表交互行为](datachart#2-1-图表交互)
 
-![](/datart-docs/images/dashboard/jumpset1.png)
+### 2.3.3 查看数据
 
-选择你要跳转的目标，可以是仪表板或者公共图表等。注意，要选择的目标要至少有一个(筛选器)filter。否则不能选为目标。如下图
+图表组件的查看数据交互配置与使用与独立图表一致，请参考[图表查看数据配置](datachart#1-5-2-查看数据)和[图表交互行为](datachart#2-1-图表交互)
 
-![](/datart-docs/images/dashboard/jumpset.jpg)
+# 3. 使用仪表板
 
-## 3. 使用仪表板
-
-### 3.1 刷新
+## 3.1 刷新
 
 单个组件刷新
 
 ![](/datart-docs/images/dashboard/reload.png)
 
-### 3.2 全屏
+## 3.2 全屏
 
 组件可以全屏展示
 
@@ -377,7 +381,7 @@ tab 容器(container-widget)
 
 ![](/datart-docs/images/dashboard/full2.gif)
 
-### 3.3 分享链接
+## 3.3 分享链接
 
 ![](/datart-docs/images/dashboard/share.png)
 
@@ -407,57 +411,93 @@ tab 容器(container-widget)
 
 ![share](/datart-docs/images/dashboard/share_view_pw.jpg)
 
-### 3.4 下载
+## 3.4 导出数据
 
-用户可以下载仪表板和可视化组件的明细数据 Excel 文件.
-
-当用户下载的仪表板中包含多个组件时，将分不同 sheet 页存储各个组件的明细数据
-
-整个下载过程是异步的；点击下载按钮后，服务端生成下载任务，用户可以通过点击屏幕右上角云状按钮查看下载任务列表，当任务处理完毕之后，可以点击文件名称下载 Excel 文件
-
-下载功能和上图的分享链接功能类似
+可以将仪表板数据导出为 Excel，或是将仪表板截图导出为图片文件或 PDF
 
 ![](/datart-docs/images/dashboard/download.png)
 
-点击会询问你是否下载，确认后.左侧出现可下载的提示
+### 3.4.1 导出到 Excel
 
-![](/datart-docs/images/dashboard/download1.png)
+当用户下载的仪表板中包含多个组件时，将分不同 sheet 页存储各个组件的明细数据。
 
-点击打开下载任务列表，点击对应的项目即可进行下载
+整个下载过程是异步的；点击下载按钮后，服务端生成下载任务，用户可以在主导航栏查看下载任务列表，当任务处理完毕之后，可以点击文件名称下载 Excel 文件
 
 ![](/datart-docs/images/dashboard/download3.png)
 
-## 4. 基础功能
+### 3.4.2 导出到图片和 PDF
 
-### 4.1 新建&编辑
+导出为图表和 PDF 需要在部署阶段完成[截图配置](index#3-2-5-截图配置)后才能正常使用。使用方式和导出 Excel 一样，点击按钮之后生成下载任务，任务处理完成之后，在主导航栏的下拉列表中点击下载图片或 PDF 文件
 
-#### 4.1.1 新建&编辑仪表板
+## 3.5 导出与导入模板
+
+可以将仪表板配置导出为 `.drt`（datart template file）模板文件，并支持在任意 datart 服务导入模板文件来创建仪表板
+
+### 3.5.1 导出模板
+
+点击扩展按钮中的“导出为模板”选项，会弹出样例数据编辑面板；datart 会将样例数据存放到模板中供图表展示使用，在该面板中用户可以给样例数据脱敏，或是替换新的样例数据。完成之后，点击确定执行导出任务
+
+![](/datart-docs/images/dashboard/template1.png)
+![](/datart-docs/images/dashboard/template2.png)
+
+导出任务执行完成后，在主导航栏的下载列表下载模板文件
+
+![](/datart-docs/images/dashboard/template3.png)
+
+### 3.5.2 导入模板
+
+点击可视化目录顶部的新建按钮，选择“导入模板”，在弹出的表单中输入名称，选择模板文件和路径，点击确定，即可完成导入操作
+
+![](/datart-docs/images/dashboard/template4.png)
+![](/datart-docs/images/dashboard/template5.png)
+
+通过导入模板新建的仪表板中所展示的是样式数据，如果需要替换为数据视图中的真实数据，还需要手动匹配一下。
+
+打开图表编辑界面，可以看到数据栏中的配置字段呈警告色，说明该项配置与数据视图不匹配。选择数据视图，在弹出的对话框中选择“保留”
+
+![](/datart-docs/images/dashboard/template6.png)
+![](/datart-docs/images/dashboard/template7.png)
+
+数据配置项会按照字段名称自动匹配，匹配成功的字段会正常显示，未匹配成功的字段依然呈警告色
+
+![](/datart-docs/images/dashboard/template8.png)
+
+点击数据栏中显示警告色的字段，在下拉菜单中替换为数据视图中的字段，这样就可以保留原始配置信息并切换到数据视图的真实数据了
+
+![](/datart-docs/images/dashboard/template9.png)
+![](/datart-docs/images/dashboard/template10.png)
+
+# 4. 基础功能
+
+## 4.1 新建&编辑
+
+### 4.1.1 新建&编辑仪表板
 
 仪表板支持新建和编辑操作
 
 ![](/datart-docs/images/dashboard/edit.png)
 
-#### 4.1.2 新建&编辑文件夹
+### 4.1.2 新建&编辑文件夹
 
 ![](/datart-docs/images/dashboard/wenjianjia.png)
 
-### 4.2 移至回收站
+## 4.2 移至回收站
 
 在目录上每行右侧点击，可以修改其基本信息，或者将其移到回收站。
 
 ![](/datart-docs/images/dashboard/huishouzhan.jpg)
 
-### 4.3 还原
+## 4.3 还原
 
 点击下图进入回收站目录,可以将回收站里面的资源，还原或者彻底删除。
 
 ![](/datart-docs/images/dashboard/huishouzhan2.jpg) ![](/datart-docs/images/dashboard/huishouzahn3.jpg)
 
-### 4.4 删除
+## 4.4 删除
 
 如上图所示。
 
-### 4.5 搜索
+## 4.5 搜索
 
 点击目录上的 🔍 放大镜 图表，就会出现搜索输入框，输入您要搜索的资源，就会有对应的显示。
 
