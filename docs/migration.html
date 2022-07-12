@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>资源迁移 | datart</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://github.com/running-elephant/datart-docs.git/docs/migration.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://github.com/running-elephant/datart-docs.git/docs/migration">
+    
+      <link rel="alternative" hreflang="zh-cn" href="https://github.com/running-elephant/datart-docs.git/zh-cn/docs/migration">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/datart-docs/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/datart-docs/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/datart-docs/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/datart-docs/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/datart-docs/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/datart-docs/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/datart-docs/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/datart-docs/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/datart-docs/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/datart-docs/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  
+<link rel="stylesheet" href="/datart-docs/css/navy.css">
+
+  <!-- endbuild -->
+  <link rel="stylesheet" href="/datart-docs/css/typeface-lato@0.0.75/index.min.css">
+  <link rel="stylesheet" href="/datart-docs/css/font-awesome@4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/datart-docs/css/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/datart-docs/atom.xml" title="datart" type="application/atom+xml">
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+  
+  
+  <body>
+    
+      <div id="container">
+        <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/datart-docs/" id="logo">datart</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/datart-docs/docs/" class="main-nav-link">文档</a><a href="/datart-docs/api/" class="main-nav-link">API</a><a href="/datart-docs/about/" class="main-nav-link">关于</a>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"></label>
+      <select id="lang-select" data-canonical="docs/migration.html">
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+        
+
+
+  <div id="content-wrap">
+    <div id="content" class="wrapper">
+      <div id="content-inner">
+        <article class="article-container" itemscope itemtype="http://schema.org/Article">
+          <div class="article-inner">
+            <div class="article">
+              <div class="inner">
+                <header class="article-header">
+                  <h1 class="article-title" itemprop="name">资源迁移</h1>
+                  <a href="https://github.com/running-elephant/datart-docs/tree/master/source/docs/migration.md" class="article-edit-link" title="Improve this doc">
+                    <i class="fa fa-pencil"></i>
+                  </a>
+                </header>
+                <div class="article-content" itemprop="articleBody">
+                  <p>资源迁移功能用于在多个 datart 服务之间迁移和同步资源</p>
+<p>在日常使用场景中，企业或个人都有可能同时使用多个 datart 服务，比如“测试环境” - “生产环境”，或是“个人开发环境”。与此同时便产生了“将一个服务中的开发好的内容迁移到另一个服务中”的诉求</p>
+<p>资源迁移以图表和仪表板为单位，将其关联的数据视图配置、数据源配置和资源文件都打包到 <code>.drr</code>（datart resources file）文件中，用户可以在任意 datart 服务导入 <code>.drr</code> 文件，达到迁移和同步资源的目的</p>
+<p>点击主导航栏上的“设置” -&gt; “资源迁移管理”，进入资源迁移管理页面</p>
+<p><img src="/datart-docs/images/migration/1-1-1.png" alt="资源迁移"></p>
+<h1 id="导出资源" class="article-heading"><a href="#导出资源" class="headerlink" title="导出资源"></a>导出资源<a class="article-anchor" href="#导出资源" aria-hidden="true"></a></h1><p>在数据导出面板的下拉菜单目录中选择想要导出的图表和仪表板，点击提交来创建导出任务</p>
+<p><img src="/datart-docs/images/migration/1-1-2.png" alt="导出资源-1"></p>
+<p>当导出任务执行完成后，就可以在主导航栏的下载列表中点击下载 <code>.drr</code> 文件了</p>
+<p><img src="/datart-docs/images/migration/1-1-3.png" alt="导出资源-2"></p>
+<h1 id="导入资源" class="article-heading"><a href="#导入资源" class="headerlink" title="导入资源"></a>导入资源<a class="article-anchor" href="#导入资源" aria-hidden="true"></a></h1><p>导入资源的步骤如下：</p>
+<ol>
+<li>首先选择要导入的 <code>.drr</code> 文件</li>
+<li>选择导入策略；导入策略决定了遇到重复导入资源的处理方式，datart 支持 3 种导入策略：<ol>
+<li>新建：不检测资源是否重复，导入的每一条资源都会重新创建</li>
+<li>更新：检测到重复资源将会更新</li>
+<li>增量更新：检测到重复资源时本次导入会失败，用户需要自行排除重复资源，才能保证在该策略下导入成功</li>
+</ol>
+</li>
+<li>点击提交执行导入，完成之后可以在可视化、数据视图、数据源功能模块看到成功导入的资源</li>
+</ol>
+
+                </div>
+                <footer class="article-footer">
+                  <time class="article-footer-updated" datetime="2022-07-12T00:56:52.257Z" itemprop="dateModified">Last updated: 2022-07-12</time>
+                  <a href="tenant-management-mode.html" class="article-footer-prev" title="租户管理模式"><i class="fa fa-chevron-left"></i><span>Prev</span></a>
+                </footer>
+              </div>
+            </div>
+            <aside id="article-toc" role="navigation">
+              <div id="article-toc-inner">
+                <strong class="sidebar-title">Contents</strong>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%BC%E5%87%BA%E8%B5%84%E6%BA%90"><span class="toc-text">导出资源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E8%B5%84%E6%BA%90"><span class="toc-text">导入资源</span></a></li></ol>
+                <a href="#" id="article-toc-top">Back to Top</a>
+              </div>
+            </aside>
+          </div>
+        </article>
+        <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">快速开始</strong><a href="index.html" class="sidebar-link">部署</a><a href="first-visualization.html" class="sidebar-link">第一个可视化作品</a><strong class="sidebar-title">可视化功能</strong><a href="source.html" class="sidebar-link">数据源</a><a href="view.html" class="sidebar-link">数据视图</a><a href="datachart.html" class="sidebar-link">数据图表</a><a href="dashboard.html" class="sidebar-link">仪表板</a><a href="storyboard.html" class="sidebar-link">故事板</a><a href="schedule.html" class="sidebar-link">定时任务</a><a href="variable.html" class="sidebar-link">变量</a><strong class="sidebar-title">用户与权限</strong><a href="organization.html" class="sidebar-link">组织</a><a href="member.html" class="sidebar-link">成员与角色</a><a href="permission.html" class="sidebar-link">权限</a><strong class="sidebar-title">自定义扩展</strong><a href="chart_plugin.html" class="sidebar-link">自定义插件化图表</a><a href="jdbc.html" class="sidebar-link">扩展JDBC数据源</a><strong class="sidebar-title">其他</strong><a href="tenant-management-mode.html" class="sidebar-link">租户管理模式</a><a href="migration.html" class="sidebar-link current">资源迁移</a>
+  </div>
+</aside>
+      </div>
+    </div>
+  </div>
+
+        <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2022 <a href="https://github.com/running-elephant/datart/graphs/contributors" target="_blank">datart</a><br>
+    </div>
+    <div id="footer-links">
+      <a href="https://github.com/running-elephant/datart" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+      </div>
+      <div id="mobile-nav-dimmer"></div>
+      <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/datart-docs/docs/" class="mobile-nav-link">文档</a><a href="/datart-docs/api/" class="mobile-nav-link">API</a><a href="/datart-docs/about/" class="mobile-nav-link">关于</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/running-elephant/datart" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">快速开始</strong><a href="index.html" class="mobile-nav-link">部署</a><a href="first-visualization.html" class="mobile-nav-link">第一个可视化作品</a><strong class="mobile-nav-title">可视化功能</strong><a href="source.html" class="mobile-nav-link">数据源</a><a href="view.html" class="mobile-nav-link">数据视图</a><a href="datachart.html" class="mobile-nav-link">数据图表</a><a href="dashboard.html" class="mobile-nav-link">仪表板</a><a href="storyboard.html" class="mobile-nav-link">故事板</a><a href="schedule.html" class="mobile-nav-link">定时任务</a><a href="variable.html" class="mobile-nav-link">变量</a><strong class="mobile-nav-title">用户与权限</strong><a href="organization.html" class="mobile-nav-link">组织</a><a href="member.html" class="mobile-nav-link">成员与角色</a><a href="permission.html" class="mobile-nav-link">权限</a><strong class="mobile-nav-title">自定义扩展</strong><a href="chart_plugin.html" class="mobile-nav-link">自定义插件化图表</a><a href="jdbc.html" class="mobile-nav-link">扩展JDBC数据源</a><strong class="mobile-nav-title">其他</strong><a href="tenant-management-mode.html" class="mobile-nav-link">租户管理模式</a><a href="migration.html" class="mobile-nav-link current">资源迁移</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/migration.html">
+      
+        <option value="en" selected>English</option>
+      
+        <option value="zh-cn">简体中文</option>
+      
+    </select>
+  </div>
+</nav>
+      <!-- Scripts -->
+<!-- Cookie -->
+<script src="/datart-docs/js/js-cookie@2/src/js.cookie.min.js"></script>
+<!-- build:js build/js/main.js -->
+
+<script src="/datart-docs/js/lang_select.js"></script>
+
+
+<script src="/datart-docs/js/mobile_nav.js"></script>
+
+<!-- endbuild -->
+
+
+    
+  </body>
+</html>

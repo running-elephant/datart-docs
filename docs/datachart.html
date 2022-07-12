@@ -95,15 +95,15 @@
 <p><img src="/datart-docs/images/datachart/0-1-2.png" alt="概述-2"></p>
 <p>点击目录上新建的数据图表，右侧区域会显示它的浏览界面，点击右上角的编辑按钮进入图表编辑器</p>
 <p><img src="/datart-docs/images/datachart/0-1-3.png" alt="概述-3"></p>
-<h2 id="1-编辑图表" class="article-heading"><a href="#1-编辑图表" class="headerlink" title="1. 编辑图表"></a>1. 编辑图表<a class="article-anchor" href="#1-编辑图表" aria-hidden="true"></a></h2><p>编辑器从布局上分为 3 部分：</p>
+<h1 id="1-编辑图表" class="article-heading"><a href="#1-编辑图表" class="headerlink" title="1. 编辑图表"></a>1. 编辑图表<a class="article-anchor" href="#1-编辑图表" aria-hidden="true"></a></h1><p>编辑器从布局上分为 3 部分：</p>
 <ul>
 <li>左侧：关联数据视图的字段列表，用于拖拽到配置区<code>数据</code>栏中进行可视化属性配置</li>
 <li>中部：配置区</li>
 <li>右侧：预览区，用于选择图表类型和预览图表</li>
 </ul>
 <p><img src="/datart-docs/images/datachart/1-1-1.png" alt="编辑图表"></p>
-<h3 id="1-1-字段列表" class="article-heading"><a href="#1-1-字段列表" class="headerlink" title="1.1 字段列表"></a>1.1 字段列表<a class="article-anchor" href="#1-1-字段列表" aria-hidden="true"></a></h3><p>在左上角的下拉菜单中关联数据视图，所选数据视图的字段列表会展示在左侧面板上，不同字段类型有不同的前缀图标，<code>字符</code>和<code>日期</code>型显示为蓝色，<code>数值</code>型显示为绿色</p>
-<h4 id="1-1-1-计算字段" class="article-heading"><a href="#1-1-1-计算字段" class="headerlink" title="1.1.1 计算字段"></a>1.1.1 计算字段<a class="article-anchor" href="#1-1-1-计算字段" aria-hidden="true"></a></h4><p>点击字段列表顶部的加号按钮，可以创建计算字段</p>
+<h2 id="1-1-字段列表" class="article-heading"><a href="#1-1-字段列表" class="headerlink" title="1.1 字段列表"></a>1.1 字段列表<a class="article-anchor" href="#1-1-字段列表" aria-hidden="true"></a></h2><p>在左上角的下拉菜单中关联数据视图，所选数据视图的字段列表会展示在左侧面板上，不同字段类型有不同的前缀图标，<code>字符</code>和<code>日期</code>型显示为蓝色，<code>数值</code>型显示为绿色</p>
+<h3 id="1-1-1-计算字段" class="article-heading"><a href="#1-1-1-计算字段" class="headerlink" title="1.1.1 计算字段"></a>1.1.1 计算字段<a class="article-anchor" href="#1-1-1-计算字段" aria-hidden="true"></a></h3><p>点击字段列表顶部的加号按钮，可以创建计算字段</p>
 <p><img src="/datart-docs/images/datachart/1-1-1-1.png" alt="计算字段-1"></p>
 <p>创建一个计算字段需要填写名称、类型和表达式；在中部的编辑器内编写表达式，计算字段的表达式仅允许包含以下内容：</p>
 <ul>
@@ -114,8 +114,8 @@
 </ul>
 <p>未按标准书写的表达式在保存时会提示错误。保存成功后，计算字段显示为橙色，可以像使用常规字段一样拖拽计算字段到<code>数据</code>配置栏中</p>
 <p><img src="/datart-docs/images/datachart/1-1-1-2.png" alt="计算字段-2"></p>
-<h3 id="1-2-数据" class="article-heading"><a href="#1-2-数据" class="headerlink" title="1.2 数据"></a>1.2 数据<a class="article-anchor" href="#1-2-数据" aria-hidden="true"></a></h3><p>将字段拖拽到数据配置栏中，来确定图表的数据来源。数据配置变化会触发重新查询</p>
-<h4 id="1-2-1-维度和指标" class="article-heading"><a href="#1-2-1-维度和指标" class="headerlink" title="1.2.1 维度和指标"></a>1.2.1 维度和指标<a class="article-anchor" href="#1-2-1-维度和指标" aria-hidden="true"></a></h4><p>datart 没有预定义维度和指标，而是通过图表提供的数据配置项类型来对字段进行处理，配置项详情可以参考<a href="chart_plugin">自定义图表插件</a>章节。其中<code>维度</code>型配置项会对拖入的字段做分组处理，<code>指标</code>型配置项会对拖入的字段做聚合处理。</p>
+<h2 id="1-2-数据" class="article-heading"><a href="#1-2-数据" class="headerlink" title="1.2 数据"></a>1.2 数据<a class="article-anchor" href="#1-2-数据" aria-hidden="true"></a></h2><p>将字段拖拽到数据配置栏中，来确定图表的数据来源。数据配置变化会触发重新查询</p>
+<h3 id="1-2-1-维度和指标" class="article-heading"><a href="#1-2-1-维度和指标" class="headerlink" title="1.2.1 维度和指标"></a>1.2.1 维度和指标<a class="article-anchor" href="#1-2-1-维度和指标" aria-hidden="true"></a></h3><p>datart 没有预定义维度和指标，而是通过图表提供的数据配置项类型来对字段进行处理，配置项详情可以参考<a href="chart_plugin">自定义图表插件</a>章节。其中<code>维度</code>型配置项会对拖入的字段做分组处理，<code>指标</code>型配置项会对拖入的字段做聚合处理。</p>
 <p><img src="/datart-docs/images/datachart/1-2-1-1.png" alt="维度和指标"></p>
 <p>指标配置项支持在下拉菜单中对拖入的字段设置：</p>
 <ul>
@@ -135,8 +135,13 @@
 </li>
 <li>着色：部分图表支持设置指标数据在图表上显示的颜色，优先级低于着色配置项</li>
 </ul>
-<h4 id="1-2-2-筛选" class="article-heading"><a href="#1-2-2-筛选" class="headerlink" title="1.2.2 筛选"></a>1.2.2 筛选<a class="article-anchor" href="#1-2-2-筛选" aria-hidden="true"></a></h4><p>筛选配置项支持拖入任意字段，不同的字段类型配置面板有所差别，支持将筛选字段以控制器形式展示出来供用户操作</p>
-<h5 id="1-2-2-1-字符型字段筛选" class="article-heading"><a href="#1-2-2-1-字符型字段筛选" class="headerlink" title="1.2.2.1 字符型字段筛选"></a>1.2.2.1 字符型字段筛选<a class="article-anchor" href="#1-2-2-1-字符型字段筛选" aria-hidden="true"></a></h5><p>字符型字段默认情况下支持以下方式配置筛选：</p>
+<h4 id="1-2-1-1-钻取设置" class="article-heading"><a href="#1-2-1-1-钻取设置" class="headerlink" title="1.2.1.1 钻取设置"></a>1.2.1.1 钻取设置<a class="article-anchor" href="#1-2-1-1-钻取设置" aria-hidden="true"></a></h4><p>部分图表支持钻取交互能力。钻取需要在图表配置里记录一组维度字段，这一组字段将按照添加顺序自动构成钻取路径，在预览图表时通过左键点击或右键菜单来对当前展示的维度进行筛选、并进入到路径中下一个维度查看数据。通常情况下，这一组维度字段具有层次结构，来满足层层递进探索数据的目的</p>
+<p>支持钻取的图表，在配置界面上会拥有一个“可钻取”的维度配置项，支持拖入多个字段，默认情况下将首个字段的值作为图表维度进行展示。</p>
+<p>可以直接拖拽层次结构名称到可钻取的维度栏上，效果同批量拖拽字段一样，但展示为层次结构让字段关系更为清晰，交互上也更方便</p>
+<p><img src="/datart-docs/images/datachart/1-2-1-2.png" alt="钻取设置-1"><br><img src="/datart-docs/images/datachart/1-2-1-3.png" alt="钻取设置-2"></p>
+<p>钻取功能的使用请参考<a href="datachart#2-1-%E5%9B%BE%E8%A1%A8%E4%BA%A4%E4%BA%92">图表交互</a>章节</p>
+<h3 id="1-2-2-筛选" class="article-heading"><a href="#1-2-2-筛选" class="headerlink" title="1.2.2 筛选"></a>1.2.2 筛选<a class="article-anchor" href="#1-2-2-筛选" aria-hidden="true"></a></h3><p>筛选配置项支持拖入任意字段，不同的字段类型配置面板有所差别，支持将筛选字段以控制器形式展示出来供用户操作</p>
+<h4 id="1-2-2-1-字符型字段筛选" class="article-heading"><a href="#1-2-2-1-字符型字段筛选" class="headerlink" title="1.2.2.1 字符型字段筛选"></a>1.2.2.1 字符型字段筛选<a class="article-anchor" href="#1-2-2-1-字符型字段筛选" aria-hidden="true"></a></h4><p>字符型字段默认情况下支持以下方式配置筛选：</p>
 <ul>
 <li><p>常规：即时查询字段去重值作为筛选项</p>
 <ul>
@@ -163,7 +168,7 @@
 </ul>
 <p>在选择了<code>聚合方式</code>的情况下，字符型字段将转换为数值型字段参与筛选</p>
 <p><img src="/datart-docs/images/datachart/1-2-2-1-4.png" alt="字符型字段筛选-4"></p>
-<h5 id="1-2-2-2-数值型字段筛选" class="article-heading"><a href="#1-2-2-2-数值型字段筛选" class="headerlink" title="1.2.2.2 数值型字段筛选"></a>1.2.2.2 数值型字段筛选<a class="article-anchor" href="#1-2-2-2-数值型字段筛选" aria-hidden="true"></a></h5><p>数值型字段支持以下方式配置筛选：</p>
+<h4 id="1-2-2-2-数值型字段筛选" class="article-heading"><a href="#1-2-2-2-数值型字段筛选" class="headerlink" title="1.2.2.2 数值型字段筛选"></a>1.2.2.2 数值型字段筛选<a class="article-anchor" href="#1-2-2-2-数值型字段筛选" aria-hidden="true"></a></h4><p>数值型字段支持以下方式配置筛选：</p>
 <ul>
 <li><p>区间：填写一个范围作为筛选默认值</p>
 <ul>
@@ -179,7 +184,7 @@
 </li>
 </ul>
 <p>无论是否选择<code>聚合方式</code>，数值型字段始终作为数值参与筛选</p>
-<h5 id="1-2-2-3-日期型字段筛选" class="article-heading"><a href="#1-2-2-3-日期型字段筛选" class="headerlink" title="1.2.2.3 日期型字段筛选"></a>1.2.2.3 日期型字段筛选<a class="article-anchor" href="#1-2-2-3-日期型字段筛选" aria-hidden="true"></a></h5><p>日期型字段支持以下方式配置筛选：</p>
+<h4 id="1-2-2-3-日期型字段筛选" class="article-heading"><a href="#1-2-2-3-日期型字段筛选" class="headerlink" title="1.2.2.3 日期型字段筛选"></a>1.2.2.3 日期型字段筛选<a class="article-anchor" href="#1-2-2-3-日期型字段筛选" aria-hidden="true"></a></h4><p>日期型字段支持以下方式配置筛选：</p>
 <ul>
 <li><p>推荐：快捷选项，选定一个常用的时间范围</p>
 <p><img src="/datart-docs/images/datachart/1-2-2-3-1.png" alt="日期型字段筛选-1"></p>
@@ -189,11 +194,11 @@
 </li>
 </ul>
 <p>日期型字段仅支持日期范围作为控制器</p>
-<h5 id="1-2-2-4-是否可见" class="article-heading"><a href="#1-2-2-4-是否可见" class="headerlink" title="1.2.2.4 是否可见"></a>1.2.2.4 是否可见<a class="article-anchor" href="#1-2-2-4-是否可见" aria-hidden="true"></a></h5><p>隐藏：不使用控制器改变筛选值，仅默认值生效</p>
+<h4 id="1-2-2-4-是否可见" class="article-heading"><a href="#1-2-2-4-是否可见" class="headerlink" title="1.2.2.4 是否可见"></a>1.2.2.4 是否可见<a class="article-anchor" href="#1-2-2-4-是否可见" aria-hidden="true"></a></h4><p>隐藏：不使用控制器改变筛选值，仅默认值生效</p>
 <p>显示：需要选择展示用的控制器，在图表预浏览面，查看用户可以通过操作控制器来改变筛选条件</p>
 <p>条件：在图表里有 1 个及以上字符型字段参与筛选时，新建筛选时可以选择 1 个字符型筛选作为自身可见与否的依赖条件，当依赖的筛选值满足表达式时才会显示控制器</p>
 <p><img src="/datart-docs/images/datachart/1-2-2-4-1.png" alt="是否可见"></p>
-<h5 id="1-2-2-5-控制器" class="article-heading"><a href="#1-2-2-5-控制器" class="headerlink" title="1.2.2.5 控制器"></a>1.2.2.5 控制器<a class="article-anchor" href="#1-2-2-5-控制器" aria-hidden="true"></a></h5><p>控制器是筛选在图表浏览界面的可视化展示，通过预定义的控制器形式，用户可以自行更改筛选值来动态查询数据。数据图表的控制器集中展示在图表上方</p>
+<h4 id="1-2-2-5-控制器" class="article-heading"><a href="#1-2-2-5-控制器" class="headerlink" title="1.2.2.5 控制器"></a>1.2.2.5 控制器<a class="article-anchor" href="#1-2-2-5-控制器" aria-hidden="true"></a></h4><p>控制器是筛选在图表浏览界面的可视化展示，通过预定义的控制器形式，用户可以自行更改筛选值来动态查询数据。数据图表的控制器集中展示在图表上方</p>
 <p>datart 数据图表支持以下类型控制器：</p>
 <ul>
 <li>字符：多选下拉菜单、单选下拉菜单、单选按钮、文本输入框</li>
@@ -208,14 +213,14 @@
 </ul>
 <p><img src="/datart-docs/images/datachart/1-2-2-5-3.png" alt="控制器-3"></p>
 <p>可以在配置界面设置控制器宽度，默认情况下自适应展示</p>
-<h4 id="1-2-3-着色" class="article-heading"><a href="#1-2-3-着色" class="headerlink" title="1.2.3 着色"></a>1.2.3 着色<a class="article-anchor" href="#1-2-3-着色" aria-hidden="true"></a></h4><p>着色配置项支持放入一个字段来对图表做颜色可视化编码，目前仅支持拖入字符型字段。</p>
+<h3 id="1-2-3-着色" class="article-heading"><a href="#1-2-3-着色" class="headerlink" title="1.2.3 着色"></a>1.2.3 着色<a class="article-anchor" href="#1-2-3-着色" aria-hidden="true"></a></h3><p>着色配置项支持放入一个字段来对图表做颜色可视化编码，目前仅支持拖入字符型字段。</p>
 <p>当拖入字符型字段时，字段会被作为<code>维度</code>进行分组，图表会依据字段值和预设的颜色分成多系列进行展示，图例中会展示系列与颜色详情</p>
 <p><img src="/datart-docs/images/datachart/1-2-3-1.png" alt="着色"></p>
-<h4 id="1-2-4-其他" class="article-heading"><a href="#1-2-4-其他" class="headerlink" title="1.2.4 其他"></a>1.2.4 其他<a class="article-anchor" href="#1-2-4-其他" aria-hidden="true"></a></h4><ul>
+<h3 id="1-2-4-其他" class="article-heading"><a href="#1-2-4-其他" class="headerlink" title="1.2.4 其他"></a>1.2.4 其他<a class="article-anchor" href="#1-2-4-其他" aria-hidden="true"></a></h3><ul>
 <li>信息：部分直角坐标系图表支持，只能放置数值型字段，拖入的字段会被当做<code>指标</code>做聚合处理</li>
 <li>尺寸：用于散点图和气泡地图做节点大小编码，拖入的字段会被当做<code>指标</code>做聚合处理</li>
 </ul>
-<h4 id="1-2-5-字段设置" class="article-heading"><a href="#1-2-5-字段设置" class="headerlink" title="1.2.5 字段设置"></a>1.2.5 字段设置<a class="article-anchor" href="#1-2-5-字段设置" aria-hidden="true"></a></h4><p>可以点击拖入数据配置项的字段，在下拉菜单中对字段进行设置，目前支持以下通用设置：</p>
+<h3 id="1-2-5-字段设置" class="article-heading"><a href="#1-2-5-字段设置" class="headerlink" title="1.2.5 字段设置"></a>1.2.5 字段设置<a class="article-anchor" href="#1-2-5-字段设置" aria-hidden="true"></a></h3><p>可以点击拖入数据配置项的字段，在下拉菜单中对字段进行设置，目前支持以下通用设置：</p>
 <ul>
 <li>别名：改变字段在图表上的显示名称</li>
 <li>排序：对字段值进行排序，选项为：<ul>
@@ -225,38 +230,127 @@
 </ul>
 </li>
 </ul>
-<h3 id="1-3-样式" class="article-heading"><a href="#1-3-样式" class="headerlink" title="1.3 样式"></a>1.3 样式<a class="article-anchor" href="#1-3-样式" aria-hidden="true"></a></h3><p>样式配置栏与图表相关，用于改变图表的展示规则。样式配置变化不会触发查询</p>
-<h3 id="1-4-配置" class="article-heading"><a href="#1-4-配置" class="headerlink" title="1.4 配置"></a>1.4 配置<a class="article-anchor" href="#1-4-配置" aria-hidden="true"></a></h3><p>配置栏中包含一些额外的配置选项</p>
-<h4 id="1-4-1-参考线" class="article-heading"><a href="#1-4-1-参考线" class="headerlink" title="1.4.1 参考线"></a>1.4.1 参考线<a class="article-anchor" href="#1-4-1-参考线" aria-hidden="true"></a></h4><p>可以给部分直角坐标系图表设置参考线和参考区间，目前仅支持折线图、面积图、柱状图、散点图和双 Y 轴图</p>
+<h2 id="1-3-样式" class="article-heading"><a href="#1-3-样式" class="headerlink" title="1.3 样式"></a>1.3 样式<a class="article-anchor" href="#1-3-样式" aria-hidden="true"></a></h2><p>样式配置栏与图表相关，用于改变图表的展示规则。样式配置变化不会触发查询</p>
+<h2 id="1-4-分析" class="article-heading"><a href="#1-4-分析" class="headerlink" title="1.4 分析"></a>1.4 分析<a class="article-anchor" href="#1-4-分析" aria-hidden="true"></a></h2><p>分析栏中包含一些与数据分析相关的配置选项</p>
+<h3 id="1-4-1-分页" class="article-heading"><a href="#1-4-1-分页" class="headerlink" title="1.4.1 分页"></a>1.4.1 分页<a class="article-anchor" href="#1-4-1-分页" aria-hidden="true"></a></h3><p>表格支持在分析栏中启用分页和设置每页行数</p>
+<h3 id="1-4-2-总行数" class="article-heading"><a href="#1-4-2-总行数" class="headerlink" title="1.4.2 总行数"></a>1.4.2 总行数<a class="article-anchor" href="#1-4-2-总行数" aria-hidden="true"></a></h3><p>除表格外的其他图表都可以在分析栏中设置总行数，用于限制图表展示的数据总量</p>
+<h3 id="1-4-3-参考线" class="article-heading"><a href="#1-4-3-参考线" class="headerlink" title="1.4.3 参考线"></a>1.4.3 参考线<a class="article-anchor" href="#1-4-3-参考线" aria-hidden="true"></a></h3><p>可以给部分直角坐标系图表设置参考线和参考区间，目前仅支持折线图、面积图、柱状图、散点图和双 Y 轴图</p>
 <p>参考线需要关联到 1 个指标，数值可以选择关联指标的最大值、最小值、平均值，也可以选择手动设置常量值</p>
 <p>参考区间需要设置起始值和结束值，每个值分别需要关联 1 个指标，数值可以选择关联指标的最大值、最小值、平均值，也可以选择手动设置常量值</p>
-<h4 id="1-4-2-分页" class="article-heading"><a href="#1-4-2-分页" class="headerlink" title="1.4.2 分页"></a>1.4.2 分页<a class="article-anchor" href="#1-4-2-分页" aria-hidden="true"></a></h4><p>明细表可以进行分页设置</p>
-<h2 id="2-预览图表" class="article-heading"><a href="#2-预览图表" class="headerlink" title="2. 预览图表"></a>2. 预览图表<a class="article-anchor" href="#2-预览图表" aria-hidden="true"></a></h2><p>配置图表时可以在编辑器右侧即时预览图表，可以选择预览区域上方的小图标切换图表；鼠标悬停到图标上可以查看该图表正常展示所需的条件</p>
+<h3 id="1-4-4-汇总列、总计、小计" class="article-heading"><a href="#1-4-4-汇总列、总计、小计" class="headerlink" title="1.4.4 汇总列、总计、小计"></a>1.4.4 汇总列、总计、小计<a class="article-anchor" href="#1-4-4-汇总列、总计、小计" aria-hidden="true"></a></h3><p>表格支持在分析栏中设置汇总列；汇总列只能是数值字段</p>
+<p>透视表支持在分析栏中开启行总计、列总计和小计</p>
+<h2 id="1-5-交互" class="article-heading"><a href="#1-5-交互" class="headerlink" title="1.5 交互"></a>1.5 交互<a class="article-anchor" href="#1-5-交互" aria-hidden="true"></a></h2><p>部分图表可以在交互栏设置“跳转”和“查看数据”两种交互行为</p>
+<h3 id="1-5-1-跳转" class="article-heading"><a href="#1-5-1-跳转" class="headerlink" title="1.5.1 跳转"></a>1.5.1 跳转<a class="article-anchor" href="#1-5-1-跳转" aria-hidden="true"></a></h3><p>配置了跳转交互之后，在图表中触发跳转时，浏览器会跳转到目标页面，并通过携带的 url 参数对目标页面进行数据筛选</p>
+<p>勾选左侧选框启用跳转设置，点击标题打开配置面板</p>
+<p><img src="/datart-docs/images/datachart/1-5-1.png" alt="跳转-1"><br><img src="/datart-docs/images/datachart/1-5-2.png" alt="跳转-2"></p>
+<p>datart 支持设置 3 种目标页面类型，不同类型接收参数和筛选的方式不一样</p>
+<ol>
+<li>图表</li>
+</ol>
+<p>跳转到图表时，通过 URL 上的参数对目标图表的数据视图字段进行筛选、或对变量进行赋值</p>
+<ol start="2">
+<li>仪表板</li>
+</ol>
+<p>跳转到仪表板时，会匹配与 URL 参数名称相同的控制器，将参数值赋给控制器作为默认值</p>
+<ol start="3">
+<li>URL</li>
+</ol>
+<p>跳转到 URL 无法控制参数的使用</p>
+<p>每个图表可以创建多条跳转规则，每一条跳转规则需要设置以下内容：</p>
+<ul>
+<li>名称</li>
+<li>类型：跳转目的地类型<ul>
+<li>跳转到图表</li>
+<li>跳转到仪表板</li>
+<li>跳转到 URL</li>
+</ul>
+</li>
+<li>交互事件：触发交互行为的事件<ul>
+<li>左键单击：鼠标左键点击触发</li>
+<li>右键菜单：打开鼠标右键菜单，通过选择菜单中的选项触发</li>
+</ul>
+</li>
+<li>打开方式<ul>
+<li>从当前页打开：改变浏览器地址，重定向到目标页</li>
+<li>打开新窗口：从浏览器新窗口打开目标页</li>
+<li>打开对话框：从弹窗中打开目标页</li>
+</ul>
+</li>
+<li>关系设置：不同的跳转类型关系设置不一样：<ul>
+<li>跳转到图表：需要设置当前图表与目标图表之间的字段关联关系；选项如下：<ul>
+<li>自动：按字段名称自动匹配，触发跳转时，会将当前图表中已作用的所有筛选条件，通过字段名称匹配传递到目标图表</li>
+<li>自定义：手动配置字段关系，触发跳转时，仅将满足配置关系的筛选条件传递到目标图表</li>
+</ul>
+</li>
+<li>跳转到仪表板：需要设置当前图表与目标仪表板控制器之间的关联关系；触发跳转时，会将符合匹配关系的筛选条件值传递给目标仪表板控制器作为默认值</li>
+<li>跳转到 URL：需要设置当前图表与目标地址 URL 参数的匹配关系；触发跳转是，会将符合匹配关系的筛选条件值赋给目标地址对应的 URL 参数</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-5-2-查看数据" class="article-heading"><a href="#1-5-2-查看数据" class="headerlink" title="1.5.2 查看数据"></a>1.5.2 查看数据<a class="article-anchor" href="#1-5-2-查看数据" aria-hidden="true"></a></h3><p>启用了查看数据配置之后，在图表中触发查看数据时，会弹窗展示所选择图表元素的汇总数据和明细数据</p>
+<p>勾选左侧选框启用查看数据，点击标题打开配置面板</p>
+<p><img src="/datart-docs/images/datachart/1-5-3.png" alt="查看数据-1"><br><img src="/datart-docs/images/datachart/1-5-4.png" alt="查看数据-2"></p>
+<p>需要配置以下内容：</p>
+<ol>
+<li>交互事件：触发交互行为的事件</li>
+</ol>
+<ul>
+<li>左键单击：鼠标左键点击触发</li>
+<li>右键菜单：打开鼠标右键菜单，通过选择菜单中的选项触发</li>
+</ul>
+<ol start="2">
+<li>选择字段：选择需要展示的字段</li>
+</ol>
+<h1 id="2-预览图表" class="article-heading"><a href="#2-预览图表" class="headerlink" title="2. 预览图表"></a>2. 预览图表<a class="article-anchor" href="#2-预览图表" aria-hidden="true"></a></h1><p>配置图表时可以在编辑器右侧即时预览图表，可以选择预览区域上方的小图标切换图表；鼠标悬停到图标上可以查看该图表正常展示所需的条件</p>
 <p><img src="/datart-docs/images/datachart/2-1-1.png" alt="预览图表-1"></p>
 <p>在预览区的右上角，可以点击切换图表 -&gt; 原始数据 -&gt; SQL 语句</p>
 <p><img src="/datart-docs/images/datachart/2-1-2.png" alt="预览图表-2"></p>
 <p><img src="/datart-docs/images/datachart/2-1-3.png" alt="预览图表-3"></p>
-<h2 id="3-基础功能" class="article-heading"><a href="#3-基础功能" class="headerlink" title="3. 基础功能"></a>3. 基础功能<a class="article-anchor" href="#3-基础功能" aria-hidden="true"></a></h2><h3 id="3-1-新建" class="article-heading"><a href="#3-1-新建" class="headerlink" title="3.1 新建"></a>3.1 新建<a class="article-anchor" href="#3-1-新建" aria-hidden="true"></a></h3><p>点击目录树顶部的加号按钮，选择“新建数据图表”或“新建目录”会弹出新建表单，填写名称和所属目录即可完成创建</p>
+<h2 id="2-1-图表交互" class="article-heading"><a href="#2-1-图表交互" class="headerlink" title="2.1 图表交互"></a>2.1 图表交互<a class="article-anchor" href="#2-1-图表交互" aria-hidden="true"></a></h2><p>一个图表可以同时拥有钻取、跳转、查看数据多种交互行为；下面是一些通用交互规则：</p>
+<ul>
+<li>默认情况下，左键点击为选择图表元素；可以按住 Command / Ctrl 键来多选</li>
+<li>如果有多个交互行为都使用左键单击作为触发事件，那么在左键单击时都会触发。如果一个图表包含多个交互行为，建议将交互事件都设为右键菜单</li>
+</ul>
+<h3 id="2-1-1-钻取" class="article-heading"><a href="#2-1-1-钻取" class="headerlink" title="2.1.1 钻取"></a>2.1.1 钻取<a class="article-anchor" href="#2-1-1-钻取" aria-hidden="true"></a></h3><p>支持钻取的图表，点击右键菜单可以看到以下 3 个选项</p>
+<ul>
+<li><p>显示下一层级：使用钻取路径中的下一个维度来替换当前维度展示图表</p>
+</li>
+<li><p>展开下一层级：将钻取路径中的下一个维度与当前维度合并展示图表</p>
+</li>
+<li><p>开启“点击下钻”：点击启用之后，左键点击图表元素将视为同时触发以下 2 个行为：</p>
+<ol>
+<li>以该元素的维度值作为筛选条件</li>
+<li>显示下一层级</li>
+</ol>
+</li>
+</ul>
+<p><img src="/datart-docs/images/datachart/2-1-4.png" alt="钻取-1"></p>
+<p>当钻取到下一层级时，可以通过图表左下角的钻取路径导航、或是右键菜单的“上卷”选项来回到上一级</p>
+<p><img src="/datart-docs/images/datachart/2-1-5.png" alt="钻取-2"></p>
+<h3 id="2-1-2-跳转、查看数据" class="article-heading"><a href="#2-1-2-跳转、查看数据" class="headerlink" title="2.1.2 跳转、查看数据"></a>2.1.2 跳转、查看数据<a class="article-anchor" href="#2-1-2-跳转、查看数据" aria-hidden="true"></a></h3><p>如果配置了跳转或查看数据行为在左键单击，那么点击图表元素时会立即触发行为；如果配置在右键菜单，当选择图表元素之后打开右键菜单，可以看到跳转和查看数据的选项</p>
+<p><img src="/datart-docs/images/datachart/2-1-6.png" alt="跳转-1"></p>
+<p>触发跳转时，如果没有配置关系，或配置的关系未生效，依然会跳转到目标地址，但不携带任何参数</p>
+<h1 id="3-基础功能" class="article-heading"><a href="#3-基础功能" class="headerlink" title="3. 基础功能"></a>3. 基础功能<a class="article-anchor" href="#3-基础功能" aria-hidden="true"></a></h1><h2 id="3-1-新建" class="article-heading"><a href="#3-1-新建" class="headerlink" title="3.1 新建"></a>3.1 新建<a class="article-anchor" href="#3-1-新建" aria-hidden="true"></a></h2><p>点击目录树顶部的加号按钮，选择“新建数据图表”或“新建目录”会弹出新建表单，填写名称和所属目录即可完成创建</p>
 <p><img src="/datart-docs/images/datachart/3-1-1.png" alt="新建"></p>
-<h3 id="3-2-编辑" class="article-heading"><a href="#3-2-编辑" class="headerlink" title="3.2 编辑"></a>3.2 编辑<a class="article-anchor" href="#3-2-编辑" aria-hidden="true"></a></h3><p>点击目录树右侧的扩展按钮按钮，选择“基本信息”，即可对数据图表/目录的基本信息进行编辑</p>
+<h2 id="3-2-编辑" class="article-heading"><a href="#3-2-编辑" class="headerlink" title="3.2 编辑"></a>3.2 编辑<a class="article-anchor" href="#3-2-编辑" aria-hidden="true"></a></h2><p>点击目录树右侧的扩展按钮按钮，选择“基本信息”，即可对数据图表/目录的基本信息进行编辑</p>
 <p><img src="/datart-docs/images/datachart/3-1-2.png" alt="编辑"></p>
-<h3 id="3-3-发布、取消发布" class="article-heading"><a href="#3-3-发布、取消发布" class="headerlink" title="3.3 发布、取消发布"></a>3.3 发布、取消发布<a class="article-anchor" href="#3-3-发布、取消发布" aria-hidden="true"></a></h3><p>在数据图表浏览界面的工具栏上点击“发布”按钮来发布一个数据图表，未发布前数据图表处理制作中状态，此时对拥有查看权限的成员不可见；发布之后拥有查看权限的成员才能看到</p>
+<h2 id="3-3-发布、取消发布" class="article-heading"><a href="#3-3-发布、取消发布" class="headerlink" title="3.3 发布、取消发布"></a>3.3 发布、取消发布<a class="article-anchor" href="#3-3-发布、取消发布" aria-hidden="true"></a></h2><p>在数据图表浏览界面的工具栏上点击“发布”按钮来发布一个数据图表，未发布前数据图表处理制作中状态，此时对拥有查看权限的成员不可见；发布之后拥有查看权限的成员才能看到</p>
 <p><img src="/datart-docs/images/datachart/3-3-1.png" alt="发布-1"></p>
 <p>数据图表发布之后，如果需要下架，从工具栏右侧的扩展菜单中选择“取消发布”，则图表会重新回到制作中状态</p>
 <p><img src="/datart-docs/images/datachart/3-3-2.png" alt="发布-2"></p>
-<h3 id="3-4-同步数据" class="article-heading"><a href="#3-4-同步数据" class="headerlink" title="3.4 同步数据"></a>3.4 同步数据<a class="article-anchor" href="#3-4-同步数据" aria-hidden="true"></a></h3><p>如果需要更新图表中的数据，点击工具栏右侧的扩展菜单中的“同步数据”选项</p>
+<h2 id="3-4-同步数据" class="article-heading"><a href="#3-4-同步数据" class="headerlink" title="3.4 同步数据"></a>3.4 同步数据<a class="article-anchor" href="#3-4-同步数据" aria-hidden="true"></a></h2><p>如果需要更新图表中的数据，点击工具栏右侧的扩展菜单中的“同步数据”选项</p>
 <p><img src="/datart-docs/images/datachart/3-4-1.png" alt="同步数据-1"></p>
-<h3 id="3-5-另存为" class="article-heading"><a href="#3-5-另存为" class="headerlink" title="3.5 另存为"></a>3.5 另存为<a class="article-anchor" href="#3-5-另存为" aria-hidden="true"></a></h3><p>另存为功能支持将当前图表复制并保存。可以选择从目录树的扩展按钮中对图表进行另存为操作，也可以在工具栏右侧的扩展菜单中找到“另存为”选项</p>
+<h2 id="3-5-另存为" class="article-heading"><a href="#3-5-另存为" class="headerlink" title="3.5 另存为"></a>3.5 另存为<a class="article-anchor" href="#3-5-另存为" aria-hidden="true"></a></h2><p>另存为功能支持将当前图表复制并保存。可以选择从目录树的扩展按钮中对图表进行另存为操作，也可以在工具栏右侧的扩展菜单中找到“另存为”选项</p>
 <p><img src="/datart-docs/images/datachart/3-9-2.png" alt="另存为-1"></p>
 <p><img src="/datart-docs/images/datachart/3-5-1.png" alt="另存为-2"></p>
 <p>点击之后，在弹出的对话框中输入新的图表名称和路径，点击保存完成复制</p>
-<h3 id="3-6-添加到仪表板" class="article-heading"><a href="#3-6-添加到仪表板" class="headerlink" title="3.6 添加到仪表板"></a>3.6 添加到仪表板<a class="article-anchor" href="#3-6-添加到仪表板" aria-hidden="true"></a></h3><p>该功能支持将当前图表作为组件添加到指定仪表板。可以在工具栏右侧的扩展菜单中找到“添加到仪表板”选项</p>
+<h2 id="3-6-添加到仪表板" class="article-heading"><a href="#3-6-添加到仪表板" class="headerlink" title="3.6 添加到仪表板"></a>3.6 添加到仪表板<a class="article-anchor" href="#3-6-添加到仪表板" aria-hidden="true"></a></h2><p>该功能支持将当前图表作为组件添加到指定仪表板。可以在工具栏右侧的扩展菜单中找到“添加到仪表板”选项</p>
 <p><img src="/datart-docs/images/datachart/3-6-1.png" alt="添加到仪表板-1"></p>
 <p>点击之后，在弹出的对话框中选择想要加入的仪表板</p>
 <p><img src="/datart-docs/images/datachart/3-6-2.png" alt="添加到仪表板-2"></p>
 <p>点击确定之后，随即跳转到仪表板编辑页，用户可以对新增的图表组件调整尺寸和样式</p>
 <p><img src="/datart-docs/images/datachart/3-6-3.png" alt="添加到仪表板-3"></p>
-<h3 id="3-7-分享管理" class="article-heading"><a href="#3-7-分享管理" class="headerlink" title="3.7 分享管理"></a>3.7 分享管理<a class="article-anchor" href="#3-7-分享管理" aria-hidden="true"></a></h3><p>分享管理功能用于管理当前图表的分享链接。可以在工具栏右侧的扩展菜单中找到“分享管理”选项</p>
+<h2 id="3-7-分享管理" class="article-heading"><a href="#3-7-分享管理" class="headerlink" title="3.7 分享管理"></a>3.7 分享管理<a class="article-anchor" href="#3-7-分享管理" aria-hidden="true"></a></h2><p>分享管理功能用于管理当前图表的分享链接。可以在工具栏右侧的扩展菜单中找到“分享管理”选项</p>
 <p><img src="/datart-docs/images/datachart/3-7-1.png" alt="分享管理-1"></p>
 <p>点击之后，在弹出的的面板中新建和编辑分享链接</p>
 <p><img src="/datart-docs/images/datachart/3-7-2.png" alt="分享管理-2"></p>
@@ -284,13 +378,27 @@
 </ul>
 <p>点击确认之后，生成的分享链接会展示在面板上。可以在面板上快捷复制链接地址、编辑和删除链接</p>
 <p><img src="/datart-docs/images/datachart/3-7-6.png" alt="分享管理-6"></p>
-<h3 id="3-8-下载" class="article-heading"><a href="#3-8-下载" class="headerlink" title="3.8 下载"></a>3.8 下载<a class="article-anchor" href="#3-8-下载" aria-hidden="true"></a></h3><p>datart 支持将数据图表以 Excel、PDF、图片 3 种形式下载，PDF 和图片需要<a href="index#2-6-%E6%88%AA%E5%9B%BE%E9%85%8D%E7%BD%AE-%E5%8F%AF%E9%80%89">配置截图服务</a>才能正常使用。可以在工具栏右侧的扩展菜单中找到 3 种下载选项</p>
+<h2 id="3-8-导出数据" class="article-heading"><a href="#3-8-导出数据" class="headerlink" title="3.8 导出数据"></a>3.8 导出数据<a class="article-anchor" href="#3-8-导出数据" aria-hidden="true"></a></h2><p>datart 支持将数据图表以 Excel、PDF、图片 3 种形式导出，PDF 和图片需要<a href="index#3-2-5-%E6%88%AA%E5%9B%BE%E9%85%8D%E7%BD%AE">配置截图服务</a>才能正常使用。可以在工具栏右侧的扩展菜单中找到 3 种下载选项</p>
 <p><img src="/datart-docs/images/datachart/3-8-1.png" alt="下载-1"></p>
 <p>点击之后会在后台生成下载任务，datart 服务端会异步地执行下载任务，执行完成后将文件生成到配置的文件路径下。下载任务生成时界面顶部会有消息提示</p>
 <p><img src="/datart-docs/images/datachart/3-8-2.png" alt="下载-2"></p>
 <p>当有新的下载任务执行完成时，主导航栏下方的“下载列表”图标上会有角标提示；打开下载列表，点击文件名称下载文件</p>
 <p><img src="/datart-docs/images/datachart/3-8-3.png" alt="下载-3"></p>
-<h3 id="3-9-移至回收站、删除目录" class="article-heading"><a href="#3-9-移至回收站、删除目录" class="headerlink" title="3.9 移至回收站、删除目录"></a>3.9 移至回收站、删除目录<a class="article-anchor" href="#3-9-移至回收站、删除目录" aria-hidden="true"></a></h3><p>在目录树中可以删除目录、以及将数据图表移动到回收站；在数据图表工具栏的扩展菜单中也有移至回收站选项</p>
+<h2 id="3-9-导入与导出模板" class="article-heading"><a href="#3-9-导入与导出模板" class="headerlink" title="3.9 导入与导出模板"></a>3.9 导入与导出模板<a class="article-anchor" href="#3-9-导入与导出模板" aria-hidden="true"></a></h2><p>可以将图表配置导出为 <code>.drt</code>（datart template file）模板文件，并支持在任意 datart 服务导入模板文件来创建图表</p>
+<h3 id="3-9-1-导出模板" class="article-heading"><a href="#3-9-1-导出模板" class="headerlink" title="3.9.1 导出模板"></a>3.9.1 导出模板<a class="article-anchor" href="#3-9-1-导出模板" aria-hidden="true"></a></h3><p>点击扩展按钮中的“导出为模板”选项，会弹出样例数据编辑面板；datart 会将样例数据存放到模板中供图表展示使用，在该面板中用户可以给样例数据脱敏，或是替换新的样例数据。完成之后，点击确定执行导出任务</p>
+<p><img src="/datart-docs/images/datachart/template1.png"><br><img src="/datart-docs/images/datachart/template2.png"></p>
+<p>导出任务执行完成后，在主导航栏的下载列表下载模板文件</p>
+<p><img src="/datart-docs/images/datachart/template3.png"></p>
+<h3 id="3-9-2-导入模板" class="article-heading"><a href="#3-9-2-导入模板" class="headerlink" title="3.9.2 导入模板"></a>3.9.2 导入模板<a class="article-anchor" href="#3-9-2-导入模板" aria-hidden="true"></a></h3><p>点击可视化目录顶部的新建按钮，选择“导入模板”，在弹出的表单中输入名称，选择模板文件和路径，点击确定，即可完成导入操作</p>
+<p><img src="/datart-docs/images/datachart/template4.png"><br><img src="/datart-docs/images/datachart/template5.png"></p>
+<p>通过导入模板新建的图表中所展示的是样式数据，如果需要替换为数据视图中的真实数据，还需要手动匹配一下。</p>
+<p>打开图表编辑界面，可以看到数据栏中的配置字段呈警告色，说明该项配置与数据视图不匹配。选择数据视图，在弹出的对话框中选择“保留”</p>
+<p><img src="/datart-docs/images/dashboard/template6.png"><br><img src="/datart-docs/images/dashboard/template7.png"></p>
+<p>数据配置项会按照字段名称自动匹配，匹配成功的字段会正常显示，未匹配成功的字段依然呈警告色</p>
+<p><img src="/datart-docs/images/dashboard/template8.png"></p>
+<p>点击数据栏中显示警告色的字段，在下拉菜单中替换为数据视图中的字段，这样就可以保留原始配置信息并切换到数据视图的真实数据了</p>
+<p><img src="/datart-docs/images/dashboard/template9.png"><br><img src="/datart-docs/images/dashboard/template10.png"></p>
+<h2 id="3-10-移至回收站、删除目录" class="article-heading"><a href="#3-10-移至回收站、删除目录" class="headerlink" title="3.10 移至回收站、删除目录"></a>3.10 移至回收站、删除目录<a class="article-anchor" href="#3-10-移至回收站、删除目录" aria-hidden="true"></a></h2><p>在目录树中可以删除目录、以及将数据图表移动到回收站；在数据图表工具栏的扩展菜单中也有移至回收站选项</p>
 <p>点击目录树右侧的扩展按钮按钮，如果是目录，会显示<code>删除</code>按钮，点击并确认之后会永久删除该目录；如果是数据图表，会显示<code>移至回收站</code>按钮，点击并确认之后，该数据图表会被移动到回收站归档，无法再被使用</p>
 <p>
   <img width="350" src="/datart-docs/images/datachart/3-9-1.png" alt="回收站-1">
@@ -299,20 +407,20 @@
 
 <p>扩展菜单中的移至回收站按钮</p>
 <p><img src="/datart-docs/images/datachart/3-9-3.png" alt="回收站-3"></p>
-<h3 id="3-10-还原" class="article-heading"><a href="#3-10-还原" class="headerlink" title="3.10 还原"></a>3.10 还原<a class="article-anchor" href="#3-10-还原" aria-hidden="true"></a></h3><p>点击目录树顶部的扩展按钮，进入回收站</p>
+<h2 id="3-11-还原" class="article-heading"><a href="#3-11-还原" class="headerlink" title="3.11 还原"></a>3.11 还原<a class="article-anchor" href="#3-11-还原" aria-hidden="true"></a></h2><p>点击目录树顶部的扩展按钮，进入回收站</p>
 <p><img src="/datart-docs/images/datachart/3-10-1.png" alt="还原-1"></p>
 <p>系统会将移至回收站的数据图表重命名，规则为<code>原名称.时间戳</code>；点击回收站列表的任意数据图表，右侧区域会展示该数据图表的详细信息，为只读状态</p>
 <p><img src="/datart-docs/images/datachart/3-10-2.png" alt="还原-2"></p>
 <p>点击列表右侧扩展按钮，选择<code>还原</code>，在弹窗表单中需要重新填写还原后的名称和目录，填写完成后，点击保存按钮完成还原</p>
 <p><img src="/datart-docs/images/datachart/3-10-3.png" alt="还原-3"></p>
-<h3 id="3-11-删除" class="article-heading"><a href="#3-11-删除" class="headerlink" title="3.11 删除"></a>3.11 删除<a class="article-anchor" href="#3-11-删除" aria-hidden="true"></a></h3><p>查看回收站列表里的数据图表信息时，点击列表右侧扩展按钮，选择<code>删除</code>，确认对话框之后，将会永久删除该数据图表</p>
+<h2 id="3-12-删除" class="article-heading"><a href="#3-12-删除" class="headerlink" title="3.12 删除"></a>3.12 删除<a class="article-anchor" href="#3-12-删除" aria-hidden="true"></a></h2><p>查看回收站列表里的数据图表信息时，点击列表右侧扩展按钮，选择<code>删除</code>，确认对话框之后，将会永久删除该数据图表</p>
 <p><img src="/datart-docs/images/datachart/3-11-1.png" alt="删除"></p>
-<h3 id="3-12-搜索" class="article-heading"><a href="#3-12-搜索" class="headerlink" title="3.12 搜索"></a>3.12 搜索<a class="article-anchor" href="#3-12-搜索" aria-hidden="true"></a></h3><p>点击目录树顶部的<code>搜索</code>按钮，会弹出关键字搜索框，可以按照名称检索数据图表、仪表板和目录</p>
+<h2 id="3-13-搜索" class="article-heading"><a href="#3-13-搜索" class="headerlink" title="3.13 搜索"></a>3.13 搜索<a class="article-anchor" href="#3-13-搜索" aria-hidden="true"></a></h2><p>点击目录树顶部的<code>搜索</code>按钮，会弹出关键字搜索框，可以按照名称检索数据图表、仪表板和目录</p>
 <p><img src="/datart-docs/images/datachart/3-12-1.png" alt="搜索"></p>
 
                 </div>
                 <footer class="article-footer">
-                  <time class="article-footer-updated" datetime="2022-06-27T08:04:16.821Z" itemprop="dateModified">Last updated: 2022-06-27</time>
+                  <time class="article-footer-updated" datetime="2022-07-12T00:56:52.257Z" itemprop="dateModified">Last updated: 2022-07-12</time>
                   <a href="view.html" class="article-footer-prev" title="数据视图"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="dashboard.html" class="article-footer-next" title="仪表板"><span>Next</span><i class="fa fa-chevron-right"></i></a>
                 </footer>
               </div>
@@ -320,7 +428,7 @@
             <aside id="article-toc" role="navigation">
               <div id="article-toc-inner">
                 <strong class="sidebar-title">Contents</strong>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%BC%96%E8%BE%91%E5%9B%BE%E8%A1%A8"><span class="toc-text">1. 编辑图表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%AD%97%E6%AE%B5%E5%88%97%E8%A1%A8"><span class="toc-text">1.1 字段列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-%E8%AE%A1%E7%AE%97%E5%AD%97%E6%AE%B5"><span class="toc-text">1.1.1 计算字段</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%95%B0%E6%8D%AE"><span class="toc-text">1.2 数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-%E7%BB%B4%E5%BA%A6%E5%92%8C%E6%8C%87%E6%A0%87"><span class="toc-text">1.2.1 维度和指标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-%E7%AD%9B%E9%80%89"><span class="toc-text">1.2.2 筛选</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-2-1-%E5%AD%97%E7%AC%A6%E5%9E%8B%E5%AD%97%E6%AE%B5%E7%AD%9B%E9%80%89"><span class="toc-text">1.2.2.1 字符型字段筛选</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-2-2-%E6%95%B0%E5%80%BC%E5%9E%8B%E5%AD%97%E6%AE%B5%E7%AD%9B%E9%80%89"><span class="toc-text">1.2.2.2 数值型字段筛选</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-2-3-%E6%97%A5%E6%9C%9F%E5%9E%8B%E5%AD%97%E6%AE%B5%E7%AD%9B%E9%80%89"><span class="toc-text">1.2.2.3 日期型字段筛选</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-2-4-%E6%98%AF%E5%90%A6%E5%8F%AF%E8%A7%81"><span class="toc-text">1.2.2.4 是否可见</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-2-5-%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-text">1.2.2.5 控制器</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-%E7%9D%80%E8%89%B2"><span class="toc-text">1.2.3 着色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-4-%E5%85%B6%E4%BB%96"><span class="toc-text">1.2.4 其他</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-5-%E5%AD%97%E6%AE%B5%E8%AE%BE%E7%BD%AE"><span class="toc-text">1.2.5 字段设置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%A0%B7%E5%BC%8F"><span class="toc-text">1.3 样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E9%85%8D%E7%BD%AE"><span class="toc-text">1.4 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-%E5%8F%82%E8%80%83%E7%BA%BF"><span class="toc-text">1.4.1 参考线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-2-%E5%88%86%E9%A1%B5"><span class="toc-text">1.4.2 分页</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%A2%84%E8%A7%88%E5%9B%BE%E8%A1%A8"><span class="toc-text">2. 预览图表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD"><span class="toc-text">3. 基础功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%96%B0%E5%BB%BA"><span class="toc-text">3.1 新建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%BC%96%E8%BE%91"><span class="toc-text">3.2 编辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%8F%91%E5%B8%83%E3%80%81%E5%8F%96%E6%B6%88%E5%8F%91%E5%B8%83"><span class="toc-text">3.3 发布、取消发布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%90%8C%E6%AD%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">3.4 同步数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E5%8F%A6%E5%AD%98%E4%B8%BA"><span class="toc-text">3.5 另存为</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-%E6%B7%BB%E5%8A%A0%E5%88%B0%E4%BB%AA%E8%A1%A8%E6%9D%BF"><span class="toc-text">3.6 添加到仪表板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-%E5%88%86%E4%BA%AB%E7%AE%A1%E7%90%86"><span class="toc-text">3.7 分享管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-%E4%B8%8B%E8%BD%BD"><span class="toc-text">3.8 下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-9-%E7%A7%BB%E8%87%B3%E5%9B%9E%E6%94%B6%E7%AB%99%E3%80%81%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95"><span class="toc-text">3.9 移至回收站、删除目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-10-%E8%BF%98%E5%8E%9F"><span class="toc-text">3.10 还原</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-11-%E5%88%A0%E9%99%A4"><span class="toc-text">3.11 删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-12-%E6%90%9C%E7%B4%A2"><span class="toc-text">3.12 搜索</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%BC%96%E8%BE%91%E5%9B%BE%E8%A1%A8"><span class="toc-text">1. 编辑图表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E5%AD%97%E6%AE%B5%E5%88%97%E8%A1%A8"><span class="toc-text">1.1 字段列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-%E8%AE%A1%E7%AE%97%E5%AD%97%E6%AE%B5"><span class="toc-text">1.1.1 计算字段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%95%B0%E6%8D%AE"><span class="toc-text">1.2 数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-%E7%BB%B4%E5%BA%A6%E5%92%8C%E6%8C%87%E6%A0%87"><span class="toc-text">1.2.1 维度和指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-1-%E9%92%BB%E5%8F%96%E8%AE%BE%E7%BD%AE"><span class="toc-text">1.2.1.1 钻取设置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-%E7%AD%9B%E9%80%89"><span class="toc-text">1.2.2 筛选</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-1-%E5%AD%97%E7%AC%A6%E5%9E%8B%E5%AD%97%E6%AE%B5%E7%AD%9B%E9%80%89"><span class="toc-text">1.2.2.1 字符型字段筛选</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-2-%E6%95%B0%E5%80%BC%E5%9E%8B%E5%AD%97%E6%AE%B5%E7%AD%9B%E9%80%89"><span class="toc-text">1.2.2.2 数值型字段筛选</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-3-%E6%97%A5%E6%9C%9F%E5%9E%8B%E5%AD%97%E6%AE%B5%E7%AD%9B%E9%80%89"><span class="toc-text">1.2.2.3 日期型字段筛选</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-4-%E6%98%AF%E5%90%A6%E5%8F%AF%E8%A7%81"><span class="toc-text">1.2.2.4 是否可见</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-5-%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-text">1.2.2.5 控制器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-%E7%9D%80%E8%89%B2"><span class="toc-text">1.2.3 着色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-%E5%85%B6%E4%BB%96"><span class="toc-text">1.2.4 其他</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5-%E5%AD%97%E6%AE%B5%E8%AE%BE%E7%BD%AE"><span class="toc-text">1.2.5 字段设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%A0%B7%E5%BC%8F"><span class="toc-text">1.3 样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E5%88%86%E6%9E%90"><span class="toc-text">1.4 分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-1-%E5%88%86%E9%A1%B5"><span class="toc-text">1.4.1 分页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-2-%E6%80%BB%E8%A1%8C%E6%95%B0"><span class="toc-text">1.4.2 总行数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-3-%E5%8F%82%E8%80%83%E7%BA%BF"><span class="toc-text">1.4.3 参考线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-4-%E6%B1%87%E6%80%BB%E5%88%97%E3%80%81%E6%80%BB%E8%AE%A1%E3%80%81%E5%B0%8F%E8%AE%A1"><span class="toc-text">1.4.4 汇总列、总计、小计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E4%BA%A4%E4%BA%92"><span class="toc-text">1.5 交互</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-1-%E8%B7%B3%E8%BD%AC"><span class="toc-text">1.5.1 跳转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-2-%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE"><span class="toc-text">1.5.2 查看数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E9%A2%84%E8%A7%88%E5%9B%BE%E8%A1%A8"><span class="toc-text">2. 预览图表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%9B%BE%E8%A1%A8%E4%BA%A4%E4%BA%92"><span class="toc-text">2.1 图表交互</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E9%92%BB%E5%8F%96"><span class="toc-text">2.1.1 钻取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-%E8%B7%B3%E8%BD%AC%E3%80%81%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE"><span class="toc-text">2.1.2 跳转、查看数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD"><span class="toc-text">3. 基础功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%96%B0%E5%BB%BA"><span class="toc-text">3.1 新建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E7%BC%96%E8%BE%91"><span class="toc-text">3.2 编辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E5%8F%91%E5%B8%83%E3%80%81%E5%8F%96%E6%B6%88%E5%8F%91%E5%B8%83"><span class="toc-text">3.3 发布、取消发布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E5%90%8C%E6%AD%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">3.4 同步数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E5%8F%A6%E5%AD%98%E4%B8%BA"><span class="toc-text">3.5 另存为</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-%E6%B7%BB%E5%8A%A0%E5%88%B0%E4%BB%AA%E8%A1%A8%E6%9D%BF"><span class="toc-text">3.6 添加到仪表板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-%E5%88%86%E4%BA%AB%E7%AE%A1%E7%90%86"><span class="toc-text">3.7 分享管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-8-%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE"><span class="toc-text">3.8 导出数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-9-%E5%AF%BC%E5%85%A5%E4%B8%8E%E5%AF%BC%E5%87%BA%E6%A8%A1%E6%9D%BF"><span class="toc-text">3.9 导入与导出模板</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-9-1-%E5%AF%BC%E5%87%BA%E6%A8%A1%E6%9D%BF"><span class="toc-text">3.9.1 导出模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-9-2-%E5%AF%BC%E5%85%A5%E6%A8%A1%E6%9D%BF"><span class="toc-text">3.9.2 导入模板</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-10-%E7%A7%BB%E8%87%B3%E5%9B%9E%E6%94%B6%E7%AB%99%E3%80%81%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95"><span class="toc-text">3.10 移至回收站、删除目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-11-%E8%BF%98%E5%8E%9F"><span class="toc-text">3.11 还原</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-12-%E5%88%A0%E9%99%A4"><span class="toc-text">3.12 删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-13-%E6%90%9C%E7%B4%A2"><span class="toc-text">3.13 搜索</span></a></li></ol></li></ol>
                 <a href="#" id="article-toc-top">Back to Top</a>
               </div>
             </aside>
@@ -328,7 +436,7 @@
         </article>
         <aside id="sidebar" role="navigation">
   <div class="inner">
-    <strong class="sidebar-title">快速开始</strong><a href="index.html" class="sidebar-link">部署</a><a href="first-visualization.html" class="sidebar-link">第一个可视化作品</a><strong class="sidebar-title">可视化功能</strong><a href="source.html" class="sidebar-link">数据源</a><a href="view.html" class="sidebar-link">数据视图</a><a href="datachart.html" class="sidebar-link current">数据图表</a><a href="dashboard.html" class="sidebar-link">仪表板</a><a href="storyboard.html" class="sidebar-link">故事板</a><a href="schedule.html" class="sidebar-link">定时任务</a><a href="variable.html" class="sidebar-link">变量</a><strong class="sidebar-title">用户与权限</strong><a href="organization.html" class="sidebar-link">组织</a><a href="member.html" class="sidebar-link">成员与角色</a><a href="permission.html" class="sidebar-link">权限</a><strong class="sidebar-title">自定义扩展</strong><a href="chart_plugin.html" class="sidebar-link">自定义插件化图表</a><a href="jdbc.html" class="sidebar-link">扩展JDBC数据源</a><strong class="sidebar-title">其他</strong><a href="tenant-management-mode.html" class="sidebar-link">租户管理模式</a>
+    <strong class="sidebar-title">快速开始</strong><a href="index.html" class="sidebar-link">部署</a><a href="first-visualization.html" class="sidebar-link">第一个可视化作品</a><strong class="sidebar-title">可视化功能</strong><a href="source.html" class="sidebar-link">数据源</a><a href="view.html" class="sidebar-link">数据视图</a><a href="datachart.html" class="sidebar-link current">数据图表</a><a href="dashboard.html" class="sidebar-link">仪表板</a><a href="storyboard.html" class="sidebar-link">故事板</a><a href="schedule.html" class="sidebar-link">定时任务</a><a href="variable.html" class="sidebar-link">变量</a><strong class="sidebar-title">用户与权限</strong><a href="organization.html" class="sidebar-link">组织</a><a href="member.html" class="sidebar-link">成员与角色</a><a href="permission.html" class="sidebar-link">权限</a><strong class="sidebar-title">自定义扩展</strong><a href="chart_plugin.html" class="sidebar-link">自定义插件化图表</a><a href="jdbc.html" class="sidebar-link">扩展JDBC数据源</a><strong class="sidebar-title">其他</strong><a href="tenant-management-mode.html" class="sidebar-link">租户管理模式</a><a href="migration.html" class="sidebar-link">资源迁移</a>
   </div>
 </aside>
       </div>
@@ -357,7 +465,7 @@
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">快速开始</strong><a href="index.html" class="mobile-nav-link">部署</a><a href="first-visualization.html" class="mobile-nav-link">第一个可视化作品</a><strong class="mobile-nav-title">可视化功能</strong><a href="source.html" class="mobile-nav-link">数据源</a><a href="view.html" class="mobile-nav-link">数据视图</a><a href="datachart.html" class="mobile-nav-link current">数据图表</a><a href="dashboard.html" class="mobile-nav-link">仪表板</a><a href="storyboard.html" class="mobile-nav-link">故事板</a><a href="schedule.html" class="mobile-nav-link">定时任务</a><a href="variable.html" class="mobile-nav-link">变量</a><strong class="mobile-nav-title">用户与权限</strong><a href="organization.html" class="mobile-nav-link">组织</a><a href="member.html" class="mobile-nav-link">成员与角色</a><a href="permission.html" class="mobile-nav-link">权限</a><strong class="mobile-nav-title">自定义扩展</strong><a href="chart_plugin.html" class="mobile-nav-link">自定义插件化图表</a><a href="jdbc.html" class="mobile-nav-link">扩展JDBC数据源</a><strong class="mobile-nav-title">其他</strong><a href="tenant-management-mode.html" class="mobile-nav-link">租户管理模式</a>
+      <strong class="mobile-nav-title">快速开始</strong><a href="index.html" class="mobile-nav-link">部署</a><a href="first-visualization.html" class="mobile-nav-link">第一个可视化作品</a><strong class="mobile-nav-title">可视化功能</strong><a href="source.html" class="mobile-nav-link">数据源</a><a href="view.html" class="mobile-nav-link">数据视图</a><a href="datachart.html" class="mobile-nav-link current">数据图表</a><a href="dashboard.html" class="mobile-nav-link">仪表板</a><a href="storyboard.html" class="mobile-nav-link">故事板</a><a href="schedule.html" class="mobile-nav-link">定时任务</a><a href="variable.html" class="mobile-nav-link">变量</a><strong class="mobile-nav-title">用户与权限</strong><a href="organization.html" class="mobile-nav-link">组织</a><a href="member.html" class="mobile-nav-link">成员与角色</a><a href="permission.html" class="mobile-nav-link">权限</a><strong class="mobile-nav-title">自定义扩展</strong><a href="chart_plugin.html" class="mobile-nav-link">自定义插件化图表</a><a href="jdbc.html" class="mobile-nav-link">扩展JDBC数据源</a><strong class="mobile-nav-title">其他</strong><a href="tenant-management-mode.html" class="mobile-nav-link">租户管理模式</a><a href="migration.html" class="mobile-nav-link">资源迁移</a>
     
   </div>
   <div id="mobile-lang-select-wrap">
