@@ -18,5 +18,6 @@ docs:
     chart_plugin: chart_plugin.html
     jdbc: jdbc.html
   others:
+    upgrade: upgrade.html
     tenant_management_mode: tenant-management-mode.html
     migration: migration.html

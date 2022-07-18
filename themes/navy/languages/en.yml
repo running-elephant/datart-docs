@@ -41,6 +41,7 @@ sidebar:
     others: 其他
     tenant_management_mode: 租户管理模式
     migration: 资源迁移
+    upgrade: 升级指南
 
 
     overview: Overview
