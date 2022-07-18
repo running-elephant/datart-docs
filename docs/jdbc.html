@@ -89,38 +89,41 @@
                 <div class="article-content" itemprop="articleBody">
                   <h2 id="1-添加驱动文件" class="article-heading"><a href="#1-添加驱动文件" class="headerlink" title="1. 添加驱动文件"></a>1. 添加驱动文件<a class="article-anchor" href="#1-添加驱动文件" aria-hidden="true"></a></h2><p>datart release package 中默认只提供了 <code>MySQL 8.0</code> 的 JDBC 驱动文件，如果用户需要使用其他数据库作为数据源，需要自行手动添加驱动文件</p>
 <p>准备对应数据库的 JDBC 驱动 jar 包，放到服务端 <code>lib/</code> 路径下，重启服务即可生效</p>
-<h2 id="2-扩展JDBC数据源" class="article-heading"><a href="#2-扩展JDBC数据源" class="headerlink" title="2. 扩展JDBC数据源"></a>2. 扩展JDBC数据源<a class="article-anchor" href="#2-扩展JDBC数据源" aria-hidden="true"></a></h2><p>datart并没有穷举所有的JDBC数据库类型，这个做法也有一定难度。对于不在默认支持列表中的数据库，可通过简单几步配置就可以支持。</p>
+<h2 id="2-扩展-JDBC-数据源" class="article-heading"><a href="#2-扩展-JDBC-数据源" class="headerlink" title="2. 扩展 JDBC 数据源"></a>2. 扩展 JDBC 数据源<a class="article-anchor" href="#2-扩展-JDBC-数据源" aria-hidden="true"></a></h2><p>datart 并没有穷举所有的 JDBC 数据库类型，这个做法也有一定难度。对于不在默认支持列表中的数据库，可通过简单几步配置就可以支持。</p>
 <ul>
 <li>找到 <code>conf/jdbc-driver-ext.yml</code> 文件，添加关键配置，然后重启程序。</li>
 <li>以下以添加 <code>impala</code> 为例，在<code>conf/jdbc-driver-ext.yml</code>中添加以下配置。</li>
 </ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">IMPALA:</span></span><br><span class="line">  <span class="attr">db-type:</span> <span class="string">&quot;impala&quot;</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">&quot;impala&quot;</span></span><br><span class="line">  <span class="attr">literal-quote:</span> <span class="string">&quot;&#x27;&quot;</span></span><br><span class="line">  <span class="attr">identifier-quote:</span> <span class="string">&quot;`&quot;</span></span><br><span class="line"><span class="comment">#  literal-end-quote: &quot;`&quot;</span></span><br><span class="line"><span class="comment">#  identifier-end-quote: &quot;&#x27;&quot;</span></span><br><span class="line"><span class="comment">#  driver-class: &quot;com.mysql.cj.jdbc.Driver&quot; </span></span><br><span class="line"><span class="comment">#  url-prefix:</span></span><br><span class="line"><span class="comment">#  quote-identifiers: </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">IMPALA:</span></span><br><span class="line">  <span class="attr">db-type:</span> <span class="string">&quot;impala&quot;</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">&quot;impala&quot;</span></span><br><span class="line">  <span class="attr">literal-quote:</span> <span class="string">&quot;`&quot;</span></span><br><span class="line">  <span class="attr">identifier-quote:</span> <span class="string">&quot;&#x27;&quot;</span></span><br><span class="line">  <span class="attr">literal-end-quote:</span> <span class="string">&quot;`&quot;</span></span><br><span class="line">  <span class="attr">identifier-end-quote:</span> <span class="string">&quot;&#x27;&quot;</span></span><br><span class="line">  <span class="attr">driver-class:</span> <span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span></span><br><span class="line">  <span class="attr">url-prefix:</span></span><br><span class="line">  <span class="attr">quote-identifiers:</span></span><br><span class="line">  <span class="attr">sql-dialect:</span></span><br><span class="line">  <span class="attr">adapter-class:</span></span><br><span class="line">  <span class="attr">support-sql-limit:</span></span><br></pre></td></tr></table></figure>
 
 <p>配置说明</p>
 <ul>
 <li><strong><code>db-type</code> : 必填,数据库类型，唯一</strong></li>
 <li><strong><code>name</code> : 必填,数据库名称，唯一</strong></li>
 <li><strong><code>literal-quote</code>: 必填,字符型参数引号。</strong></li>
-<li><strong><code>identifier-quote</code>: 必填，SQL字段/列名引号。</strong></li>
+<li><strong><code>identifier-quote</code>: 必填，SQL 字段/列名引号。</strong></li>
 <li><code>literal-end-quote</code> : 非必填，当字符型参数引号左右不一样时需要填写。</li>
-<li><code>identifier-end-quote</code>: 非必填，当SQL字段/列名引号左右不一致时，需要填写。如Sql Server使用的 <code>[</code>,<code>]</code></li>
+<li><code>identifier-end-quote</code>: 非必填，当 SQL 字段/列名引号左右不一致时，需要填写。如 Sql Server 使用的 <code>[</code>,<code>]</code></li>
 <li><code>driver-class</code> : 非必填，驱动类名称。可在数据源界面指定。</li>
-<li><code>url-prefix</code>: 非必填，url连接串前缀。可在数据源界面配置。</li>
-<li><code>quote-identifiers</code>: 非必填，列名是否加引号，默认true。</li>
+<li><code>url-prefix</code>: 非必填，url 连接串前缀。可在数据源界面配置。</li>
+<li><code>quote-identifiers</code>: 非必填，列名是否加引号，默认 true。</li>
+<li><code>sql-dialect</code>: 非必填，calcite 方言类名称。</li>
+<li><code>adapter-class</code>: 非必填，JDBC 适配器类名称。</li>
+<li><code>support-sql-limit</code>: 非必填，是否支持 <code>limit</code> 语法，默认 false。</li>
 </ul>
-<p>配置完成后，按照第一段描述添加驱动文件，重启服务端。刷新页面，就可以在JDBC数据源下找到刚才添加的 <code>impala</code> 数据库</p>
+<p>配置完成后，按照第一段描述添加驱动文件，重启服务端。刷新页面，就可以在 JDBC 数据源下找到刚才添加的 <code>impala</code> 数据库</p>
 
                 </div>
                 <footer class="article-footer">
-                  <time class="article-footer-updated" datetime="2022-07-12T00:56:52.257Z" itemprop="dateModified">Last updated: 2022-07-12</time>
-                  <a href="chart_plugin.html" class="article-footer-prev" title="自定义插件化图表"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="tenant-management-mode.html" class="article-footer-next" title="租户管理模式"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+                  <time class="article-footer-updated" datetime="2022-07-18T04:48:39.184Z" itemprop="dateModified">Last updated: 2022-07-18</time>
+                  <a href="chart_plugin.html" class="article-footer-prev" title="自定义插件化图表"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="upgrade.html" class="article-footer-next" title="升级指南"><span>Next</span><i class="fa fa-chevron-right"></i></a>
                 </footer>
               </div>
             </div>
             <aside id="article-toc" role="navigation">
               <div id="article-toc-inner">
                 <strong class="sidebar-title">Contents</strong>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%B7%BB%E5%8A%A0%E9%A9%B1%E5%8A%A8%E6%96%87%E4%BB%B6"><span class="toc-text">1. 添加驱动文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%89%A9%E5%B1%95JDBC%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="toc-text">2. 扩展JDBC数据源</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%B7%BB%E5%8A%A0%E9%A9%B1%E5%8A%A8%E6%96%87%E4%BB%B6"><span class="toc-text">1. 添加驱动文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%89%A9%E5%B1%95-JDBC-%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="toc-text">2. 扩展 JDBC 数据源</span></a></li></ol>
                 <a href="#" id="article-toc-top">Back to Top</a>
               </div>
             </aside>
@@ -128,7 +131,7 @@
         </article>
         <aside id="sidebar" role="navigation">
   <div class="inner">
-    <strong class="sidebar-title">快速开始</strong><a href="index.html" class="sidebar-link">部署</a><a href="first-visualization.html" class="sidebar-link">第一个可视化作品</a><strong class="sidebar-title">可视化功能</strong><a href="source.html" class="sidebar-link">数据源</a><a href="view.html" class="sidebar-link">数据视图</a><a href="datachart.html" class="sidebar-link">数据图表</a><a href="dashboard.html" class="sidebar-link">仪表板</a><a href="storyboard.html" class="sidebar-link">故事板</a><a href="schedule.html" class="sidebar-link">定时任务</a><a href="variable.html" class="sidebar-link">变量</a><strong class="sidebar-title">用户与权限</strong><a href="organization.html" class="sidebar-link">组织</a><a href="member.html" class="sidebar-link">成员与角色</a><a href="permission.html" class="sidebar-link">权限</a><strong class="sidebar-title">自定义扩展</strong><a href="chart_plugin.html" class="sidebar-link">自定义插件化图表</a><a href="jdbc.html" class="sidebar-link current">扩展JDBC数据源</a><strong class="sidebar-title">其他</strong><a href="tenant-management-mode.html" class="sidebar-link">租户管理模式</a><a href="migration.html" class="sidebar-link">资源迁移</a>
+    <strong class="sidebar-title">快速开始</strong><a href="index.html" class="sidebar-link">部署</a><a href="first-visualization.html" class="sidebar-link">第一个可视化作品</a><strong class="sidebar-title">可视化功能</strong><a href="source.html" class="sidebar-link">数据源</a><a href="view.html" class="sidebar-link">数据视图</a><a href="datachart.html" class="sidebar-link">数据图表</a><a href="dashboard.html" class="sidebar-link">仪表板</a><a href="storyboard.html" class="sidebar-link">故事板</a><a href="schedule.html" class="sidebar-link">定时任务</a><a href="variable.html" class="sidebar-link">变量</a><strong class="sidebar-title">用户与权限</strong><a href="organization.html" class="sidebar-link">组织</a><a href="member.html" class="sidebar-link">成员与角色</a><a href="permission.html" class="sidebar-link">权限</a><strong class="sidebar-title">自定义扩展</strong><a href="chart_plugin.html" class="sidebar-link">自定义插件化图表</a><a href="jdbc.html" class="sidebar-link current">扩展JDBC数据源</a><strong class="sidebar-title">其他</strong><a href="upgrade.html" class="sidebar-link">升级指南</a><a href="tenant-management-mode.html" class="sidebar-link">租户管理模式</a><a href="migration.html" class="sidebar-link">资源迁移</a>
   </div>
 </aside>
       </div>
@@ -157,7 +160,7 @@
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">快速开始</strong><a href="index.html" class="mobile-nav-link">部署</a><a href="first-visualization.html" class="mobile-nav-link">第一个可视化作品</a><strong class="mobile-nav-title">可视化功能</strong><a href="source.html" class="mobile-nav-link">数据源</a><a href="view.html" class="mobile-nav-link">数据视图</a><a href="datachart.html" class="mobile-nav-link">数据图表</a><a href="dashboard.html" class="mobile-nav-link">仪表板</a><a href="storyboard.html" class="mobile-nav-link">故事板</a><a href="schedule.html" class="mobile-nav-link">定时任务</a><a href="variable.html" class="mobile-nav-link">变量</a><strong class="mobile-nav-title">用户与权限</strong><a href="organization.html" class="mobile-nav-link">组织</a><a href="member.html" class="mobile-nav-link">成员与角色</a><a href="permission.html" class="mobile-nav-link">权限</a><strong class="mobile-nav-title">自定义扩展</strong><a href="chart_plugin.html" class="mobile-nav-link">自定义插件化图表</a><a href="jdbc.html" class="mobile-nav-link current">扩展JDBC数据源</a><strong class="mobile-nav-title">其他</strong><a href="tenant-management-mode.html" class="mobile-nav-link">租户管理模式</a><a href="migration.html" class="mobile-nav-link">资源迁移</a>
+      <strong class="mobile-nav-title">快速开始</strong><a href="index.html" class="mobile-nav-link">部署</a><a href="first-visualization.html" class="mobile-nav-link">第一个可视化作品</a><strong class="mobile-nav-title">可视化功能</strong><a href="source.html" class="mobile-nav-link">数据源</a><a href="view.html" class="mobile-nav-link">数据视图</a><a href="datachart.html" class="mobile-nav-link">数据图表</a><a href="dashboard.html" class="mobile-nav-link">仪表板</a><a href="storyboard.html" class="mobile-nav-link">故事板</a><a href="schedule.html" class="mobile-nav-link">定时任务</a><a href="variable.html" class="mobile-nav-link">变量</a><strong class="mobile-nav-title">用户与权限</strong><a href="organization.html" class="mobile-nav-link">组织</a><a href="member.html" class="mobile-nav-link">成员与角色</a><a href="permission.html" class="mobile-nav-link">权限</a><strong class="mobile-nav-title">自定义扩展</strong><a href="chart_plugin.html" class="mobile-nav-link">自定义插件化图表</a><a href="jdbc.html" class="mobile-nav-link current">扩展JDBC数据源</a><strong class="mobile-nav-title">其他</strong><a href="upgrade.html" class="mobile-nav-link">升级指南</a><a href="tenant-management-mode.html" class="mobile-nav-link">租户管理模式</a><a href="migration.html" class="mobile-nav-link">资源迁移</a>
     
   </div>
   <div id="mobile-lang-select-wrap">
