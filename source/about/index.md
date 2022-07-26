@@ -54,7 +54,8 @@ datart 是新一代数据可视化开放平台，支持各类企业数据可视�
 平台问题可以查看 [Issue](https://github.com/running-elephant/datart/issues)，提交新Issue请参考 [Issue描述规范](https://github.com/running-elephant/datart/tree/master/.github/ISSUE_TEMPLATE)
 ##### 交流讨论
 可以加入社区微信群参与讨论
-![](/datart-docs/images/about/wechat-group.jpeg)
+
+<img src="/datart-docs/images/about/wechat-group.jpeg" alt="wechat" style="width: 360px; text-align: center" />
 
 ### 参与贡献 Contributing
 非常欢迎和感谢参与贡献，如何参与可参见 [Contributing]()
