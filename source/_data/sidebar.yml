@@ -21,3 +21,4 @@ docs:
     upgrade: upgrade.html
     tenant_management_mode: tenant-management-mode.html
     migration: migration.html
+    integrate_plugin_chart: integrate_plugin_chart.html

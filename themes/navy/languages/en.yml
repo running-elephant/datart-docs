@@ -42,6 +42,7 @@ sidebar:
     tenant_management_mode: 租户管理模式
     migration: 资源迁移
     upgrade: 升级指南
+    integrate_plugin_chart: 集成插件图表
 
 
     overview: Overview
