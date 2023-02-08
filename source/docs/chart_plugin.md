@@ -69,7 +69,7 @@ title: 自定义插件化图表
 
 > 需求定义: 制作一个散点图，包含一个或多个的维度列数据，两个指标列数据作为散点图的X、Y轴。
 
-完整代码及说明如下：	
+完整代码及说明如下:
 
 ```javascript
 /**
@@ -96,64 +96,64 @@ function D3JSScatterChart({ dHelper }) {
     config: {
       datas: [
         {
-          label: 'metrics',
-          key: 'metrics',
-          required: true,
-          type: 'group',
+          label: "dimension",
+          key: "dimension",
+          required: false,
+          type: "group",
         },
         {
-          label: 'deminsion',
-          key: 'deminsion',
+          label: "metrics",
+          key: "metrics",
           required: true,
-          type: 'aggregate',
+          type: "aggregate",
         },
       ],
       styles: [
         {
-          label: 'common.title',
-          key: 'scatter',
-          comType: 'group',
+          label: "common.title",
+          key: "scatter",
+          comType: "group",
           rows: [
             {
-              label: 'common.color',
-              key: 'color',
-              comType: 'fontColor',
+              label: "common.color",
+              key: "color",
+              comType: "fontColor",
             },
           ],
         },
       ],
       i18ns: [
         {
-          lang: 'zh-CN',
+          lang: "zh-CN",
           translation: {
             common: {
-              title: '散点图配置',
-              color: '气泡颜色',
+              title: "散点图配置",
+              color: "气泡颜色",
             },
           },
         },
         {
-          lang: 'en',
+          lang: "en",
           translation: {
             common: {
-              title: 'Scatter Setting',
-              color: 'Bubble Color',
+              title: "Scatter Setting",
+              color: "Bubble Color",
             },
           },
         },
       ],
     },
 
-    isISOContainer: 'demo-d3js-scatter-chart',
-    
+    isISOContainer: "demo-d3js-scatter-chart",
+
     //【必须】加载D3JS绘图引擎，此处需给出CDN链接或者服务端相对资源地址即可
-    dependency: ['https://d3js.org/d3.v5.min.js'],
+    dependency: ["https://d3js.org/d3.v5.min.js"],
 
     //【必须】设置图表的基本信息，icon可从Datart Icon图标中选取，暂时不支持自定义
     meta: {
-      id: 'demo-d3js-scatter-chart',
-      name: '[Plugin Demo] D3JS 散点图',
-      icon: 'sandiantu',
+      id: "demo-d3js-scatter-chart",
+      name: "[Plugin Demo] D3JS 散点图",
+      icon: "sandiantu",
       requirements: [
         {
           group: [0, 999],
@@ -176,11 +176,11 @@ function D3JSScatterChart({ dHelper }) {
       // 初始化D3JS绘图区域
       this.chart = context.window.d3
         .select(host)
-        .append('svg')
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
-        .append('g')
-        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     },
 
     onUpdated(options, context) {
@@ -205,8 +205,8 @@ function D3JSScatterChart({ dHelper }) {
         .range([0, width]); // This is the corresponding value I want in Pixel
 
       this.chart
-        .append('g')
-        .attr('transform', 'translate(0,' + height + ')')
+        .append("g")
+        .attr("transform", "translate(0," + height + ")")
         .call(context.window.d3.axisBottom(x));
 
       // X scale and Axis
@@ -215,24 +215,24 @@ function D3JSScatterChart({ dHelper }) {
         .domain([0, 100]) // This is the min and the max of the data: 0 to 100 if percentages
         .range([height, 0]); // This is the corresponding value I want in Pixel
 
-      this.chart.append('g').call(context.window.d3.axisLeft(y));
+      this.chart.append("g").call(context.window.d3.axisLeft(y));
 
       // Add 3 dots for 0, 50 and 100%
       this.chart
-        .selectAll('whatever')
+        .selectAll("whatever")
         .data(data)
         .enter()
-        .append('circle')
-        .attr('cx', function (d) {
+        .append("circle")
+        .attr("cx", function (d) {
           return x(d.x);
         })
-        .attr('cy', function (d) {
+        .attr("cy", function (d) {
           return y(d.y);
         })
-        .style('fill', style.color)
-        .attr('r', 7);
+        .style("fill", style.color)
+        .attr("r", 7);
 
-      this.chart.selectAll('whatever').style('color', 'blue');
+      this.chart.selectAll("whatever").style("color", "blue");
     },
 
     getOptions(dataset, config) {
@@ -242,45 +242,44 @@ function D3JSScatterChart({ dHelper }) {
       // 获取样式配置信息
       const styleConfigs = config.styles;
       const groupConfigs = dataConfigs
-        .filter(c => c.type === 'group')
-        .flatMap(config => config.rows || []);
+        .filter((c) => c.type === "group")
+        .flatMap((config) => config.rows || []);
 
       // 获取指标类型配置信息
       const aggregateConfigs = dataConfigs
-        .filter(c => c.type === 'aggregate')
-        .flatMap(config => config.rows || []);
+        .filter((c) => c.type === "aggregate")
+        .flatMap((config) => config.rows || []);
 
       // 数据转换，根据Datart提供了Helper转换工具
-      const objDataColumns = dHelper.transfromToObjectArray(
+      const objDataColumns = dHelper.transformToObjectArray(
         dataset.rows,
-        dataset.columns,
+        dataset.columns
       );
-
-      const data = objDataColumns.map(dc => {
+      const data = objDataColumns.map((dc) => {
         return {
           x: dc[dHelper.getValueByColumnKey(aggregateConfigs[0])],
           y: dc[dHelper.getValueByColumnKey(aggregateConfigs[1])],
         };
       });
 
-      var xMinValue = Math.min(...data.map(o => o.x));
-      var xMaxValue = Math.max(...data.map(o => o.y));
+      var xMinValue = Math.min(...data.map((o) => o.x));
+      var xMaxValue = Math.max(...data.map((o) => o.y));
 
-      var yMinValue = Math.min(...data.map(o => o.y));
-      var yMaxValue = Math.max(...data.map(o => o.y));
+      var yMinValue = Math.min(...data.map((o) => o.y));
+      var yMaxValue = Math.max(...data.map((o) => o.y));
 
       // 获取用户配置
       const color = dHelper.getStyleValueByGroup(
         styleConfigs,
-        'scatter',
-        'color',
+        "scatter",
+        "color"
       );
 
       return {
         style: {
           color,
         },
-        data: data.map(d => {
+        data: data.map((d) => {
           return {
             x: ((d.x || xMinValue - xMinValue) * 100) / (xMaxValue - xMinValue),
             y: ((d.y || yMinValue - yMinValue) * 100) / (yMaxValue - yMinValue),
@@ -288,6 +287,8 @@ function D3JSScatterChart({ dHelper }) {
         }),
       };
     },
+
+    onUnMount() {},
   };
 }
 ```
