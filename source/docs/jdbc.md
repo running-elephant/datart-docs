@@ -12,7 +12,7 @@ datart release package 中默认只提供了 `MySQL 8.0` 的 JDBC 驱动文件�
 
 datart 并没有穷举所有的 JDBC 数据库类型，这个做法也有一定难度。对于不在默认支持列表中的数据库，可通过简单几步配置就可以支持。
 
-- 找到 `conf/jdbc-driver-ext.yml` 文件，添加关键配置，然后重启程序。
+- 找到 `config/jdbc-driver-ext.yml` 文件，添加关键配置，然后重启程序。
 - 以下以添加 `impala` 为例，在`conf/jdbc-driver-ext.yml`中添加以下配置。
 
 ```yaml
